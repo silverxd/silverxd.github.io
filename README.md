@@ -11,15 +11,48 @@ Earn2Post is a socialmedia platform where users posting and commenting is limite
 Right now project is in development. We have done prototype of the website. You can see visuals of it below. Our next big step is to make this to a real thing.
 
 ## Visuals
+<html>
+<head>
+<style>
+table {
+  width: 100%;
+}
 
-PUT PIC HERE <O_O>
-<img src="/pics/Screenshot%202023-10-19%20000617.png" alt="image" width="50%" height="auto">
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
-![](/pics/Screenshot%202023-10-19%20001323.png)
-![](/pics/Screenshot%202023-10-19%20001425.png)
-![](/pics/Screenshot%202023-10-19%20001542.png)
-![](/pics/Screenshot%202023-10-19%20001445.png)
+th, td {
+  padding: 15px;
+  text-align: left;
+}
 
+img {
+  width: 100%;
+  height: auto;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td><img src="/pics/Screenshot%202023-10-19%20000617.png" alt="Image 1"></td>
+    <td><img src="/pics/Screenshot%202023-10-19%20001323.png" alt="Image 2"></td>
+  </tr>
+  <tr>
+    <td><img src="/pics/Screenshot%202023-10-19%20001425.png" alt="Image 3"></td>
+    <td><img src="/pics/Screenshot%202023-10-19%20001542.png" alt="Image 4"></td>
+  </tr>
+  <tr>
+    <td><img src="/pics/Screenshot%202023-10-19%20001445.png" alt="Image 5"></td>
+    <td></td>
+  </tr>
+</table>
+
+</body>
+</html>
 ## Features
 
 ### For User
