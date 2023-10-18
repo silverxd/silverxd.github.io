@@ -13,6 +13,12 @@ Right now project is in development. We have done prototype of the website. You 
 ## Visuals
 
 PUT PIC HERE <O_O>
+<img src="/pics/Screenshot%202023-10-19%20000617.png" alt="image" width="50%" height="auto">
+
+![](/pics/Screenshot%202023-10-19%20001323.png)
+![](/pics/Screenshot%202023-10-19%20001425.png)
+![](/pics/Screenshot%202023-10-19%20001542.png)
+![](/pics/Screenshot%202023-10-19%20001445.png)
 
 ## Features
 
