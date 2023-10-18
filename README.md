@@ -15,23 +15,9 @@ Right now project is in development. We have done prototype of the website. You 
 <head>
 <style>
 table {
-  width: 100%;
+width: 100%;
 }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
 </style>
 </head>
 <body>
