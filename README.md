@@ -19,23 +19,15 @@ Coming soom :D
 ### For User
 - [ ] Sign up/Sign in
 - [ ] Forgot password possibility
-
-
 - [ ] Ongoing feed
 - [ ] Profile customization
 - [ ] Following/Unfollowing
 - [ ] Adding friends
 - [ ] Messaging with firends
-
-
 - [ ] DeBug clicker for credit earning 
 - [ ] Possibility to buy DeBux with money
-
-
 - [ ] Settings
 - [ ] Bug Report
-
-
 - [ ] Switching account
 - [ ] Log out
 
