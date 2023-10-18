@@ -16,9 +16,10 @@ Coming soom :D
 
 ## Features
 
-# For User
+### For User
 - [ ] Sign up/Sign in
 - [ ] Forgot password possibility
+
 
 - [ ] Ongoing feed
 - [ ] Profile customization
@@ -26,16 +27,19 @@ Coming soom :D
 - [ ] Adding friends
 - [ ] Messaging with firends
 
+
 - [ ] DeBug clicker for credit earning 
 - [ ] Possibility to buy DeBux with money
+
 
 - [ ] Settings
 - [ ] Bug Report
 
+
 - [ ] Switching account
 - [ ] Log out
 
-# For Admin
+### For Admin
 - [ ] Sales graph and Transactions tabel
 - [ ] Bug reports graph and ability to see bug reports
 - [ ] Post overview and ability to delete them
