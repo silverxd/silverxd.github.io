@@ -12,7 +12,7 @@ Right now project is in development. We have done prototype of the website. You 
 
 ## Visuals
 
-(image.png)
+PUT PIC HERE <O_O>
 
 ## Features
 
