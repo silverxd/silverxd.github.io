@@ -51,8 +51,8 @@ Right now project is in development. We have done prototype of the website. You 
 
 ## Tools
 
-- [ ] [GitLab](https://gitlab.cs.taltech.ee/rraasu/iti0105-2023)
-- [ ] [Figma](https://www.figma.com/file/ADRzR9f2rCRiKne5f5kdr5/Untitled?type=design&mode=design&t=4gYQuHtCNYEVnsjo-1)
+- [x] [GitLab](https://gitlab.cs.taltech.ee/rraasu/iti0105-2023)
+- [x] [Figma](https://www.figma.com/file/ADRzR9f2rCRiKne5f5kdr5/Untitled?type=design&mode=design&t=4gYQuHtCNYEVnsjo-1)
 
 ## Authors
 
