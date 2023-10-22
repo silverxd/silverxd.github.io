@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #313131;
+}
+
+#submitButton {
+  background-color: #6A5988;
+  color: white;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+
+}
+
+#submitButton:hover {
+  background-color: #574b75;
+  box-shadow: #1d1728 -5px 5px;
+}
+p{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size:25px;
+  font-weight: 400;
+}
+
+h1 {
+  font-family: "IBM Plex Mono",monospace;
+}
