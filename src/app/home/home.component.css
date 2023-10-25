@@ -1,0 +1,22 @@
+body,html{
+  background-color: #6A5988;
+}
+.center-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  color:white;
+}
+
+.header {
+  background-color: #6A5988;
+  padding: 1%;
+  color: white;
+  flex-direction: row;
+}
+.logo {
+  text-align: left;
+  padding-left: 20px;
+}
