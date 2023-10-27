@@ -1,0 +1,28 @@
+nav {
+    background-color: #313131;
+    padding: 1%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6A5988;
+}
+
+.logo img {
+    height: 70px;
+    width: 70px;
+}
+
+.moto {
+    color: #E0E1E1;
+}
+
+.signOut {
+    color: #6A5988;
+}

@@ -9,14 +9,3 @@ body,html{
 p {
   color:white;
 }
-
-.header {
-  background-color: #6A5988;
-  padding: 1%;
-  color: white;
-  flex-direction: row;
-}
-.logo {
-  text-align: left;
-  padding-left: 20px;
-}
