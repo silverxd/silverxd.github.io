@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/ibm-plex-mono-3');
+
+
 body, html {
   margin: 0;
   padding: 0;

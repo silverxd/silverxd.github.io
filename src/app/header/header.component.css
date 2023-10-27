@@ -3,11 +3,13 @@ nav {
     padding: 1%;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
+    font-size: 64px;
+    font-family: 'IBM Plex Mono', monospace;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,10 +21,44 @@ nav {
     width: 70px;
 }
 
+header-text {
+    margin: 0;
+    padding: 0;
+}
+
 .moto {
+    font-size: 32px;
+    font-family: 'IBM Plex Mono ExtraLight', monospace;
     color: #E0E1E1;
 }
 
-.signOut {
-    color: #6A5988;
+.searchBar {
+    width:280px;
+	height: 50px;
+	margin:10px;
+	padding:10px;
+    background: #212121;
+	border-radius: 40px;
+}
+
+.searchBar img {
+    margin-top: 5px;
+    width: 17%;
+}
+
+.searchBar input[type=text] {
+    color: #E0E1E1;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    background: transparent;
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+}
+
+.menu img{
+    height: 70px;
+    width: 70px;
 }
