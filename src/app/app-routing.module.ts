@@ -5,9 +5,9 @@ import {LoginComponent} from "./login/login.component";
 import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
-  { path: '', component:LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'admin', component: AdminComponent}
+  { path: 'admin', component: AdminComponent},
 ];
 
 @NgModule({
