@@ -1,20 +1,39 @@
 mat-toolbar {
-    color: #E0E1E1;
-    background-color: #313131;
+  color: #E0E1E1;
+  background-color: #313131;
 }
+
 mat-sidenav-container {
-    height: calc(205vh - 115vh);
-    background-color: #212121;
-    
+  height: calc(205vh - 115vh);
+  background-color: #212121;
+  margin: 0;
+  padding: 0;
 }
+
+.login-page {
+  height: 100%;
+  background-color: #212121;
+  margin: 0;
+  padding: 0;
+}
+
+.other-page {
+  height: calc(205vh - 115vh);
+  background-color: #212121;
+  margin: 0;
+  padding: 0;
+}
+
+
 mat-sidenav {
-    width: 200px;
-    background-color: #313131;
+  width: 200px;
+  background-color: #313131;
 }
+
 a {
-    color: #E0E1E1;
+  color: #E0E1E1;
 }
+
 .fill-remaining-space {
-    flex: 1 1 auto;
-  }
-  
+  flex: 1 1 auto;
+}

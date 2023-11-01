@@ -7,6 +7,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @Input() opened=false;
-  @Input() visible = false
+  @Input() opened= false;
+  @Input() visible = false;
 }
