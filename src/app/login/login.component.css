@@ -14,5 +14,54 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Optional, to prevent scrollbars */
+  overflow: hidden;
+}
+
+
+.Frame3 {
+  background: #212121;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12%;
+}
+
+.Frame4 {
+  width: 50%;
+  height:2000px;
+  background: #6A5988;
+}
+
+.Frame5 {
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12%
+}
+
+.AccountLogIn {
+  color: white;
+  font-size: 30px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  margin-bottom: 10px
+}
+
+h1{
+  text-align: center;
+  padding-top:200px;
+  font-size: 100px;
+  color: white
+}
+
+
+.input-box {
+  margin-bottom: 10px;
+}
+
+.EnterPassword{
+  color: white;
+  font-size: 30px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  margin-bottom: 10px
 }
