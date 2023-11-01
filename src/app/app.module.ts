@@ -9,8 +9,8 @@ import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from  '@angular/material/list' 
 
 @NgModule({
   declarations: [
@@ -19,7 +19,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     LoginComponent,
     AdminComponent,
     HeaderComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FormsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -11,8 +11,19 @@
         <input type="text" placeholder="Search...">
     </div>
     <div class="menu">
-        <button mat-icon-button aria-label="Menu icon">
+        <button mat-icon-button aria-label="Menu icon" (click)="opened=!opened">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
 </nav>
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="over" position="end">
+        <mat-list>
+            <mat-list-item><a>Home</a></mat-list-item>
+            <mat-list-item><a>Kaka?</a></mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

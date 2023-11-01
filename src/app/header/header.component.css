@@ -62,3 +62,12 @@ header-text {
     height: 70px;
     width: 70px;
 }
+
+mat-sidenav-container {
+    background-color: #212121;
+    height: calc(205vh - 115vh);
+}
+mat-sidenav {
+    width: 200px;
+    background-color: #313131;
+}
