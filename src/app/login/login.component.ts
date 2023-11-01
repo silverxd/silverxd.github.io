@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {HeaderComponent} from "../header/header.component";
 
 @Component({
   selector: 'app-login',
@@ -7,11 +8,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   username: string = '';
   password: string = '';
+  showHeader: boolean = false;
+  constructor(private router: Router, private headerComponent: HeaderComponent) {
+    this.headerComponent.visible = false;
 
-  constructor(private router: Router) {
   }
+
+
 
   login() {
     // Check if username and password meet your criteria for validation
