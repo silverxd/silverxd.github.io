@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -7,5 +7,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  opened=false;
+  @Input() opened= false;
+  @Input() visible = false;
 }
