@@ -15,6 +15,7 @@ import { MatListModule } from  '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     LoginComponent,
     AdminComponent,
     HeaderComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
