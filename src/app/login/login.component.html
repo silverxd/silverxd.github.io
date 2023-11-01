@@ -5,19 +5,19 @@
     <!-- Add other head elements like title, stylesheets, and scripts here -->
 </head>
 <body>
-    <div  class="Frame3" style="background: #212121; display: flex; justify-content: flex-start; align-items: flex-start; gap: 12%;">
-      <div class="Frame4" style="width: 50%; height:2000px; background: #6A5988;">
-        <h1 style="text-align: center; padding-top:200px; font-size: 100px; color: white">Earn2Post</h1>
+    <div class="Frame3">
+      <div class="Frame4">
+        <h1>Earn2Post</h1>
       </div>
-        <div class="Frame5" style="flex-direction: column; justify-content: center; margin-top: 12%">
-            <div class="AccountLogIn" style="color: white; font-size: 30px; font-family: 'IBM Plex Mono', monospace; font-weight: 400;margin-bottom: 10px">
+        <div class="Frame5">
+            <div class="AccountLogIn">
               Account log in
             </div>
-            <input type="text" class="input-box Rectangle126" style="margin-bottom: 10px;" placeholder="Enter username" maxlength="12" [(ngModel)]="username">
-            <div class="EnterPassword" style="color: white; font-size: 30px; font-family: 'IBM Plex Mono', monospace; font-weight: 400;margin-bottom: 10px">
+            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username">
+            <div class="EnterPassword">
               Enter password
             </div>
-            <input type="password" class="input-box Rectangle127" placeholder="Enter password" maxlength="12" [(ngModel)]="password">
+            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password">
             <button id="submitButton" class="Button" (click)="login()">
               Sign in
             </button>
