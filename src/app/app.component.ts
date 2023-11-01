@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @Input() visible = false
   constructor(public router: Router){}
   title = 'earn2post';
 }
