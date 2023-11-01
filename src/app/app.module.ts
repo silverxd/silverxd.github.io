@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     HomeComponent,
     LoginComponent,
     AdminComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
