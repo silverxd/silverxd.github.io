@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="visible">
     <span>
         Earn2Post
     </span>
@@ -9,7 +9,7 @@
         <mat-icon>menu</mat-icon>
       </button>
 </mat-toolbar>
-<mat-sidenav-container autosize>
+<mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize>
     <mat-sidenav [(opened)]="opened" mode="over" position="end">
         <mat-list>
             <mat-list-item><a>Profile</a></mat-list-item>
