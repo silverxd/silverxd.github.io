@@ -7,6 +7,7 @@
   color: white;
   font-size: 20px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 html, body {
@@ -28,7 +29,7 @@ html, body {
 
 .Frame4 {
   width: 50%;
-  height:2000px;
+  height: 2000px;
   background: #6A5988;
 }
 
@@ -46,19 +47,15 @@ html, body {
   margin-bottom: 10px
 }
 
-h1{
+h1 {
   text-align: center;
-  padding-top:200px;
+  padding-top: 200px;
   font-size: 100px;
   color: white
 }
 
 
-.input-box {
-  margin-bottom: 10px;
-}
-
-.EnterPassword{
+.EnterPassword {
   color: white;
   font-size: 30px;
   font-family: 'IBM Plex Mono', monospace;

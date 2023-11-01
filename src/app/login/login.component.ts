@@ -22,7 +22,7 @@ export class LoginComponent {
 
   login() {
     // Check if username and password meet your criteria for validation
-    if (this.username.length >= 6 && this.password.length >= 6) {
+    if (this.username.length > 6 && this.password.length > 6) {
       // You can add more validation logic here if needed
       this.router.navigate(['home']); // Route to the "home" page
     } else if (this.username == 'admin' && this.password =='admin') {
