@@ -1,16 +1,28 @@
-<nav>
-    <div class="logo">
-        <img src="https://seeklogo.com/images/A/arch-linux-logo-3C25E68BA9-seeklogo.com.png" alt="">
-        <header-text>Earn2Post</header-text>
-    </div>
-    <div class="moto">
-        <header-text>"Post with Purpose, Earn with Pride | Join Earn2Post"</header-text>
-    </div>
-    <div class="searchBar">
-        <img src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-29.png" alt="">
-        <input type="text" placeholder="Search...">
-    </div>
-    <div class="menu">
-        <img src="https://globalsymbols.com/uploads/production/image/imagefile/4591/13_4591_fd0c1d99-51bc-47e1-b4bc-f2de2fc68b8c.svg" alt="">
-    </div>
-</nav>
+<mat-toolbar>
+    <span>
+        Earn2Post
+    </span>
+    <span class="fill-remaining-space"></span>
+    <span>"Post with Purpose, Earn with Pride | Join Earn2Post"</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-icon-button aria-label="Menu icon" (click)="opened=!opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+</mat-toolbar>
+<mat-sidenav-container autosize>
+    <mat-sidenav [(opened)]="opened" mode="over" position="end">
+        <mat-list>
+            <mat-list-item><a>Profile</a></mat-list-item>
+            <mat-list-item><a>Messages</a></mat-list-item>
+            <mat-list-item><a>Clicker</a></mat-list-item>
+            <mat-list-item><a>Buy DeBux</a></mat-list-item>
+            <mat-list-item><a>Settings</a></mat-list-item>
+            <mat-list-item><a>Bug Reposrt</a></mat-list-item>
+            <mat-list-item><a>Switch Account</a></mat-list-item>
+            <mat-list-item><a>Log out</a></mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
