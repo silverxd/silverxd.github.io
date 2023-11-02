@@ -27,7 +27,6 @@ html, body {
 }
 .logo-text{
   width: 100%;
-  padding-left: 15px;
 }
 .responsive{
   width: 40%;
@@ -79,7 +78,11 @@ h1 {
   color: white;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
+}
 
+a {
+  padding: 5px;
+  color: #6A5988;
 }
 
 .input-box {

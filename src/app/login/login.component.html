@@ -8,7 +8,7 @@
     <div class="container">
       <div class="logo-side">
         <div class="logo-text">
-          <h1 style="color: #2c2c2c; font-size: 35px; font-weight:400">Earn2Post</h1>
+          <h1 style="color: #2c2c2c; font-size: 35px; font-weight:400; padding-left:10px">Earn2Post</h1>
         </div>
         <div class="big-logo">
           <img class="responsive" src="assets/img/login_logo_big.svg" alt="Login Logo" width="400" height="400">
@@ -21,9 +21,12 @@
           <div class="input-container">
             <h1>Account log in</h1>
             <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
+            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your username</p>
             <h1>Enter password</h1>
             <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
-            <button style="--clr:#7d64bd" (click)=login()><span >Sign in</span><i></i></button>
+            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Wrong password</p>
+            <a [routerLink]="'register'">Forgot password?</a>
+            <button style="--clr:#7d64bd;" (click)=login()><span >Sign in</span><i></i></button>
           </div>
         </div>
 

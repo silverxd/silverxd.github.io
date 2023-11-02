@@ -13,7 +13,7 @@ export class LoginComponent {
 
   username: string = '';
   password: string = '';
-  showHeader: boolean = false;
+  loginFailed: boolean = false;
   constructor(private airtableService: AirtableService, private router: Router, private headerComponent: HeaderComponent) {
     this.headerComponent.visible = false;
 
@@ -29,7 +29,7 @@ export class LoginComponent {
       } else if (this.username === 'admin' && this.password === 'admin'){
         this.router.navigate(['/admin'])
       } else {
-        alert('Incorrect password or username')
+        this.loginFailed = true;
       }
     });
   }
