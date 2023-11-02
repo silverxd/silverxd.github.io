@@ -85,6 +85,11 @@ a {
   color: #6A5988;
 }
 
+.anchors{
+  display: flex;
+  gap:20px
+}
+
 .input-box {
   width: 100%;
   height: auto;

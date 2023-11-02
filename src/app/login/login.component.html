@@ -25,7 +25,7 @@
             <h1>Enter password</h1>
             <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
             <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Wrong password</p>
-            <a [routerLink]="'register'">Forgot password?</a>
+            <div class="anchors"><a [routerLink]="'forgot'">Forgot password?</a><a [routerLink]="'register'">Sign up here</a></div>
             <button style="--clr:#7d64bd;" (click)=login()><span >Sign in</span><i></i></button>
           </div>
         </div>
