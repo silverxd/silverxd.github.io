@@ -15,12 +15,11 @@
     <p class="subText" style="float:right;">{{ post[3] }} {{ post[3] == 1 ? 'comment' : 'comments' }}</p>
     <br><br>
     <hr/>
-    <img src="{{ post[7] == true ? 'assets/like_active.png' : 'assets/like_inactive.png' }}" class="icons" style="float:left;" (click)="toggleLike(i)">
-    <img src="assets/share.png" class="icons" style="float:left;">
+    <img src="{{ post[7] == true ? 'assets/img/like_active.svg' : 'assets/img/like_inactive.svg' }}" class="icons" style="float:left;" (click)="toggleLike(i)">
+    <img src="assets/img/share.svg" class="icons" style="float:left;">
     <textarea #commentText class="commentText" type="text"></textarea>
-    <img src="assets/send_post.png" class="icons" style="float:right;" (click)="postComment(i);commentText.value=' '">
+    <img src="assets/img/send.svg" class="icons" style="float:right;" (click)="postComment(i);commentText.value=' '">
     
 
 </div>
 </ul>
-
