@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {HeaderComponent} from "../header/header.component";
+import {AirtableService} from "../airtable.service";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   showHeader: boolean = false;
-  constructor(private router: Router, private headerComponent: HeaderComponent) {
+  constructor(private airtableService: AirtableService, private router: Router, private headerComponent: HeaderComponent) {
     this.headerComponent.visible = false;
 
   }
@@ -21,15 +22,16 @@ export class LoginComponent {
 
 
   login() {
-    // Check if username and password meet your criteria for validation
-    if (this.username.length >= 6 && this.password.length >= 6) {
-      // You can add more validation logic here if needed
-      this.router.navigate(['home']); // Route to the "home" page
-    } else if (this.username == 'admin' && this.password =='admin') {
-      this.router.navigate(['admin']);
-    }
-    else {
-      alert('There should be more than 6 characters'); // Show an alert for invalid input
-    }
+    this.airtableService.getUserByUsername(this.username).subscribe((user) => {
+      if (user.records.length === 1 && user.records[0].fields.Password === this.password) {
+        // Password is valid, navigate to the "home" component
+        this.router.navigate(['/home']);
+      } else if (this.username === 'admin' && this.password === 'admin'){
+        this.router.navigate(['/admin'])
+      } else {
+        alert('Incorrect password or username')
+      }
+    });
   }
 }
+//

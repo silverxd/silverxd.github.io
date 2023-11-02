@@ -13,11 +13,11 @@
             <div class="AccountLogIn">
               Account log in
             </div>
-            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username">
+            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
             <div class="EnterPassword">
               Enter password
             </div>
-            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password">
+            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
             <button id="submitButton" class="Button" (click)="login()">
               Sign in
             </button>

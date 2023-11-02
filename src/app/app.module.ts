@@ -9,13 +9,13 @@ import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from  '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostComponent } from './post/post.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { PostComponent } from './post/post.component';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
