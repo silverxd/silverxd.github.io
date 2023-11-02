@@ -17,6 +17,10 @@ p{
   font-weight: 400;
 }
 
+a {
+  font-family: IBM Plex Mono, monospace;
+}
+
 h1 {
   font-family: "IBM Plex Mono",monospace;
 }
