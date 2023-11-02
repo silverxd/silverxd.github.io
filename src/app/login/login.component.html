@@ -5,23 +5,28 @@
     <!-- Add other head elements like title, stylesheets, and scripts here -->
 </head>
 <body>
-    <div class="Frame3">
-      <div class="Frame4">
-        <h1>Earn2Post</h1>
-      </div>
-        <div class="Frame5">
-            <div class="AccountLogIn">
-              Account log in
-            </div>
-            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
-            <div class="EnterPassword">
-              Enter password
-            </div>
-            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
-            <button id="submitButton" class="Button" (click)="login()">
-              Sign in
-            </button>
+    <div class="container">
+      <div class="logo-side">
+        <div class="logo-text">
+          <h1 style="color: #2c2c2c; font-size: 35px; font-weight:400">Earn2Post</h1>
         </div>
+        <div class="big-logo">
+          <img class="responsive" src="assets/img/login_logo_big.svg" alt="Login Logo" width="400" height="400">
+        </div>
+      </div>
+        <div class="input-side">
+            <div class="phone-text">
+              <h1 style="font-size: 35px; font-weight:800">Earn2Post</h1>
+            </div>
+          <div class="input-container">
+            <h1>Account log in</h1>
+            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
+            <h1>Enter password</h1>
+            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
+            <button style="--clr:#7d64bd" (click)=login()><span >Sign in</span><i></i></button>
+          </div>
+        </div>
+
     </div>
     <!-- Other webpage content goes here -->
 </body>

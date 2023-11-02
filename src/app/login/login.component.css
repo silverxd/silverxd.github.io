@@ -1,13 +1,3 @@
-.input-box {
-  width: 100%;
-  height: 100%;
-  background: #313131;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-}
 
 html, body {
   height: 100%;
@@ -15,53 +5,213 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background: #212121;
 }
 
 
-.Frame3 {
-  background: #212121;
+.container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 12%;
+  height: 100%;
 }
 
-.Frame4 {
+.logo-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 50%;
-  height:2000px;
+  height: 100%;
   background: #6A5988;
 }
+.logo-text{
+  width: 100%;
+  padding-left: 15px;
+}
+.responsive{
+  width: 40%;
+  height: auto;
+}
+.big-logo{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
-.Frame5 {
+
+.input-side {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12%
+  align-items: center;
 }
 
-.AccountLogIn {
-  color: white;
+.input-container {
+  background-color: #212121;
+  display: flex;
+  width: 50%;
+  height: auto;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #6A5988;
+  border-radius: 20px;
+  transition: all 0.5s ease-in-out;
+}
+.input-container:hover {
+  box-shadow: 0px 0px 50px #6A5988;
+}
+
+.phone-text{
+  padding-bottom: 30px;
+}
+
+h1 {
+  text-align: left;
   font-size: 30px;
+  color: white;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 10px
-}
 
-h1{
-  text-align: center;
-  padding-top:200px;
-  font-size: 100px;
-  color: white
 }
-
 
 .input-box {
-  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  background: #313131;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+.phone-text{
+  padding-bottom: 30px;
 }
 
-.EnterPassword{
-  color: white;
-  font-size: 30px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-  margin-bottom: 10px
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .logo-side {
+    display: none;
+  }
+  .input-side {
+    background-image: url("src/assets/img/login_logo_big.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+}
+@media (min-width: 767px) {
+  .phone-text {
+    display: none;
+  }
+}
+
+
+button {
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  transition: 0.2s;
+  margin-top: 20px;
+  font-family: IBM Plex Mono, monospace;
+}
+
+button:hover {
+  letter-spacing: 0.2rem;
+  padding: 1.1rem 3.1rem;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #212121;
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
+
+button i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+button i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
 }

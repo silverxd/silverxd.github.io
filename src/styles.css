@@ -10,21 +10,7 @@ body, html {
   background-color: #212121;
 }
 
-#submitButton {
-  background-color: #6A5988;
-  color: white;
-  border-radius: 20px;
-  margin-top: 10px;
-  font-size: 20px;
-  padding: 10px;
-  border: none;
 
-}
-
-#submitButton:hover {
-  background-color: #574b75;
-  box-shadow: #1d1728 -5px 5px;
-}
 p{
   font-family: 'IBM Plex Mono', monospace;
   font-size:25px;
