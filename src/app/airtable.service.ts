@@ -20,4 +20,14 @@ export class AirtableService {
 
     return this.http.get(`${this.baseUrl}?filterByFormula=({Username}='${username}')`, options);
   }
+  createUser(user: any): Observable<any> {
+  const options = {
+    headers: {
+      Authorization: `Bearer ${this.apiKey}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return this.http.post(this.baseUrl, user, options);
+}
 }

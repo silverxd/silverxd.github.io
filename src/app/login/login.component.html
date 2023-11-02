@@ -14,22 +14,56 @@
           <img class="responsive" src="assets/img/login_logo_big.svg" alt="Login Logo" width="400" height="400">
         </div>
       </div>
-        <div class="input-side">
-            <div class="phone-text">
-              <h1 style="font-size: 35px; font-weight:800">Earn2Post</h1>
-            </div>
+        <div class="input-side" *ngIf="isPage === 'login'">
           <div class="input-container">
             <h1>Account log in</h1>
             <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
             <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your username</p>
             <h1>Enter password</h1>
             <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
-            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Wrong password</p>
-            <div class="anchors"><a [routerLink]="'forgot'">Forgot password?</a><a [routerLink]="'register'">Sign up here</a></div>
+            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your password</p>
+            <div class="anchors">
+              <div>
+                <a (click)="isPage = 'forgot'">Forgot password?</a>
+              </div>
+              <span style="color:#707070; font-family: 'IBM Plex Mono', monospace;">Don't have an account? <a (click)="isPage = 'register'">Sign up here</a></span>
+            </div>
             <button style="--clr:#7d64bd;" (click)=login()><span >Sign in</span><i></i></button>
           </div>
         </div>
 
+        <!-- Register input field -->
+        <div class="input-side" *ngIf="isPage === 'register'">
+          <div class="input-container">
+            <h1>Alias</h1>
+            <input type="text" class="input-box" placeholder="Enter your alias" maxlength="12" [(ngModel)]="name" (keyup.enter)="usernameInput.focus()" #passwordInput>
+            <h1>Username</h1>
+            <input type="text" class="input-box" placeholder="Enter new username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()" #usernameInput>
+            <h1>Enter password</h1>
+            <input type="password" class="input-box" placeholder="Enter new password" maxlength="12" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
+
+            <div class="anchors">
+              <div>
+                <a (click)="isPage = 'forgot'">Forgot password?</a>
+              </div>
+              <span style="color:#707070; font-family: 'IBM Plex Mono', monospace">Have an account? <a (click)="isPage = 'login'">Sign in here</a></span>
+            </div>
+            <button style="--clr:#00ff00;" (click)=register()><span>Sign up</span><i></i></button>
+          </div>
+        </div>
+
+        <!-- Forgot password boxes -->
+        <div class="input-side" *ngIf="isPage === 'forgot'">
+          <div class="input-container">
+            <h1>Enter email</h1>
+            <input type="text" class="input-box" placeholder="Enter your email" maxlength="12" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
+
+            <div class="anchors">
+              <span style="color:#707070; font-family: 'IBM Plex Mono', monospace">Oops still remember? <a (click)="isPage = 'login'">Sign in here</a></span>
+            </div>
+            <button style="--clr:red;" (click)=forgot()><span>Send verification</span><i></i></button>
+          </div>
+        </div>
     </div>
     <!-- Other webpage content goes here -->
 </body>

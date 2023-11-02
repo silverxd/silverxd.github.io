@@ -68,10 +68,6 @@ html, body {
   box-shadow: 0px 0px 50px #6A5988;
 }
 
-.phone-text{
-  padding-bottom: 30px;
-}
-
 h1 {
   text-align: left;
   font-size: 30px;
@@ -83,13 +79,19 @@ h1 {
 a {
   padding-top: 10px;
   color: #6A5988;
+  pointer-events: auto;
+  user-select: text;
 }
 
 .anchors{
   display: flex;
-  gap:20px
+  width: 100%;
+  flex-direction: column;
+  justify-content: left;
 }
-
+span{
+  user-select: auto;
+}
 .input-box {
   width: 100%;
   height: auto;
@@ -110,16 +112,19 @@ a {
     display: none;
   }
   .input-side {
+    height: 100%;
     background-image: url("src/assets/img/login_logo_big.svg");
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
+  }
+  h1{
+    font-size: 20px;
   }
 
 }
 @media (min-width: 767px) {
-  .phone-text {
-    display: none;
-  }
+
 }
 
 
@@ -198,6 +203,10 @@ button:hover i::after {
   width: 15px;
   left: 80%;
   animation: move 3s infinite;
+}
+
+button:focus {
+  background-color: green;
 }
 
 @keyframes move {
