@@ -1,12 +1,12 @@
 <mat-toolbar *ngIf="visible">
     <span>
-        Earn2Post
+        <img class="logo" src="assets/img/header_logo.svg" alt="">
     </span>
     <span class="fill-remaining-space"></span>
-    <span>"Post with Purpose, Earn with Pride | Join Earn2Post"</span>
+    <span class="moto">"Post with Purpose, Earn with Pride | Join Earn2Post"</span>
     <span class="fill-remaining-space"></span>
-    <button mat-icon-button aria-label="Menu icon" (click)="opened=!opened">
-        <mat-icon>menu</mat-icon>
+    <button class="menu_button" mat-icon-button  (click)="opened=!opened">
+        <img src="assets/img/menu_icon.svg" alt="">
       </button>
 </mat-toolbar>
 <mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize>
