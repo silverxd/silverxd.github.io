@@ -57,7 +57,6 @@ export class AuthService {
       .catch((error) => {
         console.error('Login error:', error);
         this.loginFailedSubject.next(true);
-        alert('An error has occurred during login. Please try again.');
       });
   }
   logout() {
