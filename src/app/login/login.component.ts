@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {HeaderComponent} from "../header/header.component";
 import {AuthService} from "../auth.service";
@@ -9,10 +9,11 @@ import {AuthService} from "../auth.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   email: string = '';
   password: string = '';
+  displayName: string = '';
   isPage: string = 'login';
   public loginFailed: boolean = false;
 
@@ -51,7 +52,7 @@ export class LoginComponent {
     }
     if (requirementsNotMet.length === 0) {
       // Password meets the requirements, proceed with registration
-      this.authService.register(this.email, this.password);
+      this.authService.register(this.email, this.password, this.displayName);
     } else {
       // Password does not meet the requirements, display an alert with error message
       const errorMessage = `Password should meet the following requirements: ${requirementsNotMet.join(', ')}`;
@@ -60,5 +61,8 @@ export class LoginComponent {
   }
   forgot(){
     this.authService.sendPasswordResetEmail(this.email)
+  }
+  ngOnInit() {
+    this.authService.autoLogin()
   }
 }

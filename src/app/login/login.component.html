@@ -36,10 +36,11 @@
         <div class="input-side" *ngIf="isPage === 'register'">
           <div class="input-container">
             <h1>Register</h1>
+            <input type="text" class="input-box" placeholder="Enter your display name" [(ngModel)]="displayName" (keyup.enter)="usernameInput.focus()">
+            <h1>Email</h1>
             <input type="text" class="input-box" placeholder="Enter new email" [(ngModel)]="email" (keyup.enter)="passwordInput.focus()" #usernameInput>
             <h1>Enter password</h1>
             <input type="password" class="input-box" placeholder="Enter new password" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
-
             <div class="anchors">
               <div>
                 <a (click)="isPage = 'forgot'">Forgot password?</a>
