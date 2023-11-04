@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loginFailedSubject = new Subject<boolean>();
+  public loginFailed$ = this.loginFailedSubject.asObservable();
 
   constructor(private afAuth: AngularFireAuth, private router: Router) { }
   register(email: string, password: string) {
@@ -53,6 +56,7 @@ export class AuthService {
       })
       .catch((error) => {
         console.error('Login error:', error);
+        this.loginFailedSubject.next(true);
         alert('An error has occurred during login. Please try again.');
       });
   }
