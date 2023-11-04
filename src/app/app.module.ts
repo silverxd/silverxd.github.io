@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostComponent } from './post/post.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,16 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
+      authDomain: "earn2post.firebaseapp.com",
+      projectId: "earn2post",
+      storageBucket: "earn2post.appspot.com",
+      messagingSenderId: "627810397108",
+      appId: "1:627810397108:web:9c06f50115255b39cf20e1"
+    }),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],

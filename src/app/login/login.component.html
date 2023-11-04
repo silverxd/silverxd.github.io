@@ -16,11 +16,11 @@
       </div>
         <div class="input-side" *ngIf="isPage === 'login'">
           <div class="input-container">
-            <h1>Account log in</h1>
-            <input type="text" class="input-box" placeholder="Enter username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()">
-            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your username</p>
+            <h1>Log in</h1>
+            <input type="text" class="input-box" placeholder="Enter email" [(ngModel)]="email" (keyup.enter)="passwordInput.focus()">
+            <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your email</p>
             <h1>Enter password</h1>
-            <input type="password" class="input-box" placeholder="Enter password" maxlength="12" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
+            <input type="password" class="input-box" placeholder="Enter password" [(ngModel)]="password" (keyup.enter)="login()" #passwordInput>
             <p style="color:red; font-size: 15px; text-align: left; font-weight: 20; margin: 0px" *ngIf="loginFailed">Check your password</p>
             <div class="anchors">
               <div>
@@ -35,12 +35,10 @@
         <!-- Register input field -->
         <div class="input-side" *ngIf="isPage === 'register'">
           <div class="input-container">
-            <h1>Alias</h1>
-            <input type="text" class="input-box" placeholder="Enter your alias" maxlength="12" [(ngModel)]="name" (keyup.enter)="usernameInput.focus()" #passwordInput>
-            <h1>Username</h1>
-            <input type="text" class="input-box" placeholder="Enter new username" maxlength="12" [(ngModel)]="username" (keyup.enter)="passwordInput.focus()" #usernameInput>
+            <h1>Register</h1>
+            <input type="text" class="input-box" placeholder="Enter new email" [(ngModel)]="email" (keyup.enter)="passwordInput.focus()" #usernameInput>
             <h1>Enter password</h1>
-            <input type="password" class="input-box" placeholder="Enter new password" maxlength="12" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
+            <input type="password" class="input-box" placeholder="Enter new password" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
 
             <div class="anchors">
               <div>
@@ -56,7 +54,7 @@
         <div class="input-side" *ngIf="isPage === 'forgot'">
           <div class="input-container">
             <h1>Enter email</h1>
-            <input type="text" class="input-box" placeholder="Enter your email" maxlength="12" [(ngModel)]="password" (keyup.enter)="register()" #passwordInput>
+            <input type="text" class="input-box" placeholder="Enter your email" [(ngModel)]="email" (keyup.enter)="register()" #passwordInput>
 
             <div class="anchors">
               <span style="color:#707070; font-family: 'IBM Plex Mono', monospace">Oops still remember? <a (click)="isPage = 'login'">Sign in here</a></span>
