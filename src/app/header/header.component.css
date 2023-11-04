@@ -1,26 +1,50 @@
 mat-toolbar {
   background-color: #313131;
-  height: 100px;
+  height: 90px;
 }
 .logo {
   display: flex;
-  width: 80%;
+  width: 90%;
   margin-bottom: 15px;
   margin-left: 24px;
 }
 .moto {
   color: #E0E1E1;
   font-family: 'IBM Plex Mono ExtraLight', monospace;
-  font-size: 150%;
+  font-size: 200%;
+  width: 39%;
+}
+.search {
+  width: 300px;
+  height: auto;
+  border: none;
+  border-radius: 40px;
+  outline: none;
+  color: #E0E1E1;
+  font-size: 170%;
+  font-family: 'IBM Plex Mono ExtraLight', monospace;
+  padding: 13px 5px 13px 70px;
+  background: #212121 url("src/assets/img/search.svg") no-repeat;
+  background-size: 45px;
+  background-position: 4% 70%; 
+}
+.search img {
+  width: 10px;
+  height: 10px;
 }
 .menu_button {
-  height: 80px;
-  width: 80px;
-  margin-right: 15px;
+  background: transparent url("/assets/img/menu_icon.svg") no-repeat;
+  background-size: 65px;
+  background-position: 95% -160%; 
+  border: none;
+  border-radius: 15px;
+  height: 60px;
+  width: 60px;
+  margin-right: 20px;
+  margin-left: 30px;
 }
-.menu_button img {
-  height: 105%;
-  width: 100%;
+.menu_button:hover {
+  background-color: #2D2D2D;
 }
 mat-sidenav-container {
   height: calc(205vh - 115vh);
@@ -48,5 +72,5 @@ a {
   color: #E0E1E1;
 }
 .fill-remaining-space {
-  flex: 1 1 auto;
+  flex: 1 1 auto ;
 }
