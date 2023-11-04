@@ -1,13 +1,20 @@
 <mat-toolbar *ngIf="visible">
     <span>
-        Earn2Post
+        <img class="logo" src="assets/img/header_logo.svg" alt="Earn2Post">
     </span>
     <span class="fill-remaining-space"></span>
-    <span>"Post with Purpose, Earn with Pride | Join Earn2Post"</span>
+    <span class="moto">
+        "Post with Purpose, Earn with Pride | Join Earn2Post"
+    </span>
     <span class="fill-remaining-space"></span>
-    <button mat-icon-button aria-label="Menu icon" (click)="opened=!opened">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <span>
+        <form>
+            <input type="search" class="search" placeholder="Search..." maxlength="13">
+        </form>
+    </span>
+    <span>
+        <button class="menu_button" (click)="opened=!opened"></button>
+    </span>
 </mat-toolbar>
 <mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize>
     <mat-sidenav [(opened)]="opened" mode="over" position="end">
