@@ -12,7 +12,7 @@ mat-toolbar {
   color: #E0E1E1;
   font-family: 'IBM Plex Mono ExtraLight', monospace;
   font-size: 200%;
-  width: 39%;
+  position: relative;
 }
 .search {
   width: 300px;
