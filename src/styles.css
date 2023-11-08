@@ -10,20 +10,12 @@ body, html {
   background-color: #212121;
 }
 
-
-p{
+h1, h2, h3, h4, h5, h6, p, a {
   font-family: 'IBM Plex Mono', monospace;
+  color: #E0E1E1;
+}
+
+p {
   font-size:25px;
   font-weight: 400;
 }
-
-a {
-  font-family: IBM Plex Mono, monospace;
-}
-
-h1 {
-  font-family: "IBM Plex Mono",monospace;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

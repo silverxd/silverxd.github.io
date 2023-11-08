@@ -1,7 +1,12 @@
+/*------------------------------------ */
+/*------------------------------------ */
+/*------------------------------------ */
 .top {
     margin-top: 40px;
     text-align: center;
+    margin-bottom: 40px;
 }
+/*------------------------------------ */
 .credit {
     display: inline-block;
     color: #E0E1E1;
@@ -10,11 +15,12 @@
     border-radius: 40px;
     
 }
+/*------------------------------------ */
 .clicker {
     display: inline-block;
     color: #E0E1E1;
-    width: 600px; 
-    background: #313131; 
+    width: 600px;
+    background: #313131;
     border-radius: 40px;
     padding: 20px;
     margin-left: 100px;
@@ -26,10 +32,12 @@
     height: 125px;
     width: 200px;
     border: none;
+    cursor: pointer;
 }
 .clicker button:active {
     transform: scale(0.9);
 }
+/*------------------------------------ */
 .profile {
     display: inline-block;
     color: #E0E1E1;
@@ -37,3 +45,94 @@
     background: #313131;
     border-radius: 40px;
 }
+/*------------------------------------ */
+/*------------------------------------ */
+/*------------------------------------ */
+.bottom {
+    color: #E0E1E1;
+    text-align: center;
+}
+/*------------------------------------ */
+.title {
+    background: #6A5988;
+    font-size: 22px;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+/*------------------------------------ */
+.upgrades {
+    display: flex;
+}
+/*------------------------------------ */
+.first, .second, .third {
+    width: calc(100% / 3);
+}
+/*------------------------------------ */
+.sideName, .middleName {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 85px;
+    background: #313131;
+}
+.sideName {
+    border-bottom: thin solid #E37A70;
+    border-top: thin solid #E37A70;
+}
+.middleName {
+    border: thin solid #E37A70;
+}
+.sideName p, .middleName p {
+    font-size: 40px;
+    margin: 0;
+    margin-top: 15px;
+}
+/*------------------------------------ */
+.sideContent, .middleContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1px;
+    background-color: #212121;
+    height: 100%;
+}
+.middleContent {
+    border-left: thin solid #E37A70;
+    border-right: thin solid #E37A70;
+
+}
+/*------------------------------------ */
+.box, .box3 {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    background: #313131;
+    border-radius: 30px;
+    width: 480px;
+    margin-top: 30px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+.box {
+    height: 10%;
+}
+.box3 {
+    height: 15%;
+}
+.box:hover, .box3:hover {
+    box-shadow: 0px 0px 50px #6A5988;
+}
+.box p, .box3 p {
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+h4 {
+    color: #A1A1A1;
+    margin: 0px;
+    font-family: 'IBM Plex Mono ExtraLight', monospace;
+    margin-bottom: 10px;
+}
+/*------------------------------------ */
