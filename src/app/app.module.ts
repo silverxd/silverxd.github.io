@@ -18,6 +18,7 @@ import { PostComponent } from './post/post.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { ClickerComponent } from './clicker/clicker.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
     LoginComponent,
     AdminComponent,
     HeaderComponent,
-    PostComponent
+    PostComponent,
+    ClickerComponent
   ],
   imports: [
     BrowserModule,
