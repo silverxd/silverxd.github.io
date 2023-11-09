@@ -24,9 +24,12 @@
                 </div>
             </div>
             <div class="sideContent">
-                <div class="box">
-                    <p>Multithreading</p>
-                    <h4>Increase processing power by utilizing multiple threads.</h4>
+                <div *ngFor="let upgrade of upgrades; let i = index" class="box">
+                    <p>{{ upgrade.name }}</p>
+                    <!-- <h4>Increase processing power by utilizing multiple threads.</h4> -->
+                    <h4>Cost: {{ upgrade.cost }} DeBux</h4>
+                    <h4>DeBux/Sec: {{ upgrade.debuxPerSec }}</h4>
+                    <button (click)="buyUpgrade(i)">Buy</button>
                 </div>
                 <div class="box">
                     <p>Optimization Algorithms</p>
