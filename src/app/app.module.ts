@@ -16,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostComponent } from './post/post.component';
 import {HttpClientModule} from "@angular/common/http";
-import {AngularFireModule} from "@angular/fire/compat";
+import { AngularFireModule } from  '@angular/fire/compat';
+import { AngularFirestoreModule } from  '@angular/fire/compat/firestore';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
 
