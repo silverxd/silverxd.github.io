@@ -23,6 +23,7 @@ export class ClickerComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.debuxPerSecSubscription = this.clickerService.startDebuxPerSecTimer().subscribe(debuxPerSec => {
+      this.debux += this.debuxPerSec;
       this.zone.run(() => {
         this.debuxPerSec = debuxPerSec;
         this.cdr.detectChanges();
@@ -47,7 +48,6 @@ export class ClickerComponent implements OnInit, OnDestroy{
       // Upgrade bought successfully
       this.debux = this.clickerService.getDebux();
       this.debuxPerSec = this.clickerService.getDebuxPerSec();
-      this.cdr.detectChanges(); // Manually trigger change detection
     } else {
       // Insufficient debux to buy the upgrade
       console.log('Insufficient debux to buy the upgrade.');

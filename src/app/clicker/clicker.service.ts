@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ClickerService {
   private debux: number = 0;
   private debuxPerSec: number = 0;
@@ -12,6 +13,7 @@ export class ClickerService {
     { name: 'Multithreading', cost: 10, debuxPerSec: 1 },
     // Add more upgrades as needed
   ];
+
 
   getDebux(): number {
     return this.debux;
@@ -43,6 +45,7 @@ export class ClickerService {
     return interval(1000).pipe(
       map(() => {
         this.debux += this.debuxPerSec;
+        console.log('Debux updated:', this.debux);
         return this.debuxPerSec;
       })
     );
