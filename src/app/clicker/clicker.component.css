@@ -13,7 +13,7 @@
     width: 440px;
     background: #313131;
     border-radius: 40px;
-    
+
 }
 /*------------------------------------ */
 .clicker {
@@ -136,3 +136,6 @@ h4 {
     margin-bottom: 10px;
 }
 /*------------------------------------ */
+.loading-text {
+  color: #b7514c
+}
