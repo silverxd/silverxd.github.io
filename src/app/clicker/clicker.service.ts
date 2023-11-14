@@ -13,7 +13,6 @@ export class ClickerService {
   authState$: Observable<User | null>;
 
   private debuxValue: number = 0;
-  private debuxChangesQueue: number[] = [];
   private readonly saveInterval = 60 * 1000; // Autosave every 60 seconds
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
@@ -30,8 +29,6 @@ export class ClickerService {
   }
 
   addDebux(debux: number): void {
-    // Add the change to the queue
-    this.debuxChangesQueue = [debux]; // How many clicks/changes are made between autosave intervals.
     // this.debuxChangesQueue.push(debux) to add to list. This use this, when per/sec upgrades. This save items in batch
     this.debuxValue = debux; // To show the value change right away to user.
   }
@@ -49,16 +46,12 @@ export class ClickerService {
   private autosave(): Observable<void> {
     // If user is authenticated and there are changes to the value.
 
-    if (this.user && this.debuxChangesQueue.length > 0) {
-      // Sums up the elements in array to the variable totalDebux
-      const totalDebux = this.debuxChangesQueue.reduce((acc, value) => acc + value, 0);
-      console.log('this is the changed amount' + totalDebux)
-
+    if (this.user && this.debuxValue > 0) {
       // Send the totalDebux value to the Database
-      return from(this.db.doc(`User/${this.user.uid}`).update({Debux: totalDebux})).pipe(
+      return from(this.db.doc(`User/${this.user.uid}`).update({Debux: this.debuxValue})).pipe(
         map(() => {
           // Clear the queue after a successful write
-          this.debuxChangesQueue = [];
+          this.debuxValue = 0;
         })
       );
     } else {

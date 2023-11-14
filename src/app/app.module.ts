@@ -22,6 +22,7 @@ import { ClickerComponent } from './clicker/clicker.component';
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { ProfileComponent } from './profile/profile.component';
 import { CreditBoxComponent } from './credit-box/credit-box.component';
+import { ClickerService } from './clicker/clicker.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { CreditBoxComponent } from './credit-box/credit-box.component';
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ClickerService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -15,6 +15,9 @@
     border-radius: 40px;
 
 }
+.loading-text {
+    color: #b7514c
+}
 /*------------------------------------ */
 .clicker {
     display: inline-block;
@@ -102,30 +105,46 @@
 .middleContent {
     border-left: thin solid #E37A70;
     border-right: thin solid #E37A70;
-
 }
 /*------------------------------------ */
-.box, .box3 {
+.box {
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+.box:hover {
+    box-shadow: 0px 0px 50px #6A5988;
+}
+.box:active {
+    transform: scale(0.95)
+}
+.box-disabled {
+    filter: blur(4px);
+}
+.box-disabled:hover {
+    cursor: auto;
+    box-shadow: none;
+}
+.box-disabled:active {
+    transform: none;
+}
+/*------------------------------------ */
+.box-text {
     display: flex;
     flex-direction: column;
     text-align: start;
     background: #313131;
-    border-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     width: 480px;
-    margin-top: 30px;
     padding-left: 20px;
-    cursor: pointer;
 }
-.box {
-    height: 10%;
-}
-.box3 {
-    height: 15%;
-}
-.box:hover, .box3:hover {
-    box-shadow: 0px 0px 50px #6A5988;
-}
-.box p, .box3 p {
+.box-text p {
     margin-bottom: 0px;
     margin-top: 5px;
 }
@@ -136,6 +155,28 @@ h4 {
     margin-bottom: 10px;
 }
 /*------------------------------------ */
-.loading-text {
-  color: #b7514c
+.cost {
+    text-align: center;
+}
+.cost h4 {
+    color: #E0E1E1;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: lighter;
+}
+/*------------------------------------ */
+.bought  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #6A5988;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 70px;
+}
+.bought h4 {
+    color: #E0E1E1;
+    margin: 0px;
+    font-size: 25px;
 }
