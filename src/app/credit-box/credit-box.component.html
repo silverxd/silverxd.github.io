@@ -1,0 +1,22 @@
+<div class="box">
+  <div class="header">
+    <img src="assets/img/bank.svg" alt="">
+    <h2>Your credit</h2>
+  </div>
+  <div class="field">
+    <p>Current</p>
+    <div class="debux">
+      <h3 *ngIf="loading"><<span style="color: rgba(172,39,39,0.34);">Loading</span>>  DB</h3>
+      <h3 *ngIf="!loading"><<span style="color: #7D93DF;">{{debux}}</span>>  DB</h3>
+    </div>
+  </div>
+  <div class="field">
+    <p>Per second:</p>
+    <div class="per-second">
+      <h3>+40 DB/s</h3>
+    </div>
+  </div>
+  <div class="transaction">
+    <img src="assets/img/card_with_text.svg" alt="">
+  </div>
+</div>

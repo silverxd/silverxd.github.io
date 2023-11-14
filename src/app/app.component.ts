@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  @Input() visible = false
+  @Input() visible = true
   constructor(public router: Router){}
   title = 'earn2post';
 }
