@@ -61,13 +61,17 @@ export class ClickerService {
 
 
   getDebux(): Observable<number | undefined> {
-    if (this.user) {
-      return this.db.doc(`User/${this.user.uid}`).valueChanges().pipe(
-        map((userData: any) => userData ? userData.Debux : undefined)
-      );
-    } else {
-      console.warn('User not authenticated.'); // Use warn for non-critical issues
-      return of(undefined); // Return an observable that completes immediately with undefined
-    }
+    return this.authState$.pipe(
+      switchMap((user) => {
+        if (this.user) {
+          return this.db.doc(`User/${this.user.uid}`).valueChanges().pipe(
+            map((userData: any) => userData ? userData.Debux : undefined)
+          );
+        } else {
+          console.warn('User not authenticated.'); // Use warn for non-critical issues
+          return of(undefined); // Return an observable that completes immediately with undefined
+        }
+      })
+  );
   }
 }
