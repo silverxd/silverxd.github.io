@@ -28,30 +28,18 @@
                 </div>
             </div>
             <div class="sideContent">
-                <div class="box">
-                    <p>Multithreading</p>
-                    <h4>Increase processing power by utilizing multiple threads.</h4>
-                </div>
-                <div class="box">
-                    <p>Optimization Algorithms</p>
-                    <h4>Enhance efficiency through advanced code optimization techniques.</h4>
-                </div>
-                <div class="box">
-                    <p>Parallel Processing</p>
-                    <h4>Enable simultaneous execution for faster processing.</h4>
-                </div>
-                <div class="box">
-                    <p>Overclocking</p>
-                    <h4>Push the CPU to run faster, boosting processing power.</h4>
-                </div>
-                <div class="box">
-                    <p>Hardware Upgrades</p>
-                    <h4>Install better processors or RAM to increase overall performance.</h4>
-                </div>
-                <div class="box">
-                    <p>Cooling Systems</p>
-                    <h4>Optimize cooling mechanisms to sustain higher processing speeds.</h4>
-                </div>
+                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
+                    <div *ngIf="i < 6" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+                        <div class="box-text">
+                            <p>{{ upgrade.name }}</p>
+                            <h4>{{ upgrade.description}}</h4>
+                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+                        </div>
+                        <div class="bought">
+                            <h4>{{ upgrade.purchased }}</h4>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
 
@@ -64,26 +52,18 @@
                 </div>
             </div>
             <div class="middleContent">
-                <div class="box">
-                    <p>Syntax Highlighting</p>
-                    <h4>Boost click effectiveness with highlighted code segments.</h4>
-                </div>
-                <div class="box">
-                    <p>Code Formatting</p>
-                    <h4>Improve the appearance of code to enhance click impact.</h4>
-                </div>
-                <div class="box">
-                    <p>Auto-Completion</p>
-                    <h4>Increase code suggestion accuracy to amplify your clicks.</h4>
-                </div>
-                <div class="box">
-                    <p>GUI Enhancements</p>
-                    <h4>Upgrade the interface for a more responsive and impactful clicking experience.</h4>
-                </div>
-                <div class="box">
-                    <p>Mouse Acceleration</p>
-                    <h4>Improve click effectiveness by enhancing mouse sensitivity.</h4>
-                </div>
+                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
+                    <div *ngIf="6 <= i && i < 11" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+                        <div class="box-text">
+                            <p>{{ upgrade.name }}</p>
+                            <h4>{{ upgrade.description}}</h4>
+                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+                        </div>
+                        <div class="bought">
+                            <h4>{{ upgrade.purchased }}</h4>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
 
@@ -96,26 +76,18 @@
                 </div>
             </div>
             <div class="sideContent">
-                <div class="box3">
-                    <p>ChatGPT Evolution</p>
-                    <h4>Upgrade ChatGPT to a more advanced version, increasing its problem-solving capabilities and assistance in debugging.</h4>
-                </div>
-                <div class="box3">
-                    <p>Automated Testing</p>
-                    <h4>Develop a robust automated testing system that quickly identifies and reports bugs, making debugging more efficient.</h4>
-                </div>
-                <div class="box3">
-                    <p>Code Refactoring AI</p>
-                    <h4>Integrate AI-driven code refactoring to automatically improve code structure and readability during the debugging process.</h4>
-                </div>
-                <div class="box3">
-                    <p>Codebase Analysis</p>
-                    <h4>Unlock in-depth analysis tools that provide insights into code quality, performance, and potential issues, aiding in targeted debugging efforts.</h4>
-                </div>
-                <div class="box3">
-                    <p>Tabnine</p>
-                    <h4>Upgrade Tabnine's capabilities, allowing it to suggest code snippets and completions at an accelerated rate, improving coding speed and accuracy.</h4>
-                </div>
+                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
+                    <div *ngIf="11 <= i" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+                        <div class="box-text">
+                            <p>{{ upgrade.name }}</p>
+                            <h4>{{ upgrade.description}}</h4>
+                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+                        </div>
+                        <div class="bought">
+                            <h4>{{ upgrade.purchased }}</h4>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
 

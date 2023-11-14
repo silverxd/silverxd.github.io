@@ -20,6 +20,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { ClickerService } from './clicker/clicker.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AdminComponent,
     HeaderComponent,
     PostComponent,
-    ClickerComponent
+    ClickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ClickerService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
