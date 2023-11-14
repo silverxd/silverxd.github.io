@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Add other head elements like title, stylesheets, and scripts here -->
+</head>
+<body>
+<div class="columns">
+  <div class="left-side">
+    <app-credit-box></app-credit-box>
+    <a routerLink="/clicker">
+      <img src="/assets/img/clicker_icon_with_text.svg" alt="Debug clicker">
+    </a>
+  </div>
+  <div class="profile">
+    <div class="header">
+      <div class="picture">
+        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
+      </div>
+      <div class="info">
+        <h2>{{this.user?.displayName}}</h2>
+        <p style="color: #E37A70">50 Followers</p>
+        <div class="follows">
+          <p>30 Following</p>
+          <p>13 Friends</p>
+        </div>
+      </div>
+      <div class="add-friend">
+        <img src="assets/img/user_settings.svg" alt="Change settings">
+      </div>
+    </div>
+    <div class="images">
+      <img src="path/to/image1.jpg" alt="Image 1"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image2.jpg" alt="Image 2"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 3"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 4"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 5"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 6"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 7"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+      <img src="path/to/image3.jpg" alt="Image 8"
+           onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+    </div>
+  </div>
+  <div class="right-side">
+    <h2>Here is friends list</h2>
+    <div class="add-friends-overlay">
+      <img src="/assets/img/add_friends.svg" alt="Add friends">
+      <h2>Add friends</h2>
+    </div>
+  </div>
+</div>
+</body>
+
+
