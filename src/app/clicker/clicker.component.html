@@ -1,12 +1,16 @@
 <div class="top">
     <div class="credit">
-        <p id="debux">DeBux: {{ debux }}</p>
+        <p id="debux" *ngIf="!loading">DeBux: {{ debux }}</p>
+        <p id="debux" class='loading-text' *ngIf="loading">Loading Debuxes</p>
     </div>
     <div class="clicker">
         <button id="debug" (click)=addDebux()></button>
     </div>
-    <div class="profile">
-        <p>Logged in as: Silver</p>
+    <div class="profile" *ngIf="service.user">
+        <p>
+          Logged in as:
+          <span style="color: #6A5988">{{ service.user.displayName }}</span>
+        </p>
     </div>
 </div>
 <div class="bottom">
@@ -24,12 +28,9 @@
                 </div>
             </div>
             <div class="sideContent">
-                <div *ngFor="let upgrade of upgrades; let i = index" class="box">
-                    <p>{{ upgrade.name }}</p>
-                    <!-- <h4>Increase processing power by utilizing multiple threads.</h4> -->
-                    <h4>Cost: {{ upgrade.cost }} DeBux</h4>
-                    <h4>DeBux/Sec: {{ upgrade.debuxPerSec }}</h4>
-                    <button (click)="buyUpgrade(i)">Buy</button>
+                <div class="box">
+                    <p>Multithreading</p>
+                    <h4>Increase processing power by utilizing multiple threads.</h4>
                 </div>
                 <div class="box">
                     <p>Optimization Algorithms</p>

@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, NgZone } from '@angular/core';
-import { ClickerService } from './clicker.service';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, Output} from '@angular/core';
+import {ClickerService} from "./clicker.service";
+
 
 @Component({
   selector: 'app-clicker',
@@ -8,49 +8,34 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./clicker.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+export class ClickerComponent implements OnInit {
+  @Output() debux;  // Output for parent
+  loading: boolean;
 
-export class ClickerComponent implements OnInit, OnDestroy{
-  debux: number;
-  debuxPerSec: number;
-  upgrades: { name: string, cost: number, debuxPerSec: number }[];
-  debuxPerSecSubscription: Subscription = new Subscription();
-
-  constructor(private clickerService: ClickerService, private cdr: ChangeDetectorRef, private zone: NgZone) {
+  constructor(public service: ClickerService) {
     this.debux = 0;
-    this.debuxPerSec = 0;
-    this.upgrades = this.clickerService.getUpgrades();
+    this.loading = false;
+
   }
 
   ngOnInit() {
-    this.debuxPerSecSubscription = this.clickerService.startDebuxPerSecTimer().subscribe(debuxPerSec => {
-      this.debux += this.debuxPerSec;
-      this.zone.run(() => {
-        this.debuxPerSec = debuxPerSec;
-        this.cdr.detectChanges();
-      });
+    // Subscribe to authentication state changes
+    this.service.authState$.subscribe((user) => {
+      if (user) {
+        this.loading = true;
+        // Fetch the initial debux value from the database
+        this.service.getDebux().subscribe((value) => {
+          this.debux = value || 0; // If the value is null or undefined, default to 0
+          this.loading = false;
+        });
+      }
     });
   }
 
-  ngOnDestroy() {
-    if (this.debuxPerSecSubscription) {
-      this.debuxPerSecSubscription.unsubscribe();
-    }
-  }
-
   addDebux() {
-    this.clickerService.addDebux(1);
-    this.debux = this.clickerService.getDebux();
+    this.debux = this.debux + 1
+    //this.service.addNewUser("62289836", "Jane", "Doe", true);
+    this.service.addDebux(this.debux);
   }
 
-  buyUpgrade(upgradeIndex: number) {
-    const success = this.clickerService.buyUpgrade(upgradeIndex);
-    if (success) {
-      // Upgrade bought successfully
-      this.debux = this.clickerService.getDebux();
-      this.debuxPerSec = this.clickerService.getDebuxPerSec();
-    } else {
-      // Insufficient debux to buy the upgrade
-      console.log('Insufficient debux to buy the upgrade.');
-    }
-  }
 }

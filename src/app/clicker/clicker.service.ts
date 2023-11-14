@@ -1,53 +1,80 @@
-import { Injectable } from '@angular/core';
-import { Observable, interval } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import firebase from "firebase/compat";
+import User = firebase.User;
+import {from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class ClickerService {
-  private debux: number = 0;
-  private debuxPerSec: number = 0;
-  private upgrades: { name: string, cost: number, debuxPerSec: number }[] = [
-    { name: 'Multithreading', cost: 10, debuxPerSec: 1 },
-    // Add more upgrades as needed
-  ];
+  user: User | null;
+  authState$: Observable<User | null>;
 
+  private debuxValue: number | undefined;
+  private debuxChangesQueue: number[] = [];
+  private readonly saveInterval = 60 * 1000; // Autosave every 60 seconds
 
-  getDebux(): number {
-    return this.debux;
+  constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
+    this.user = null;
+    this.authState$ = this.afAuth.authState;
+    this.authState$.subscribe((user) => {
+      this.user = user;
+
+      // Start the autosave timer when the user is authenticated
+      if (user) {
+        this.startAutosave();
+      }
+    });
   }
 
-  getDebuxPerSec(): number {
-    return this.debuxPerSec;
+  addDebux(debux: number): void {
+    // Add the change to the queue
+    this.debuxChangesQueue = [debux]; // How many clicks/changes are made between autosave intervals.
+    // this.debuxChangesQueue.push(debux) to add to list. This use this, when per/sec upgrades. This save items in batch
+    this.debuxValue = debux; // To show the value change right away to user.
   }
 
-  addDebux(amount: number): void {
-    this.debux += amount;
+  private startAutosave(): void {
+    // Use throttleTime to limit the frequency of save operations
+    timer(0, this.saveInterval) //  regular intervals (this.saveInterval).
+      .pipe(
+        switchMap(() => this.autosave()), // The switchMap operator is used to switch to the result of the autosave method.
+        throttleTime(this.saveInterval) // The throttleTime operator limits the frequency of autosave operations to prevent excessive calls.
+      )
+      .subscribe();
   }
 
-  buyUpgrade(upgradeIndex: number): boolean {
-    const upgrade = this.upgrades[upgradeIndex];
-    if (this.debux >= upgrade.cost) {
-      this.debux -= upgrade.cost;
-      this.debuxPerSec += upgrade.debuxPerSec;
-      return true; // Upgrade successfully bought
+  private autosave(): Observable<void> {
+    // If user is authenticated and there are changes to the value.
+
+    if (this.user && this.debuxChangesQueue.length > 0) {
+      // Sums up the elements in array to the variable totalDebux
+      const totalDebux = this.debuxChangesQueue.reduce((acc, value) => acc + value, 0);
+      console.log('this is the changed amount' + totalDebux)
+
+      // Send the totalDebux value to the Database
+      return from(this.db.doc(`User/${this.user.uid}`).update({Debux: totalDebux})).pipe(
+        map(() => {
+          // Clear the queue after a successful write
+          this.debuxChangesQueue = [];
+        })
+      );
+    } else {
+      return of(undefined); // No user or nothing to save
     }
-    return false; // Insufficient debux
   }
 
-  getUpgrades(): { name: string, cost: number, debuxPerSec: number }[] {
-    return this.upgrades;
-  }
 
-  startDebuxPerSecTimer(): Observable<number> {
-    return interval(1000).pipe(
-      map(() => {
-        this.debux += this.debuxPerSec;
-        console.log('Debux updated:', this.debux);
-        return this.debuxPerSec;
-      })
-    );
+  getDebux(): Observable<number | undefined> {
+    if (this.user) {
+      return this.db.doc(`User/${this.user.uid}`).valueChanges().pipe(
+        map((userData: any) => userData ? userData.Debux : undefined)
+      );
+    } else {
+      console.warn('User not authenticated.'); // Use warn for non-critical issues
+      return of(undefined); // Return an observable that completes immediately with undefined
+    }
   }
 }

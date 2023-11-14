@@ -19,6 +19,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { ClickerService } from './clicker/clicker.service';
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ClickerService } from './clicker/clicker.service';
       messagingSenderId: "627810397108",
       appId: "1:627810397108:web:9c06f50115255b39cf20e1"
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [ClickerService],
   bootstrap: [AppComponent],
