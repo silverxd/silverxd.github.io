@@ -1,0 +1,104 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+h2 {
+  font-size: 50px;
+  margin: 5px;
+}
+
+p {
+  margin: 5px;
+}
+.columns {
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-side, .right-side {
+  width: 20%;
+  text-align: center;
+}
+
+.left-side img {
+  padding-top: 20%;
+  width: 50%;
+}
+
+.profile {
+  text-align: center;
+  width: 40%;
+  height: 100%;
+  background-color: #313131;
+  border-radius: 30px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #6A5988;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom: thin solid #E37A70;
+}
+
+.follows {
+  display: flex;
+  justify-content: space-around;
+}
+
+.images {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  background-color: #313131;
+}
+
+.images img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.picture, .add-friend {
+  width: 40%;
+}
+
+.picture img {
+  width: 50%;
+}
+
+.info {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.add-friends-overlay {
+  margin-top: 30%;
+  position: relative;
+  display: inline-block;
+  width: 30%;
+}
+
+.add-friends-overlay img {
+  width: 100%;
+}
+
+.add-friends-overlay h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  transform: translate(-50%, -100%);
+  text-align: center;
+  text-shadow: 2px 2px 4px #212121;
+  white-space: nowrap;
+}

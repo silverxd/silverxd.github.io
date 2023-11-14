@@ -20,6 +20,8 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { ProfileComponent } from './profile/profile.component';
+import { CreditBoxComponent } from './credit-box/credit-box.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AdminComponent,
     HeaderComponent,
     PostComponent,
-    ClickerComponent
+    ClickerComponent,
+    ProfileComponent,
+    CreditBoxComponent
   ],
   imports: [
     BrowserModule,
