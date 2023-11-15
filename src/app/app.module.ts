@@ -20,6 +20,10 @@ import { AngularFireModule } from  '@angular/fire/compat';
 import { AngularFirestoreModule } from  '@angular/fire/compat/firestore';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { ProfileComponent } from './profile/profile.component';
+import { CreditBoxComponent } from './credit-box/credit-box.component';
+import { ClickerService } from './clicker/clicker.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { ClickerComponent } from './clicker/clicker.component';
     AdminComponent,
     HeaderComponent,
     PostComponent,
-    ClickerComponent
+    ClickerComponent,
+    ProfileComponent,
+    CreditBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +56,10 @@ import { ClickerComponent } from './clicker/clicker.component';
       messagingSenderId: "627810397108",
       appId: "1:627810397108:web:9c06f50115255b39cf20e1"
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ClickerService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

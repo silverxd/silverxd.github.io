@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
     providedIn: 'root'
@@ -10,13 +11,18 @@ export class AuthService {
     private loginFailedSubject = new Subject<boolean>();
     public loginFailed$ = this.loginFailedSubject.asObservable();
 
-    constructor(private afAuth: AngularFireAuth, private router: Router) {
+    constructor(private afAuth: AngularFireAuth, private router: Router, private db: AngularFirestore) {
     }
 
     register(email: string, password: string, displayName: string) {
         this.afAuth.createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 if (userCredential.user) {
+                    const uid = userCredential.user.uid; // Retrieve UID here
+                    const userData = {
+                        displayName: displayName,
+                        // Add other user data as needed
+                    };
                     // Registration successful
                     // Send email verification
                     userCredential.user.updateProfile({
@@ -33,6 +39,7 @@ export class AuthService {
                         .then(() => {
                             // Email sent successfully
                             alert('A verification email has been sent to your email address. Please verify your email before logging in.');
+                            this.db.collection('User').doc(uid).set(userData);
                             this.router.navigate(['/login']); // Redirect to login page after registration
                         })
                         .catch((error) => {
