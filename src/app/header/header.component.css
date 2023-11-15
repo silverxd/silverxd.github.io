@@ -46,12 +46,10 @@ mat-toolbar {
 .menu_button:hover {
   background-color: #2D2D2D;
 }
-mat-sidenav-container {
-  height: calc(205vh - 115vh);
-  background-color: #212121;
-  margin: 0;
-  padding: 0;
+.fill-remaining-space {
+  flex: 1 1 auto ;
 }
+/* ----------------------------------------------------------------------- */
 .login-page {
   height: 100%;
   background-color: #212121;
@@ -64,13 +62,52 @@ mat-sidenav-container {
   margin: 0;
   padding: 0;
 }
+/* ----------------------------------------------------------------------- */
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+  background-color: #212121;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 mat-sidenav {
-  width: 200px;
+  width: 220px;
   background-color: #313131;
 }
-a {
-  color: #E0E1E1;
+mat-sidenav-content {
+  width: auto;
+  height: auto;
 }
-.fill-remaining-space {
-  flex: 1 1 auto ;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* ----------------------------------------------------------------------- */
+.box, .box-no-border {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: #E0E1E1;
+  background-color: transparent;
+}
+.box {
+  border-top: thin solid #E37A70;
+}
+.box img, .box-no-border img {
+  margin-left: 15px;
+}
+.box h4, .box-no-border h4 {
+  font-size: 25px;
+  font-weight: lighter;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.seperator {
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  background-color: #464646;
 }
