@@ -8,8 +8,10 @@ import {from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
 interface Post {
   author_uid: string;
   comments: Array<any>;
+  display_name: string;
   image_url: string;
   likes: Array<string>;
+  profile_pic: string;
   text: string;
   timestamp: any;
 }
@@ -20,7 +22,6 @@ interface Post {
 export class PostService {
   user: User | null;
   authState$: Observable<User | null>;
-  
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
@@ -31,12 +32,11 @@ export class PostService {
   }
   getPosts(): Observable<Post[]> {
     if (this.user) {
-      return this.db.collection<Post>('posts').valueChanges();}
-    else {
+      return this.db.collection<Post>('posts').valueChanges();
+    } else {
       console.warn('User not authenticated.');
       return of([]);
-    }
-  
+    };
     /* or instead snapshotChanges() with map()
       return this.firestore.collection<Post>('posts')
         .snapshotChanges()
@@ -48,5 +48,16 @@ export class PostService {
         });
       )
     */
+  };
+  getDisplaynames(posts: any) {
+    if (this.user) {
+      for (let post of posts) {
+        console.log(this.db.doc(`User/${post.author_uid}/displayName`).valueChanges().pipe().toString());
+      };
+      return posts;
+    } else {
+      console.warn('User not authenticated.'); // Use warn for non-critical issues
+      return "Something has gone terribly wrong"; // Return a string
+    };
   };
 }

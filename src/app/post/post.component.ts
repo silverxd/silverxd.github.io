@@ -25,14 +25,18 @@ export class PostComponent implements OnInit{
         this.loading = true;
         // Fetch posts from the database
         this.service.getPosts().subscribe((value) => {
-          this.posts = value || 0; // If the value is null or undefined, default to 0
+          this.posts = value || 0;
+        });
+        // Get the display names (and profile pictures?) for each post (DOES NOT WORK!!)
+        this.service.getDisplaynames(this.posts).subscribe((value: any) => {
+          this.posts = value;
+          console.log(this.posts)
           this.loading = false;
         });
+        
       }
     });
   }
-
-  totalPosts: number = 2;
 
   toggleLike(i: number) {
     // if (this.allPosts[i][7] === true) {
