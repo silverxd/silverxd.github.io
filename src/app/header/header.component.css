@@ -64,19 +64,15 @@ mat-toolbar {
 }
 /* ----------------------------------------------------------------------- */
 mat-sidenav-container {
-  height: calc(205vh - 115vh);
+  height: 100%;
   background-color: #212121;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 mat-sidenav {
-  width: 220px;
+  width: 200px;
   background-color: #313131;
-}
-mat-sidenav-content {
-  width: auto;
-  height: auto;
 }
 .container {
   height: 100%;
@@ -92,6 +88,10 @@ mat-sidenav-content {
   color: #E0E1E1;
   background-color: transparent;
 }
+.box:hover, .box-no-border:hover {
+  background-color: #505050;
+  cursor: pointer;
+}
 .box {
   border-top: thin solid #E37A70;
 }
@@ -99,12 +99,13 @@ mat-sidenav-content {
   margin-left: 15px;
 }
 .box h4, .box-no-border h4 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: lighter;
   padding: 0px;
   margin: 0px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 22px;
 }
 .seperator {
   padding-top: 2.5%;
