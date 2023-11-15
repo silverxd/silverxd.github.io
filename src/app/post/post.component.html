@@ -1,6 +1,6 @@
 <img src="">
 <h1 class="mainText" *ngIf="service.user">Currently logged in as: {{ service.user.displayName }}</h1>
-<h3 class="subText">Total posts on the backend: {{ totalPosts }}</h3>
+<h3 class="subText">Total posts on the backend: {{ posts.length }}</h3>
 <ul> 
 <div *ngFor="let post of posts; let i = index;" class="post">
     <img src="https://yourteachingmentor.com/wp-content/uploads/2020/12/istockphoto-1223671392-612x612-1.jpg" alt="Avatar" class="avatar"> 
@@ -12,8 +12,8 @@
 
     <!-- <p class="subText" style="float:left;">{{ item.likes }} {{ 2 === 1 ? 'like' : 'likes' }}</p>
     <p class="subText" style="float:right;">{{ item.comments }} {{ 2 === 1 ? 'comment' : 'comments' }}</p> -->
-    <p class="subText" style="float:left;">{{ post.likes.count }} 'likes'</p>
-    <p class="subText" style="float:right;">{{ post.comments.count }} 'comments'</p>
+    <p class="subText" style="float:left;">{{ post.likes.length }} {{ post.likes.length === 1 ? 'like' : 'likes' }}</p>
+    <p class="subText" style="float:right;">{{ post.comments.length }} {{ post.comments.length === 1 ? 'comment' : 'comments' }}</p>
     
     <br><br>
     <hr/>

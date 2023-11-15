@@ -30,10 +30,15 @@ export class PostService {
     });
   }
   getPosts(): Observable<Post[]> {
-    return this.db.collection<Post>('posts').valueChanges();
+    if (this.user) {
+      return this.db.collection<Post>('posts').valueChanges();}
+    else {
+      console.warn('User not authenticated.');
+      return of([]);
+    }
   
     /* or instead snapshotChanges() with map()
-      return this.firestore.collection<Employee>('employees')
+      return this.firestore.collection<Post>('posts')
         .snapshotChanges()
         .pipe(
           map(actions => actions.map(a => {
