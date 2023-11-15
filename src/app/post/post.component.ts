@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import { PostService } from "./post.service";
+
 
 @Component({
   selector: 'app-post',
@@ -8,19 +10,27 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
   styleUrls: ['./post.component.css']
 })
 
-export class PostComponent {
-  constructor(private store: AngularFirestore){}
-  ngOnInit(){
-    this.getAll();
+export class PostComponent implements OnInit{
+  loading: boolean;
+  posts: any;
+  
+  constructor(public service: PostService, private store: AngularFirestore){
+    this.loading = false;
   }
-  dataSource : any;
-  getAll(){
-    this.store.collection('posts').snapshotChanges().subscribe((response) => {
-        this.dataSource = response.map(item => 
-          Object.assign({id : item.payload.doc.id}, item.payload.doc.data())
-        );
-      })
-    }
+  
+  ngOnInit(){
+    // Subscribe to authentication state changes
+    this.service.authState$.subscribe((user) => {
+      if (user) {
+        this.loading = true;
+        // Fetch posts from the database
+        this.service.getPosts().subscribe((value) => {
+          this.posts = value || 0; // If the value is null or undefined, default to 0
+          this.loading = false;
+        });
+      }
+    });
+  }
 
   username: string = "Silver";
   totalPosts: number = 2;

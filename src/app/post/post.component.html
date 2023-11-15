@@ -1,19 +1,19 @@
 <img src="">
-<h1 class="mainText">Currently logged in as: {{ username }}</h1>
+<h1 class="mainText" *ngIf="service.user">Currently logged in as: {{ service.user.displayName }}</h1>
 <h3 class="subText">Total posts on the backend: {{ totalPosts }}</h3>
 <ul> 
-<div *ngFor="let item of dataSource; let i = index;" class="post">
+<div *ngFor="let post of posts; let i = index;" class="post">
     <img src="https://yourteachingmentor.com/wp-content/uploads/2020/12/istockphoto-1223671392-612x612-1.jpg" alt="Avatar" class="avatar"> 
-    <p class="mainText">{{ item.author_uid }}</p>
-    <p class="subText">{{ item.timestamp.toDate().toDateString() }}</p>
+    <p class="mainText">{{ post.author_uid }}</p>
+    <p class="subText">{{ post.timestamp.toDate().toDateString() }}</p>
     <hr/>
-    <p class="mainText">{{ item.text }}</p>
-    <img src="{{ item.image_url }}" alt="{{ item.image_url }}" style="max-height: 420px;" class="center">
+    <p class="mainText">{{ post.text }}</p>
+    <img src="{{ post.image_url }}" alt="{{ post.image_url }}" style="max-height: 420px;" class="center">
 
     <!-- <p class="subText" style="float:left;">{{ item.likes }} {{ 2 === 1 ? 'like' : 'likes' }}</p>
     <p class="subText" style="float:right;">{{ item.comments }} {{ 2 === 1 ? 'comment' : 'comments' }}</p> -->
-    <p class="subText" style="float:left;">{{ item.likes.count }} 'likes'</p>
-    <p class="subText" style="float:right;">{{ item.comments.count }} 'comments'</p>
+    <p class="subText" style="float:left;">{{ post.likes.count }} 'likes'</p>
+    <p class="subText" style="float:right;">{{ post.comments.count }} 'comments'</p>
     
     <br><br>
     <hr/>
