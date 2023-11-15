@@ -13,23 +13,54 @@
         </form>
     </span>
     <span>
-        <button class="menu_button" (click)="opened=!opened"></button>
+        <button class="menu_button" (click)="sidenav.toggle()"></button>
     </span>
 </mat-toolbar>
-<mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize>
-    <mat-sidenav [(opened)]="opened" mode="over" position="end">
-        <mat-list>
-            <mat-list-item><a routerLink="/profile">Profile</a></mat-list-item>
-            <mat-list-item><a>Messages</a></mat-list-item>
-            <mat-list-item><a routerLink="/clicker">Clicker</a></mat-list-item>
-            <mat-list-item><a>Buy DeBux</a></mat-list-item>
-            <mat-list-item><a>Settings</a></mat-list-item>
-            <mat-list-item><a>Bug Reposrt</a></mat-list-item>
-            <mat-list-item><a>Switch Account</a></mat-list-item>
-            <mat-list-item><a>Log out</a></mat-list-item>
-        </mat-list>
+<mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize hasBackdrop="false">
+    <mat-sidenav position="end" #sidenav (click)="sidenav.close()">
+        <div class="container">
+            <div class="top-nav">
+                <div class="box" routerLink="/profile">
+                    <img src="assets\img\menu_profile.svg" alt="">
+                    <h4>Profile</h4>
+                </div>
+                <div class="box">
+                    <img src="assets\img\menu_message.svg" alt="">
+                    <h4>Messages</h4>
+                </div>
+                <div class="box" routerLink="/clicker">
+                    <img src="assets\img\menu_clicker.svg" alt="">
+                    <h4>Clicker</h4>
+                </div>
+                <div class="box">
+                    <img src="assets\img\menu_debux.svg" alt="">
+                    <h4> Buy DeBux</h4>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <div class="box-no-border">
+                    <img src="assets\img\menu_settings.svg" alt="">
+                    <h4>Settings</h4>
+                </div>
+                <div class="box">
+                    <img src="assets\img\menu_bug.svg" alt="">
+                    <h4>Bug Report</h4>
+                </div>
+
+                <div class="seperator"></div>
+
+                <div class="box-no-border">
+                    <img src="assets\img\menu_switch.svg" alt="">
+                    <h4>Switch Acc</h4>
+                </div>
+                <div class="box" routerLink="/">
+                    <img src="assets\img\menu_logout.svg" alt="">
+                    <h4>Log Out</h4>
+                </div>
+            </div>
+        </div>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content (click)="sidenav.close()">
         <ng-content></ng-content>
     </mat-sidenav-content>
 </mat-sidenav-container>
