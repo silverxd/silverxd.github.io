@@ -3,35 +3,52 @@ mat-toolbar {
   height: 90px;
 }
 .logo {
-  display: flex;
   width: 90%;
-  margin-bottom: 15px;
-  margin-left: 24px;
+  margin-bottom: 4%;
+  margin-left: 8%;
 }
 .moto {
   color: #E0E1E1;
   font-family: 'IBM Plex Mono ExtraLight', monospace;
-  font-size: 200%;
-  position: relative;
+  font-size: 1.7vw;
 }
+/* ----------------------------------------------------------------------- */
 .search {
-  width: 300px;
-  height: auto;
+  display: flex;
+  align-items: center;
+  width: 16%;
   border: none;
   border-radius: 40px;
   outline: none;
   color: #E0E1E1;
+  background-color: #212121;
+}
+.search_button {
+  height: 61px;
+  width: 61px;
+  border: none;
+  border-radius: 40px;
+  background: transparent url("/assets/img/search.svg") no-repeat;
+  background-size: 45px;
+  background-position: 40% 70%;
+}
+.search_input {
+  margin-left: 2%;
+  width: 80%;
+  border: none;
+  border-radius: 40px;
+  outline: none;
+  color: #E0E1E1;
+  background: transparent;
   font-size: 170%;
   font-family: 'IBM Plex Mono ExtraLight', monospace;
-  padding: 13px 5px 13px 70px;
-  background: #212121 url("src/assets/img/search.svg") no-repeat;
-  background-size: 45px;
-  background-position: 4% 70%; 
+  padding: 13px 5px 13px 0px;
 }
-.search img {
-  width: 10px;
-  height: 10px;
+.search_button:hover {
+  background-color: #2D2D2D;
+  cursor: pointer;
 }
+/* ----------------------------------------------------------------------- */
 .menu_button {
   background: transparent url("/assets/img/menu_icon.svg") no-repeat;
   background-size: 65px;
@@ -46,9 +63,36 @@ mat-toolbar {
 .menu_button:hover {
   background-color: #2D2D2D;
 }
+/* ----------------------------------------------------------------------- */
 .fill-remaining-space {
   flex: 1 1 auto ;
 }
+/* ----------------------------------------------------------------------- */
+@media (max-width: 1560px) {
+  .search {
+    background: transparent;
+    width: auto;
+  }
+  .search_button {
+    display: flex; /* Display the button */
+  }
+  .search_input {
+    display: none; /* Hide the input field */
+  }
+}
+@media (max-width: 767px) {
+  .moto {
+    display: none;
+  }
+  .search_button {
+    display: flex; /* Display the button */
+  }
+  .search_input {
+    display: none; /* Hide the input field */
+  }
+}
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------- */
 .login-page {
   height: 100%;
@@ -62,6 +106,8 @@ mat-toolbar {
   margin: 0;
   padding: 0;
 }
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------- */
 mat-sidenav-container {
   height: 100%;
