@@ -14,7 +14,8 @@ export class ClickerService {
 
   private debuxValue: number = 0;
   private readonly saveInterval = 60 * 1000; // Autosave every 60 seconds
-  private purchasedUpgrades: { name: string, debuxPerSec: number }[] = [];
+  private purchasedUpgradesPerSec: { name: string, debuxPerSec: number }[] = [];
+  private purchasedUpgradesPerClick: { name: string, debuxPerClick: number }[] = [];
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
@@ -29,14 +30,21 @@ export class ClickerService {
     });
   }
 
-  buyUpgrade(upgradeName: string, debuxPerSec: number): void {
+  buyUpgrade(upgradeName: string, debuxPerSec: number, debuxPerClick: number): void {
     if (typeof debuxPerSec !== 'undefined') {
-      this.purchasedUpgrades.push({ name: upgradeName, debuxPerSec });
+      this.purchasedUpgradesPerSec.push({ name: upgradeName, debuxPerSec });
+    }
+    else if (typeof debuxPerClick !== 'undefined') {
+      this.purchasedUpgradesPerClick.push({ name: upgradeName, debuxPerClick });
     }
   }
 
+  calculateTotalDebuxPerClick(): number {
+    return this.purchasedUpgradesPerClick.reduce((total, upgrade) => total + upgrade.debuxPerClick, 1);
+  }
+
   calculateTotalDebuxPerSec(): number {
-    return this.purchasedUpgrades.reduce((total, upgrade) => total + upgrade.debuxPerSec, 0);
+    return this.purchasedUpgradesPerSec.reduce((total, upgrade) => total + upgrade.debuxPerSec, 0);
   }
 
   addDebux(debux: number): void {
