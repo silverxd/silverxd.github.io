@@ -1,95 +1,103 @@
 <div class="top">
-    <div class="credit">
-        <p id="debux" *ngIf="!loading">DeBux: {{ debux }}</p>
-        <p id="debux" class='loading-text' *ngIf="loading">Loading Debuxes</p>
+  <div class="credit">
+    <p id="debux" *ngIf="!loading">DeBux: {{ debux }}</p>
+    <p id="debux" class='loading-text' *ngIf="loading">Loading Debuxes</p>
+  </div>
+  <div class="clicker">
+    <button id="debug" (click)=addDebux()></button>
+    <div>
+      <p>Last autosave: {{this.timeDifferenceInSeconds}} seconds ago</p>
+      <a (click)="manualAutosave()" [class.disabled]="this.clickCount >= maxClicks">Save now</a>
     </div>
-    <div class="clicker">
-        <button id="debug" (click)=addDebux()></button>
-    </div>
-    <div class="profile" *ngIf="service.user">
-        <p>
-          Logged in as:
-          <span style="color: #6A5988">{{ service.user.displayName }}</span>
-        </p>
-    </div>
+  </div>
+  <div class="profile" *ngIf="service.user">
+    <p>
+      Logged in as:
+      <span style="color: #6A5988">{{ service.user.displayName }}</span>
+    </p>
+  </div>
+  <div class="profile" *ngIf="!service.user">
+    <p class="loading-text">Loading</p>
+  </div>
 </div>
 <div class="bottom">
-    <div class="title">
-        <H1>Upgrades</H1>
+  <div class="title">
+    <H1>Upgrades</H1>
+  </div>
+  <div class="upgrades">
+
+    <div class="first">
+      <div class="sideName">
+        <img src="/assets/img/arch.svg">
+        <div>
+          <p>Processing Power</p>
+          <h4>Per/Sec</h4>
+        </div>
+      </div>
+      <div class="sideContent">
+        <ng-container *ngFor="let upgrade of upgrades; let i = index">
+          <div *ngIf="i < 6" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+            <div class="box-text">
+              <p>{{ upgrade.name }}</p>
+              <h4>{{ upgrade.description}}</h4>
+              <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+            </div>
+            <div class="bought">
+              <h4>{{ upgrade.purchased }}</h4>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
-    <div class="upgrades">
 
-        <div class="first">
-            <div class="sideName">
-                <img src="/assets/img/arch.svg">
-                <div>
-                    <p>Processing Power</p>
-                    <h4>Per/Sec</h4>
-                </div>
-            </div>
-            <div class="sideContent">
-                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
-                    <div *ngIf="i < 6" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
-                        <div class="box-text">
-                            <p>{{ upgrade.name }}</p>
-                            <h4>{{ upgrade.description}}</h4>
-                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
-                        </div>
-                        <div class="bought">
-                            <h4>{{ upgrade.purchased }}</h4>
-                        </div>
-                    </div>
-                </ng-container>
-            </div>
+    <div class="second">
+      <div class="middleName">
+        <img src="/assets/img/ubuntu.svg">
+        <div>
+          <p>Click Impact</p>
+          <h4>Per/Click</h4>
         </div>
-
-        <div class="second">
-            <div class="middleName">
-                <img src="/assets/img/ubuntu.svg">
-                <div>
-                    <p>Click Impact</p>
-                    <h4>Per/Click</h4>
-                </div>
+      </div>
+      <div class="middleContent">
+        <ng-container *ngFor="let upgrade of upgrades; let i = index">
+          <div *ngIf="6 <= i && i < 11" (click)="buyUpgrade(upgrade)" class="box"
+               [class.box-disabled]="!upgrade.affordable">
+            <div class="box-text">
+              <p>{{ upgrade.name }}</p>
+              <h4>{{ upgrade.description}}</h4>
+              <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
             </div>
-            <div class="middleContent">
-                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
-                    <div *ngIf="6 <= i && i < 11" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
-                        <div class="box-text">
-                            <p>{{ upgrade.name }}</p>
-                            <h4>{{ upgrade.description}}</h4>
-                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
-                        </div>
-                        <div class="bought">
-                            <h4>{{ upgrade.purchased }}</h4>
-                        </div>
-                    </div>
-                </ng-container>
+            <div class="bought">
+              <h4>{{ upgrade.purchased }}</h4>
             </div>
-        </div>
-
-        <div class="third">
-            <div class="sideName">
-                <img src="/assets/img/tux.svg">
-                <div>
-                    <p>Advanced Algorithms</p>
-                    <h4>Specials</h4>
-                </div>
-            </div>
-            <div class="sideContent">
-                <ng-container *ngFor="let upgrade of upgrades; let i = index" >
-                    <div *ngIf="11 <= i" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
-                        <div class="box-text">
-                            <p>{{ upgrade.name }}</p>
-                            <h4>{{ upgrade.description}}</h4>
-                            <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
-                        </div>
-                        <div class="bought">
-                            <h4>{{ upgrade.purchased }}</h4>
-                        </div>
-                    </div>
-                </ng-container>
-            </div>
-        </div>
-
+          </div>
+        </ng-container>
+      </div>
     </div>
+
+    <div class="third">
+      <div class="sideName">
+        <img src="/assets/img/tux.svg">
+        <div>
+          <p>Advanced Algorithms</p>
+          <h4>Specials</h4>
+        </div>
+      </div>
+      <div class="sideContent">
+        <ng-container *ngFor="let upgrade of upgrades; let i = index">
+          <div *ngIf="11 <= i" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+            <div class="box-text">
+              <p>{{ upgrade.name }}</p>
+              <h4>{{ upgrade.description}}</h4>
+              <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+            </div>
+            <div class="bought">
+              <h4>{{ upgrade.purchased }}</h4>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
 </div>
