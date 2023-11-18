@@ -58,6 +58,22 @@ mat-toolbar {
 .search_compact {
   display: none;
 }
+.active {
+  background-color: #212121;
+  border-radius: 40px;
+  width: 100%;
+}
+.active .search_button {
+  height: 61px;
+  width: 61px;
+  background-position: 6px 11px;
+}
+.active .search_input{
+  display: flex;
+}
+.inactive{
+  display: none;
+}
 /* ----------------------------------------------------------------------- */
 .menu_button {
   background: transparent url("/assets/img/menu_icon.svg") no-repeat;
@@ -93,6 +109,9 @@ mat-toolbar {
   }
   .search_compact {
     display: flex;
+  }
+  .search_input {
+    display: none;
   }
 }
 @media (max-width: 1100px) {
