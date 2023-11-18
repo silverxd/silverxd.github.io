@@ -1,7 +1,7 @@
 import {Component, OnInit, NgZone, ChangeDetectorRef} from '@angular/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {ClickerService} from "./clicker.service";
-import {interval, Observable, of, take} from 'rxjs';
+import {interval, Observable, take} from 'rxjs';
 
 
 @Component({
@@ -72,9 +72,8 @@ export class ClickerComponent implements OnInit {
     });
   }
 
-
   addDebux() {
-    this.debux = this.debux + 1;
+    this.debux += this.service.calculateTotalDebuxPerClick();
     this.updateAffordability(); // Update affordability so upgrades can open up
     this.service.addDebux(this.debux);
   }
@@ -90,7 +89,7 @@ export class ClickerComponent implements OnInit {
       this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
       upgrade.cost += 5; // Increase upgrades cost
       upgrade.purchased += 1; // Increase purchased amount
-      this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec); // Call the buyUpgrade method in ClickerService
+      this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
       upgrade.affordable = false; // Disable the button after purchase
       // You might want to implement logic to increase debuxPerSec or other effects here
       this.service.addDebux(this.debux); // Update DeBux in the service
@@ -99,7 +98,7 @@ export class ClickerComponent implements OnInit {
       this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
       upgrade.cost += 5; // Increase upgrades cost
       upgrade.purchased += 1; // Increase purchased amount
-      this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec); // Call the buyUpgrade method in ClickerService
+      this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
       // You might want to implement logic to increase debuxPerSec or other effects here
       this.service.addDebux(this.debux); // Update DeBux in the service
       this.service.addUpgrades(this.upgrades)

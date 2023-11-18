@@ -1,20 +1,21 @@
 <mat-toolbar *ngIf="visible">
     <span>
-        <a routerLink="/home"><img class="logo" src="assets/img/header_logo.svg" alt="Earn2Post"></a>
+        <a routerLink="/home"><img class="logo" id="header-logo" src="assets/img/header_logo.svg" alt="Earn2Post"></a>
     </span>
     <span class="fill-remaining-space"></span>
-    <span class="moto">
+    <span class="moto" id="header-moto">
         "Post with Purpose, Earn with Pride | Join Earn2Post"
     </span>
     <span class="fill-remaining-space"></span>
-    <span>
-        <form>
-            <input type="search" class="search" placeholder="Search..." maxlength="13">
-        </form>
-    </span>
-    <span>
-        <button class="menu_button" (click)="sidenav.toggle()"></button>
-    </span>
+    <div class="search">
+        <button class="search_button"></button>
+        <input class="search_input" type="search" placeholder="Search...">
+    </div>
+    <div class="search_compact" id="search-bar">
+        <button class="search_button" (click)="toggleSearch()"></button>
+        <input class="search_input" type="search" placeholder="Search...">
+    </div>
+    <button class="menu_button" id="header-menu" (click)="sidenav.toggle()"></button>
 </mat-toolbar>
 <mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize hasBackdrop="false">
     <mat-sidenav position="end" #sidenav (click)="sidenav.close()">
