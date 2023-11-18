@@ -49,7 +49,7 @@ export class ClickerComponent implements OnInit {
         this.loading = true;
         // Fetch the initial debux value from the database
 
-        this.service.getDebux().subscribe((value) => {
+        this.service.getDebux().pipe(take(1)).subscribe((value) => {
           this.debux = value || 0; // If the value is null or undefined, default to 0
           this.loading = false;
 
@@ -109,7 +109,6 @@ export class ClickerComponent implements OnInit {
 
   manualAutosave() {
     if (this.clickCount < this.maxClicks) {
-      console.log(this.clickCount)
       this.service.autosave()
       this.clickCount++;
     }
