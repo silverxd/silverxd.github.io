@@ -1,8 +1,10 @@
 mat-toolbar {
   background-color: #313131;
   height: 90px;
+  overflow: hidden;
 }
 .logo {
+  height: auto;
   width: 90%;
   margin-bottom: 4%;
   margin-left: 8%;
@@ -12,6 +14,7 @@ mat-toolbar {
   font-family: 'IBM Plex Mono ExtraLight', monospace;
   font-size: 1.7vw;
 }
+/* ----------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------- */
 .search {
   display: flex;
@@ -29,8 +32,8 @@ mat-toolbar {
   border: none;
   border-radius: 40px;
   background: transparent url("/assets/img/search.svg") no-repeat;
-  background-size: 45px;
-  background-position: 40% 70%;
+  background-size: 78%;
+  background-position: 6px 11px;
 }
 .search_input {
   margin-left: 2%;
@@ -48,11 +51,18 @@ mat-toolbar {
   background-color: #2D2D2D;
   cursor: pointer;
 }
+.search_button:active {
+  transform: scale(0.9)
+}
+/* ----------------------------------------------------------------------- */
+.search_compact {
+  display: none;
+}
 /* ----------------------------------------------------------------------- */
 .menu_button {
   background: transparent url("/assets/img/menu_icon.svg") no-repeat;
-  background-size: 65px;
-  background-position: 95% -160%; 
+  background-size: 110%;
+  background-position: -5px 2px; 
   border: none;
   border-radius: 15px;
   height: 60px;
@@ -62,33 +72,45 @@ mat-toolbar {
 }
 .menu_button:hover {
   background-color: #2D2D2D;
+  cursor: pointer;
+}
+.menu_button:active {
+  transform: scale(0.9)
 }
 /* ----------------------------------------------------------------------- */
 .fill-remaining-space {
   flex: 1 1 auto ;
 }
 /* ----------------------------------------------------------------------- */
-@media (max-width: 1560px) {
-  .search {
-    background: transparent;
-    width: auto;
-  }
-  .search_button {
-    display: flex; /* Display the button */
-  }
-  .search_input {
-    display: none; /* Hide the input field */
+@media (min-width: 1921px) {
+  .moto {
+    font-size: 200%;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 1560px) {
+  .search {
+    display: none;
+  }
+  .search_compact {
+    display: flex;
+  }
+}
+@media (max-width: 1100px) {
   .moto {
     display: none;
   }
+}
+@media (max-width: 510px) {
   .search_button {
-    display: flex; /* Display the button */
+    width: 40px;
+    height: 40px;
+    background-position: 4px 6px;
   }
-  .search_input {
-    display: none; /* Hide the input field */
+  .menu_button {
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    background-position: -3px 3px;
   }
 }
 /* ----------------------------------------------------------------------- */
@@ -110,10 +132,7 @@ mat-toolbar {
 /* ----------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------- */
 mat-sidenav-container {
-  height: 100%;
   background-color: #212121;
-  margin: 0;
-  padding: 0;
   width: 100%;
 }
 mat-sidenav {

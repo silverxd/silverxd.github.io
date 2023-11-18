@@ -8,4 +8,9 @@ import {Component, Input} from '@angular/core';
 export class HeaderComponent {
   @Input() opened= false;
   @Input() visible = true;
+  isSearchVisible: boolean = true;
+
+  toggleSearch(): void {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
 }

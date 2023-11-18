@@ -7,13 +7,14 @@
         "Post with Purpose, Earn with Pride | Join Earn2Post"
     </span>
     <span class="fill-remaining-space"></span>
-    <div class="search">
+    <div class="search" *ngIf="isSearchVisible">
         <button class="search_button"></button>
         <input type="search" class="search_input" placeholder="Search...">
     </div>
-    <span>
-        <button class="menu_button" (click)="sidenav.toggle()"></button>
-    </span>
+    <div class="search_compact">
+        <button class="search_button"></button>
+    </div>
+    <button class="menu_button" (click)="sidenav.toggle()"></button>
 </mat-toolbar>
 <mat-sidenav-container [class.login-page]="!visible" [class.other-page]="visible" autosize hasBackdrop="false">
     <mat-sidenav position="end" #sidenav (click)="sidenav.close()">
