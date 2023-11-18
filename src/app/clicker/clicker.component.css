@@ -2,6 +2,9 @@
 /*------------------------------------ */
 /*------------------------------------ */
 .top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin-top: 40px;
   text-align: center;
   margin-bottom: 40px;
@@ -11,7 +14,7 @@
 .credit {
   display: inline-block;
   color: #E0E1E1;
-  width: 440px;
+  width: 20%;
   background: #313131;
   border-radius: 40px;
 
@@ -25,7 +28,7 @@
 .clicker {
   display: inline-block;
   color: #E0E1E1;
-  width: 600px;
+  width: 30%;
   background: #313131;
   border-radius: 40px;
   padding: 20px;
@@ -68,7 +71,7 @@
 .profile {
   display: inline-block;
   color: #E0E1E1;
-  width: 440px;
+  width: 20%;
   background: #313131;
   border-radius: 40px;
 }
