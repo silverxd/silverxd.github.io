@@ -24,7 +24,7 @@ export class OverlayService {
     this.overlayRef.attach(overlayPortal);
 
     // Handle overlay backdrop click to close the overlay
-    this.overlayRef.backdropClick().subscribe(() => this.closeOverlay());
+    // this.overlayRef.backdropClick().subscribe(() => this.closeOverlay());
   }
 
   closeOverlay() {

@@ -1,8 +1,28 @@
-<div>
-    <p>Esimene rida</p>
-    <p>Teine rida</p>
-    <p>Kolmas rida</p>
-</div>
-<div>
-    <button (click)="closeOverlay()">close</button>
+<div class="settings-overlay">
+    <div class="top-bar">
+        <div class="title">
+            <img src="assets\img\settings.svg" alt="">
+            <h1>Settings</h1>
+        </div>
+        <div class="close">
+            <button (click)="closeOverlay()">X</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="side-bar">
+            <div class="box1">
+                <h1>Appearence</h1>
+            </div>
+            <div class="box">
+                <h1>Privacy</h1>
+            </div>
+            <div class="box">
+                <h1>Status</h1>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Settings Page</h1>
+            <p>Customize Everything to your liking!</p>
+        </div>
+    </div>
 </div>
