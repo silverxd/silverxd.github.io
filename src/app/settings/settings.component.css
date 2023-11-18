@@ -1,0 +1,5 @@
+div {
+    display: flex;
+    border: thin solid salmon;
+    background-color: #313131;
+}
