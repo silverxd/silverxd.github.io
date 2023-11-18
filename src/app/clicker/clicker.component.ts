@@ -28,6 +28,7 @@ export class ClickerComponent implements OnInit {
   timeDifferenceInSeconds: number = 0;
   maxClicks: number = 2; // per save
   clickCount: number = 0;
+
   constructor(public service: ClickerService, private zone: NgZone, private cdr: ChangeDetectorRef) {
     this.debux = 0;
     this.loading = false;
@@ -92,27 +93,25 @@ export class ClickerComponent implements OnInit {
       this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
       upgrade.affordable = false; // Disable the button after purchase
       // You might want to implement logic to increase debuxPerSec or other effects here
-      this.service.addDebux(this.debux); // Update DeBux in the service
-      this.service.addUpgrades(this.upgrades)
     } else if (upgrade.affordable && (this.debux - upgrade.cost) >= upgrade.cost) {
       this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
       upgrade.cost += 5; // Increase upgrades cost
       upgrade.purchased += 1; // Increase purchased amount
       this.service.buyUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
       // You might want to implement logic to increase debuxPerSec or other effects here
-      this.service.addDebux(this.debux); // Update DeBux in the service
-      this.service.addUpgrades(this.upgrades)
     } else {
       console.log('Not enough DeBux for this upgrade.');
     }
+    this.service.addDebux(this.debux); // Update DeBux in the service
+    this.service.addUpgrades(this.upgrades)
     this.updateAffordability(); // Update affordability so upgrades can open up
   }
 
-  manualAutosave(){
+  manualAutosave() {
     if (this.clickCount < this.maxClicks) {
       console.log(this.clickCount)
       this.service.autosave()
-      this.clickCount ++;
+      this.clickCount++;
     }
   }
 
