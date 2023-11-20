@@ -5,7 +5,7 @@
   <!-- Add other head elements like title, stylesheets, and scripts here -->
 </head>
 <body>
-<div class="container">
+<div class="containerfull">
   <div class="logo-side">
     <div class="logo-text">
       <h1 style="color: #2c2c2c; font-size: 35px; font-weight:400; padding-left:10px">Earn2Post</h1>
@@ -35,7 +35,7 @@
           </div>
           <a (click)="isPage = 'forgot'">Forgot password?</a>
         </div>
-        <span style="color:#707070; font-family: 'IBM Plex Mono', monospace;">Don't have an account? <a
+        <span style="color:#707070; font-family: 'IBM Plex Mono', monospace; cursor: default">Don't have an account? <a
           (click)="isPage = 'register'">Sign up here</a></span>
       </div>
       <button style="--clr:#7d64bd;" (click)=login()><span>Sign in</span><i></i></button>
@@ -80,7 +80,6 @@
     </div>
   </div>
 </div>
-<!-- Other webpage content goes here -->
 </body>
 </html>
 
