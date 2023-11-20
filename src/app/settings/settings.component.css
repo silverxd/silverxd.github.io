@@ -1,8 +1,3 @@
-/* div {
-    display: flex;
-    border: thin solid salmon;
-    background-color: #313131;
-} */
 .settings-overlay {
     width: 100%;
     height: 100%;
@@ -22,6 +17,7 @@
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
 }
+/* ----------------------------------- */
 .title {
     display: flex;
     align-items: center;
@@ -31,6 +27,7 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+/* ----------------------------------- */
 .close button  {
     color: #E0E1E1;
     font-weight: bolder;
@@ -46,11 +43,13 @@
 .close button:active  {
     transform: scale(0.9);
 }
+/* ----------------------------------- */
 .container {
     width: 100%;
     height: 800px;
     display: flex;
 }
+/* ----------------------------------- */
 .side-bar {
     width: 218px;
     display: flex;
@@ -59,11 +58,18 @@
     background-color: #212121;
     border-bottom-left-radius: 40px;
 }
+/* ----------------------------------- */
 .box, .box1 {
     width: 100%;
     text-align: center;
     border-bottom: thin solid #E37A70;
     font-size: 13px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .box1 {
     border-top: thin solid #E37A70;
@@ -72,6 +78,10 @@
     cursor: pointer;
     background-color: #2D2D2D;
 }
+.selected-box {
+    background-color: #313131;
+  }
+/* ----------------------------------- */
 .content {
     width: 100%;
     padding: 10px;
