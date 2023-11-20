@@ -1,0 +1,105 @@
+.settings-overlay {
+    width: 50vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #E0E1E1;
+    border-radius: 40px;
+}
+/* ----------------------------------- */
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+/* ----------------------------------- */
+.title {
+    display: flex;
+    align-items: center;
+}
+.title img {
+    width: 20%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+/* ----------------------------------- */
+.close button  {
+    color: #E0E1E1;
+    font-weight: bolder;
+    background: transparent;
+    font-size: 40px;
+    border: none;
+    margin-right: 20px;
+}
+.close button:hover  {
+    cursor: pointer;
+    color: #E37A70;
+}
+.close button:active  {
+    color: #E37A70;
+    transform: scale(0.9);
+}
+/* ----------------------------------- */
+.container {
+    width: 100%;
+    height: 800px;
+    display: flex;
+}
+/* ----------------------------------- */
+.side-bar {
+    width: 25%;
+    min-width: 156px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212121;
+    border-bottom-left-radius: 40px;
+}
+/* ----------------------------------- */
+.box, .box1 {
+    width: 100%;
+    text-align: center;
+    border-bottom: thin solid #E37A70;
+    font-size: 13px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.box1 {
+    border-top: thin solid #E37A70;
+}
+.box:hover, .box1:hover {
+    cursor: pointer;
+    background-color: #2D2D2D;
+}
+.selected-box {
+    background-color: #313131;
+  }
+/* ----------------------------------- */
+.content {
+    width: 100%;
+    padding: 10px;
+    background-color: #313131;
+    border-bottom-right-radius: 40px;
+}
+/* ----------------------------------- */
+@media screen and (max-width: 768px) {
+    .settings-overlay {
+        width: 100vw;
+        height: 100vh;
+    }
+    .side-bar {
+        min-width: 110px;
+    }
+    .box, .box1 {
+        font-size: 9px;
+    }
+}

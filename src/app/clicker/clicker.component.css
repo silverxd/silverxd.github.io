@@ -146,14 +146,17 @@
 
 /*------------------------------------ */
 .box {
-  display: flex;
-  justify-content: center;
-  border-radius: 20px;
-  margin-top: 30px;
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .box:hover {
