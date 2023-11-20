@@ -5,13 +5,32 @@ import { LoginComponent } from "./login/login.component";
 import { AdminComponent } from "./admin/admin.component";
 import { ClickerComponent } from './clicker/clicker.component';
 import {ProfileComponent} from "./profile/profile.component";
+import { AuthGuard } from "./auth.guard";
+
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'clicker', component: ClickerComponent},
-  { path: 'profile', component: ProfileComponent},
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
+  },
+  {
+    path: 'clicker',
+    component: ClickerComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
