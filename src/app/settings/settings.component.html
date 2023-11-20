@@ -1,0 +1,28 @@
+<div class="settings-overlay">
+    <div class="top-bar">
+        <div class="title">
+            <img src="assets\img\settings.svg" alt="">
+            <h1>Settings</h1>
+        </div>
+        <div class="close">
+            <button (click)="closeOverlay()">X</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="side-bar">
+            <div class="box1" (click)="changeContent('Appearence')" [ngClass]="{'selected-box': isBoxSelected('Appearence')}">
+                <h1>Appearence</h1>
+            </div>
+            <div class="box" (click)="changeContent('Privacy')" [ngClass]="{'selected-box': isBoxSelected('Privacy')}">
+                <h1>Privacy</h1>
+            </div>
+            <div class="box" (click)="changeContent('Status')" [ngClass]="{'selected-box': isBoxSelected('Status')}">
+                <h1>Status</h1>
+            </div>
+        </div>
+        <div class="content">
+            <h1>{{ content[selectedBox]?.title }}</h1>
+            <p>{{ content[selectedBox]?.description }}</p>
+        </div>
+    </div>
+</div>

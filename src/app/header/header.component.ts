@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {AuthService} from "../auth.service";
+import { OverlayService } from '../overlay.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,8 @@ export class HeaderComponent {
   @Input() opened= false;
   @Input() visible = true;
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService, private overlayService: OverlayService) {}
+
   toggleSearch(): void {
     const searchBox = document.getElementById("search-bar");
     const moto = document.getElementById("header-moto");
@@ -26,5 +27,9 @@ export class HeaderComponent {
   }
   logOut() {
     this.authService.logout();
+  }
+
+  openOverlay() {
+    this.overlayService.openOverlay();
   }
 }

@@ -23,6 +23,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { ProfileComponent } from './profile/profile.component';
 import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
+import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
 
 @NgModule({
@@ -57,7 +58,8 @@ import {AuthService} from "./auth.service";
       appId: "1:627810397108:web:9c06f50115255b39cf20e1"
     }),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    OverlayModule,
   ],
   providers: [AuthService, ClickerService],
   bootstrap: [AppComponent],
