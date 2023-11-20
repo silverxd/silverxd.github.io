@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { OverlayService } from '../overlay.service';
+import { SettingsComponent } from '../settings/settings.component';
+import { BugReportComponent } from '../bug-report/bug-report.component';
 
 @Component({
   selector: 'app-header',
@@ -25,8 +27,12 @@ export class HeaderComponent {
     }
   }
 
-  openOverlay() {
-    this.overlayService.openOverlay();
+  openSettings() {
+    this.overlayService.openOverlay(SettingsComponent);
+  }
+
+  openBugReport() {
+    this.overlayService.openOverlay(BugReportComponent);
   }
 
 }
