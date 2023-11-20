@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { OverlayService } from '../overlay.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,8 @@ import {Component, Input} from '@angular/core';
 export class HeaderComponent {
   @Input() opened= false;
   @Input() visible = true;
+
+  constructor(private overlayService: OverlayService) {}
 
   toggleSearch(): void {
     const searchBox = document.getElementById("search-bar");
@@ -21,4 +24,9 @@ export class HeaderComponent {
       menu.classList.toggle('inactive');
     }
   }
+
+  openOverlay() {
+    this.overlayService.openOverlay();
+  }
+
 }
