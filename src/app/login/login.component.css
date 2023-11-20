@@ -258,10 +258,12 @@ button:focus {
 .checkbox-wrapper-3 {
   display: flex;
   margin: 10px;
+  margin-bottom: 15px;
 }
 
 .checkbox-wrapper-3 p {
   margin: 0px;
+  margin-left: 10px;
   font-size: inherit;
   color: #707070;
 }
