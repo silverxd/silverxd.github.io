@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,8 @@ export class HeaderComponent {
   @Input() opened= false;
   @Input() visible = true;
 
+  constructor(private authService: AuthService) {
+  }
   toggleSearch(): void {
     const searchBox = document.getElementById("search-bar");
     const moto = document.getElementById("header-moto");
@@ -20,5 +23,8 @@ export class HeaderComponent {
       logo.classList.toggle('inactive');
       menu.classList.toggle('inactive');
     }
+  }
+  logOut() {
+    this.authService.logout();
   }
 }
