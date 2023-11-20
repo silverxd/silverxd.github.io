@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Add other head elements like title, stylesheets, and scripts here -->
+</head>
+<body>
+<div class="left-side">
+  <p>
+    Here is list of friends
+  </p>
+</div>
+<div class="middle">
+  <div class="chat-container">
+    <div class="friend-name-row">
+      <div class="friend-name-box">
+        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
+        <p>Friend's name</p>
+        <div class="circle-active">&nbsp;</div>
+      </div>
+    </div>
+    <div class="text-box" id="scrollbar">
+      <div *ngFor="let message of directMessages" class="one-bubble">
+        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
+        <div class="text-timestamp">
+          <p id="message-text">{{message}}</p>
+          <p id="timestamp">10:07 11/10</p>
+        </div>
+      </div>
+    </div>
+    <div class="input-field">
+      <img src="assets/img/emoji.svg" alt="Emojis">
+      <img src="assets/img/pictures.svg" alt="Pictures">
+      <img src="assets/img/mic.svg" alt="Voice" style="width: 3.7%">
+      <textarea #commentText class="commentText" type="text"></textarea>
+      <img src="assets/img/send.svg" alt="Send">
+    </div>
+  </div>
+</div>
+<div class="right-side">
+  <p>
+    Here is notifications
+  </p>
+</div>
+</body>
+
+
