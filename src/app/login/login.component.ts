@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit{
   displayName: string = '';
   isPage: string = 'login';
   public loginFailed: boolean = false;
+  rememberMe: boolean = true;
 
   constructor(private authService: AuthService, private router: Router, private headerComponent: HeaderComponent) {
     this.headerComponent.visible = false;
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit{
     if (this.password == 'admin' && this.email == 'admin') {
       this.router.navigate(['/admin'])
     } else {
-      this.authService.login(this.email, this.password)
+      this.authService.login(this.email, this.password, this.rememberMe)
       this.authService.loginFailed$.subscribe((loginFailed) => {
         this.loginFailed = loginFailed;
       });
