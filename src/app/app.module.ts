@@ -25,8 +25,10 @@ import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
 import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
+import {AutosizeModule} from "ngx-autosize";
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -36,7 +38,7 @@ import {AuthService} from "./auth.service";
     PostComponent,
     ClickerComponent,
     ProfileComponent,
-    CreditBoxComponent
+    CreditBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,6 @@ import {AuthService} from "./auth.service";
     OverlayModule,
   ],
   providers: [AuthService, ClickerService],
-  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {

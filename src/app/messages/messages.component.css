@@ -71,7 +71,7 @@ body, html {
 .text-box {
   display: flex;
   flex-direction: column;
-  height: 700px;
+  height: 500px;
   overflow: auto;
   margin-top: 20px;
 }
@@ -126,20 +126,21 @@ body, html {
   width: 5%;
 }
 
+
+
 .commentText {
-  height: 40px;
+  padding: 0px;
   width: 70%;
+  height: 50%;
+  padding: 15px;
   align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 2px solid #878787;
   border-radius: 40px;
   background-color: #212121;
-  resize: none;
   color: white;
   font-size: 25px;
   font-family: IBM Plex Mono, monospace;
   font-weight: 400;
   word-wrap: break-word;
-  overflow-y: hidden;
+  outline: none;
+  border: none;
 }
