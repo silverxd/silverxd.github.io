@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { SettingsComponent } from './settings/settings.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class OverlayService {
 
   constructor(private overlay: Overlay) { }
 
-  openOverlay() {
+  openOverlay(component: any) {
     const overlayConfig: OverlayConfig = {
       hasBackdrop: true,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
@@ -20,7 +19,7 @@ export class OverlayService {
 
     this.overlayRef = this.overlay.create(overlayConfig);
 
-    const overlayPortal = new ComponentPortal(SettingsComponent);
+    const overlayPortal = new ComponentPortal(component);
     this.overlayRef.attach(overlayPortal);
 
     // Handle overlay backdrop click to close the overlay
