@@ -155,3 +155,7 @@ h3 {
     font-size: 1.5vw;
     color: #92EE61;
 }
+
+.dropdown-content {
+    background-color: #92EE61;
+}
