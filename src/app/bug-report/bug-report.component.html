@@ -5,7 +5,7 @@
             <h1>Bug Report</h1>
         </div>
         <div class="close" id="end">
-            <button (click)="closeOverlay()">X</button>
+            <button (click)="toggleCancel()">X</button>
         </div>
     </div>
     <div class="container">
@@ -33,8 +33,8 @@
             <textarea placeholder="Please provide a detailed explanation of the problem you are experiencing..."></textarea>
         </div>
         <div class="bottom-buttons">
-            <button class="cancel" (click)="toggleCancel()"><h3>Cancel</h3></button>
 
+            <button class="cancel" (click)="toggleCancel()"><h3>Cancel</h3></button>
             <ng-template #cancelTemplate>
                 <div class="overlay">
                     <div class="overlay-title">
@@ -51,7 +51,37 @@
                 </div>
               </ng-template>
 
-            <button class="send"><h3>Send</h3></button>
+
+
+            <button class="send" (click)="toggleSend()"><h3>Send</h3></button>
+            <ng-template #sendTemplate>
+                <div class="overlay" *ngIf="!sendIsYes">
+                    <div class="overlay-title">
+                        <h1>Are you sure?</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Your report will be sent to</p>
+                        <p>company.</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="send-no" (click)="toggleSend()">No</p>
+                            <p class="overlay-button" id="send-yes" (click)="sendYes()">Yes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overlay" *ngIf="sendIsYes">
+                    <div class="overlay-title">
+                        <h1>Successfully sent</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Thank you for your feedback!</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="send-done" (click)="cancelYes()">Done!</p>
+                        </div>
+                    </div>
+                </div>
+              </ng-template>
+
         </div>
     </div>
  </div>

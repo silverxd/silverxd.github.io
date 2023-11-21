@@ -12,14 +12,18 @@ import { TemplatePortal } from '@angular/cdk/portal';
   styleUrl: './bug-report.component.css'
 })
 export class BugReportComponent implements AfterViewInit {
-  @ViewChild('dropdownTemplate', { static: true }) dropdownTemplate!: TemplateRef<any>; // Reference to your dropdown content template
-  @ViewChild('cancelTemplate', { static: true }) cancelTemplate!: TemplateRef<any>; // Reference to the cancel button
+  @ViewChild('dropdownTemplate', { static: true }) dropdownTemplate!: TemplateRef<any>; // Reference to the dropdown content template
+  @ViewChild('cancelTemplate', { static: true }) cancelTemplate!: TemplateRef<any>; // Reference to the cancel content template
+  @ViewChild('sendTemplate', { static: true }) sendTemplate!: TemplateRef<any>; // Reference to the cancel content template
   private dropdownoverlayRef!: OverlayRef;
   private cancelOverlayRef!: OverlayRef;
+  private sendOverlayRef!: OverlayRef;
 
   problems: string[] = ['Transactions', 'Messages', 'Account', 'Credit', 'Posts', 'Other'];
   problem_with: string = "Choose here...";
   public dropdownIsOpen: boolean = false;
+
+  public sendIsYes: boolean = false;
 
   constructor(
     private overlay: Overlay,
@@ -31,19 +35,7 @@ export class BugReportComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.initializeDropdown();
     this.initializeCancel();
-  }
-
-  private initializeCancel() {
-    const positionStrategy = this.overlay.position()
-          .global()
-          .centerHorizontally()
-          .centerVertically();
-  
-        this.cancelOverlayRef = this.overlay.create({
-          positionStrategy,
-          hasBackdrop: true,
-          backdropClass: 'overlay-backdrop',
-        });
+    this.initializeSend();
   }
 
   private initializeDropdown() {
@@ -66,6 +58,32 @@ export class BugReportComponent implements AfterViewInit {
     }
   }
 
+  private initializeCancel() {
+    const positionStrategy = this.overlay.position()
+          .global()
+          .centerHorizontally()
+          .centerVertically();
+  
+        this.cancelOverlayRef = this.overlay.create({
+          positionStrategy,
+          hasBackdrop: true,
+          backdropClass: 'overlay-backdrop',
+        });
+  }
+
+  private initializeSend() {
+    const positionStrategy = this.overlay.position()
+          .global()
+          .centerHorizontally()
+          .centerVertically();
+  
+        this.sendOverlayRef = this.overlay.create({
+          positionStrategy,
+          hasBackdrop: true,
+          backdropClass: 'overlay-backdrop',
+        });
+  }
+
   toggleDropdown() {
     if (this.dropdownoverlayRef.hasAttached()) {
       this.dropdownoverlayRef.detach();
@@ -74,6 +92,24 @@ export class BugReportComponent implements AfterViewInit {
       const portal = new TemplatePortal(this.dropdownTemplate, this.viewContainerRef);
       this.dropdownoverlayRef.attach(portal);
       this.dropdownIsOpen = true;
+    }
+  }
+
+  toggleCancel() {
+    if (this.cancelOverlayRef.hasAttached()) {
+      this.cancelOverlayRef.detach();
+    } else {
+      const portal = new TemplatePortal(this.cancelTemplate, this.viewContainerRef);
+      this.cancelOverlayRef.attach(portal);
+    }
+  }
+
+  toggleSend() {
+    if (this.sendOverlayRef.hasAttached()) {
+      this.sendOverlayRef.detach();
+    } else {
+      const portal = new TemplatePortal(this.sendTemplate, this.viewContainerRef);
+      this.sendOverlayRef.attach(portal);
     }
   }
 
@@ -94,13 +130,8 @@ export class BugReportComponent implements AfterViewInit {
     this.closeOverlay();
   }
 
-  toggleCancel() {
-    if (this.cancelOverlayRef.hasAttached()) {
-      this.cancelOverlayRef.detach();
-    } else {
-      const portal = new TemplatePortal(this.cancelTemplate, this.viewContainerRef);
-      this.cancelOverlayRef.attach(portal);
-    }
+  sendYes() {
+    this.sendIsYes = !this.sendIsYes
   }
 
   closeOverlay() {
