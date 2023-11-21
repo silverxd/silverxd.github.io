@@ -13,10 +13,13 @@ import { TemplatePortal } from '@angular/cdk/portal';
 })
 export class BugReportComponent implements AfterViewInit {
   @ViewChild('dropdownTemplate', { static: true }) dropdownTemplate!: TemplateRef<any>; // Reference to your dropdown content template
-  private overlayRef!: OverlayRef;
-  problems: string[] = ['Transactions', 'Messages', 'Account', 'Credit', 'Posts', 'Other']
-  problem_with: string = "Choose here..."
-  public dropdownIsOpen: boolean = false
+  @ViewChild('cancelTemplate', { static: true }) cancelTemplate!: TemplateRef<any>; // Reference to the cancel button
+  private dropdownoverlayRef!: OverlayRef;
+  private cancelOverlayRef!: OverlayRef;
+
+  problems: string[] = ['Transactions', 'Messages', 'Account', 'Credit', 'Posts', 'Other'];
+  problem_with: string = "Choose here...";
+  public dropdownIsOpen: boolean = false;
 
   constructor(
     private overlay: Overlay,
@@ -26,10 +29,24 @@ export class BugReportComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.initializeOverlay();
+    this.initializeDropdown();
+    this.initializeCancel();
   }
 
-  private initializeOverlay() {
+  private initializeCancel() {
+    const positionStrategy = this.overlay.position()
+          .global()
+          .centerHorizontally()
+          .centerVertically();
+  
+        this.cancelOverlayRef = this.overlay.create({
+          positionStrategy,
+          hasBackdrop: true,
+          backdropClass: 'overlay-backdrop',
+        });
+  }
+
+  private initializeDropdown() {
     const dropdownElement = this.elementRef.nativeElement.querySelector('.dropdown');
     
     if (dropdownElement) {
@@ -39,38 +56,54 @@ export class BugReportComponent implements AfterViewInit {
           { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top'}
         ]);
 
-      this.overlayRef = this.overlay.create({
+      this.dropdownoverlayRef = this.overlay.create({
         positionStrategy,
         hasBackdrop: true,
         backdropClass: 'dropdown-backdrop',
       });
 
-      this.overlayRef.backdropClick().subscribe(() => this.toggleDropdown());
+      this.dropdownoverlayRef.backdropClick().subscribe(() => this.toggleDropdown());
     }
   }
 
-
   toggleDropdown() {
-    if (this.overlayRef.hasAttached()) {
-      this.overlayRef.detach();
+    if (this.dropdownoverlayRef.hasAttached()) {
+      this.dropdownoverlayRef.detach();
       this.dropdownIsOpen = false;
     } else {
       const portal = new TemplatePortal(this.dropdownTemplate, this.viewContainerRef);
-      this.overlayRef.attach(portal);
+      this.dropdownoverlayRef.attach(portal);
       this.dropdownIsOpen = true;
     }
   }
-  
-  closeOverlay() {
-    this.overlayService.closeOverlay();
-  }
 
   changeDropdownDisplayHover(name: string) {
-    this.problem_with = name
+    this.problem_with = name;
   }
 
   changeDropdownDisplayClick(name: string) {
-    this.problem_with = name
-    this.toggleDropdown()
+    this.problem_with = name;
+    this.toggleDropdown();
+  }
+
+  cancelYes() {
+    if (this.cancelOverlayRef) {
+      this.cancelOverlayRef.detach();
+      this.cancelOverlayRef.dispose();
+    }
+    this.closeOverlay();
+  }
+
+  toggleCancel() {
+    if (this.cancelOverlayRef.hasAttached()) {
+      this.cancelOverlayRef.detach();
+    } else {
+      const portal = new TemplatePortal(this.cancelTemplate, this.viewContainerRef);
+      this.cancelOverlayRef.attach(portal);
+    }
+  }
+
+  closeOverlay() {
+    this.overlayService.closeOverlay();
   }
 }

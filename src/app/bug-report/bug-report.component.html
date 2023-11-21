@@ -33,7 +33,24 @@
             <textarea placeholder="Please provide a detailed explanation of the problem you are experiencing..."></textarea>
         </div>
         <div class="bottom-buttons">
-            <button class="cancel"><h3>Cancel</h3></button>
+            <button class="cancel" (click)="toggleCancel()"><h3>Cancel</h3></button>
+
+            <ng-template #cancelTemplate>
+                <div class="overlay">
+                    <div class="overlay-title">
+                        <h1>Cancel?</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Are you sure?</p>
+                        <p>Your report will be lost.</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="cancel-no" (click)="toggleCancel()">No</p>
+                            <p class="overlay-button" id="cancel-yes" (click)="cancelYes()">Yes</p>
+                        </div>
+                    </div>
+                </div>
+              </ng-template>
+
             <button class="send"><h3>Send</h3></button>
         </div>
     </div>
