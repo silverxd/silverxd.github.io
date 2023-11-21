@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {AuthService} from "../auth.service";
 import { OverlayService } from '../overlay.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { BugReportComponent } from '../bug-report/bug-report.component';
@@ -12,7 +13,7 @@ export class HeaderComponent {
   @Input() opened= false;
   @Input() visible = true;
 
-  constructor(private overlayService: OverlayService) {}
+  constructor(private authService: AuthService, private overlayService: OverlayService) {}
 
   toggleSearch(): void {
     const searchBox = document.getElementById("search-bar");
@@ -26,6 +27,9 @@ export class HeaderComponent {
       menu.classList.toggle('inactive');
     }
   }
+  logOut() {
+    this.authService.logout();
+  }
 
   openSettings() {
     this.overlayService.openOverlay(SettingsComponent);
@@ -34,5 +38,4 @@ export class HeaderComponent {
   openBugReport() {
     this.overlayService.openOverlay(BugReportComponent);
   }
-
 }

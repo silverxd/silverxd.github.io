@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
 import { OverlayModule } from '@angular/cdk/overlay'
+import {AuthService} from "./auth.service";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { OverlayModule } from '@angular/cdk/overlay'
     AngularFirestoreModule,
     OverlayModule,
   ],
-  providers: [ClickerService],
+  providers: [AuthService, ClickerService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
