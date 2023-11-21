@@ -16,15 +16,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostComponent } from './post/post.component';
 import {HttpClientModule} from "@angular/common/http";
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {AngularFireModule} from "@angular/firebase/compat";
+import {AngularFireAuthModule} from "@angular/firebase/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFirestoreModule} from "@angular/firebase/compat/firestore";
 import { ProfileComponent } from './profile/profile.component';
 import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
 import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
+import { NgxMicRecorderModule } from 'ngx-mic-recorder';
+
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
@@ -60,6 +62,7 @@ import {AuthService} from "./auth.service";
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
+    NgxMicRecorderModule
   ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
