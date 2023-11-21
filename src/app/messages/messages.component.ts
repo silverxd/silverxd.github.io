@@ -14,4 +14,9 @@ import {MatInputModule} from "@angular/material/input";
 })
 export class MessagesComponent {
   directMessages = ['tere', 'yo', 'mis teed kah', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something']
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    // Implement image upload logic using Firebase Storage
+  }
 }

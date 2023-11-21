@@ -32,7 +32,10 @@
     </div>
     <div class="input-field">
       <img src="assets/img/emoji.svg" alt="Emojis">
-      <img src="assets/img/pictures.svg" alt="Pictures">
+      <label for="fileInput" class="custom-file-input-label">
+        <img src="assets/img/pictures.svg" alt="Pictures">
+      </label>
+      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
       <img src="assets/img/mic.svg" alt="Voice" style="width: 3.7%">
       <textarea class="commentText" placeholder="Description" cdkTextareaAutosize></textarea>
       <img src="assets/img/send.svg" alt="Send">
