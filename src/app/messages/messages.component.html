@@ -31,12 +31,17 @@
       </div>
     </div>
     <div class="input-field">
-      <img src="assets/img/emoji.svg" alt="Emojis">
+      <label class="custom-file-input-label">
+        <img src="assets/img/emoji.svg" alt="Emojis" (click)="toggleEmojiPicker()">
+      </label>
+      <emoji-mart (emojiClick)="handleEmojiClick($event)"></emoji-mart>
       <label for="fileInput" class="custom-file-input-label">
         <img src="assets/img/pictures.svg" alt="Pictures">
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
       </label>
-      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
-      <img src="assets/img/mic.svg" alt="Voice" style="width: 3.7%">
+      <label class="custom-file-input-label">
+        <img src="assets/img/mic.svg" alt="Voice">
+      </label>
       <textarea class="commentText" placeholder="Description" cdkTextareaAutosize></textarea>
       <img src="assets/img/send.svg" alt="Send">
     </div>

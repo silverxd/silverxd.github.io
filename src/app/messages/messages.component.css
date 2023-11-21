@@ -126,10 +126,21 @@ body, html {
   width: 5%;
 }
 
+.input-field label img {
+  height: 80%;
+}
+
 .custom-file-input-label {
   display: inline-block;
   cursor: pointer;
 
+}
+
+emoji-mart {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  /* Add more styles as needed */
 }
 
 .custom-file-input-label img {
@@ -150,4 +161,12 @@ body, html {
   word-wrap: break-word;
   outline: none;
   border: none;
+}
+
+.emoji-overlay {
+  position: absolute;
+  background-color: #fff; /* Set the background color as needed */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add padding */
+  z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
 }

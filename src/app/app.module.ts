@@ -25,6 +25,9 @@ import {AuthService} from "./auth.service";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireModule} from "@angular/fire/compat";
+import {NgxMicRecorderModule} from "ngx-mic-recorder";
+import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -61,6 +64,9 @@ import {AngularFireModule} from "@angular/fire/compat";
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
+    NgxMicRecorderModule,
+    EmojiModule,
+    PickerComponent,
 
   ],
   providers: [AuthService, ClickerService],
