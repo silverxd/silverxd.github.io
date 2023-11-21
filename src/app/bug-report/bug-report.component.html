@@ -12,8 +12,21 @@
         <div class="top-part">
             <h3>I have a problem with:</h3>
             <div class="dropdown" (click)="toggleDropdown()">
-                <h4>Choose here...</h4>
-                <div class="arrow-down"></div>
+                <h4>{{ problem_with }}</h4>
+                <div class="arrow-down" *ngIf="!dropdownIsOpen"></div>
+                <div class="arrow-up" *ngIf="dropdownIsOpen"></div>
+
+                <ng-template #dropdownTemplate>
+                    <div class="dropdown-content">
+                        <div class="dropdown-element"
+                        *ngFor="let problem of problems"
+                        (mouseenter)="changeDropdownDisplayHover(problem)"
+                        (click)="changeDropdownDisplayClick(problem)"
+                        ><h4>{{ problem }}</h4>
+                        </div>
+                    </div>
+                  </ng-template>
+
             </div>
         </div>
         <div class="middle">
@@ -25,16 +38,3 @@
         </div>
     </div>
  </div>
-
- <ng-template #dropdownTemplate>
-  <div class="dropdown-content">
-    <ul>
-      <li>Transactions</li>
-      <li>Messages</li>
-      <li>Account</li>
-      <li>Credit</li>
-      <li>Posts</li>
-      <li>Other</li>
-    </ul>
-  </div>
-</ng-template>

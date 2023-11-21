@@ -86,14 +86,16 @@ h3 {
     margin-right: 30px;
 }
 /* ----------------------------------- */
-.dropdown {
-    width: 15vw;
+.dropdown, .dropdown-element {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 15vw;
+    padding: 10px;
     background-color: #464646;
     border-radius: 40px;
-    padding: 10px;
+}
+.dropdown {
+    justify-content: space-between;
+    align-items: center;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -101,19 +103,43 @@ h3 {
     -ms-user-select: none;
     user-select: none;
 }
-.dropdown h4 {
+.dropdown h4, .dropdown-element h4 {
     color: #A1A1A1;
     font-size: 1.3vw;
     font-weight: 500;
     padding: 0px;
     margin: 0px;
 }
+.dropdown-content {
+    flex-direction: column;
+    justify-content: center;
+}
+.dropdown-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.dropdown:hover, .dropdown-element:hover {
+    cursor: pointer;
+}
+.dropdown-element:hover {
+    background-color: #505050;
+}
+/* ----------------------------------- */
 .arrow-down {
     width: 0; 
     height: 0; 
     border-left: 0.5vw solid transparent;
     border-right: 0.5vw solid transparent;
     border-top: 0.9vw solid #A1A1A1;
+}
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 0.5vw solid transparent;
+    border-right: 0.5vw solid transparent;
+    border-bottom: 0.9vw solid #A1A1A1;
 }
 /* ----------------------------------- */
 .middle textarea {
@@ -155,7 +181,4 @@ h3 {
     font-size: 1.5vw;
     color: #92EE61;
 }
-
-.dropdown-content {
-    background-color: #92EE61;
-}
+/* ----------------------------------- */
