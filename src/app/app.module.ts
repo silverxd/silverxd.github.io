@@ -61,6 +61,7 @@ import {AngularFireModule} from "@angular/fire/compat";
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
+
   ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
