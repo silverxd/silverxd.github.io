@@ -57,27 +57,5 @@ export class PostService {
       console.warn('User not authenticated.');
       return of([]);
     };
-    /* or instead snapshotChanges() with map()
-      return this.firestore.collection<Post>('posts')
-        .snapshotChanges()
-        .pipe(
-          map(actions => actions.map(a => {
-            const data = a.payload.doc.data();
-            const id = a.payload.doc.id;
-            return { id, ...data };
-        });
-      )
-    */
-  };
-  getDisplaynames(posts: any) {
-    if (this.user) {
-      for (let post of posts) {
-        console.log(this.db.doc(`User/${post.author_uid}/displayName`).valueChanges().pipe().toString());
-      };
-      return posts;
-    } else {
-      console.warn('User not authenticated.'); // Use warn for non-critical issues
-      return "Something has gone terribly wrong"; // Return a string
-    };
   };
 }
