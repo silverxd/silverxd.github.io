@@ -3,8 +3,8 @@
 <h3 class="subText">Total posts on the backend: {{ posts.length }}</h3>
 <ul> 
 <div *ngFor="let post of posts; let i = index;" class="post">
-    <img src="https://yourteachingmentor.com/wp-content/uploads/2020/12/istockphoto-1223671392-612x612-1.jpg" alt="Avatar" class="avatar"> 
-    <p class="mainText">{{ post.author_uid }}</p>
+    <img src="{{ post.profile_pic }}" alt="Avatar" class="avatar"> 
+    <p class="mainText">{{ post.display_name }}</p>
     <p class="subText">{{ post.timestamp.toDate().toLocaleDateString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}</p>
     <hr/>
     <p class="mainText">{{ post.text }}</p>

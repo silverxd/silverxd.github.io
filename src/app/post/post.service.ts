@@ -3,7 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import User = firebase.User;
-import {from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
+import {combineLatest, from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
 
 interface Post {
   author_uid: string;
@@ -22,6 +22,7 @@ interface Post {
 export class PostService {
   user: User | null;
   authState$: Observable<User | null>;
+  posts$: Observable<Post[]> = of([]);
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
@@ -32,7 +33,26 @@ export class PostService {
   }
   getPosts(): Observable<Post[]> {
     if (this.user) {
-      return this.db.collection<Post>('posts').valueChanges();
+      this.posts$ = this.db
+      .collection<Post>('posts')
+      .valueChanges()
+      .pipe(
+        switchMap((posts) => 
+          combineLatest(
+            posts.map((post) =>
+              this.db
+              .doc(`User/${post.author_uid}`)
+              .valueChanges()
+              .pipe(
+                map((user_temp: any) => ({
+                  ...post, display_name: user_temp.displayName, profile_pic: user_temp.profilepic
+                }))
+              )
+            )
+          )
+        )
+      );
+      return this.posts$
     } else {
       console.warn('User not authenticated.');
       return of([]);
