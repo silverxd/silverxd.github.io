@@ -25,8 +25,11 @@ import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
 import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
+import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -60,9 +63,11 @@ import {AuthService} from "./auth.service";
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
+    EmojiModule,
+    PickerComponent,
+
   ],
   providers: [AuthService, ClickerService],
-  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {

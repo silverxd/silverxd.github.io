@@ -1,0 +1,183 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-side, .right-side {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: #313131;
+  width: 20%;
+  height: 50%;
+}
+
+.middle {
+  width: 40%;
+}
+
+.chat-container {
+  border-radius: 20px;
+  background-color: #313131;
+  border-bottom: 1px solid #6A5988;
+}
+
+
+.friend-name-row {
+  display: flex;
+  margin: 0px;
+  padding: 10px;
+  border-bottom: thin solid orange;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #6a5988;
+
+}
+
+.friend-name-row img {
+  margin: 0px;
+  width: 35px;
+  height: 35px;
+}
+
+.friend-name-row p {
+  margin: 0px;
+}
+
+.friend-name-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-right: 10px;
+  background-color: #212121;
+  border-radius: 20px;
+}
+
+.circle-active {
+  margin-left: 20px;
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.circle-away {
+  margin-left: 20px;
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  height: 30vw;
+  overflow: auto;
+  padding: 10px;
+  padding-bottom: 30px;
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+  background-color: #1c1c1c;
+}
+
+.text-box img {
+  width: 40px;
+  height: 40px;
+}
+
+.one-bubble {
+  display: flex;
+  word-wrap: break-word;
+  margin-top: 20px;
+}
+
+.one-bubble p {
+  margin: 0px;
+  margin-left: 5px;
+}
+
+.text-timestamp {
+  display: flex;
+  flex-direction: column;
+}
+
+#timestamp {
+  font-size: 10px;
+  font-weight: 100;
+  position: relative;
+}
+
+#message-text {
+  background-color: #212121;
+  border-radius: 40px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.input-field {
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #212121;
+  border-radius: 0px 0px 20px 20px;
+}
+
+
+.input-field img {
+  width: 5%;
+}
+
+.input-field label img {
+  height: 80%;
+}
+
+.custom-file-input-label {
+  display: inline-block;
+  cursor: pointer;
+
+}
+
+emoji-mart {
+  background-color: #212121;
+  border-radius: 20px;
+  color: #E0E1E1;
+  position: absolute;
+  top: 50px;
+  left: 30%;
+  overflow: auto;
+  max-height: 600px;
+}
+
+.custom-file-input-label img {
+  width: 80%;
+  height: 50%;
+}
+
+.commentText {
+  padding: 0px;
+  width: 70%;
+  padding: 15px;
+  align-items: center;
+  border-radius: 40px;
+  background-color: #151515;
+  color: #E0E1E1;
+  font-size: 20px;
+  font-weight: 200;
+  word-wrap: break-word;
+  outline: none;
+  border: none;
+}
+
+.emoji-overlay {
+  position: absolute;
+  background-color: #fff; /* Set the background color as needed */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add padding */
+  z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
+}
