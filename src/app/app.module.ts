@@ -68,7 +68,6 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 
   ],
   providers: [AuthService, ClickerService],
-  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
