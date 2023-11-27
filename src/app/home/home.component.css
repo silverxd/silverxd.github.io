@@ -9,6 +9,7 @@ body,html{
 .left-container, .right-container{
   margin-top: 30px;
   width: 20%;
+  text-align: center;
 }
 .right-container {
   justify-content: center;

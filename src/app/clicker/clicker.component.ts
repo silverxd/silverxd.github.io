@@ -2,6 +2,7 @@ import {Component, OnInit, NgZone, ChangeDetectorRef} from '@angular/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {ClickerService} from "./clicker.service";
 import {interval, Observable, take} from 'rxjs';
+import {CreditBoxComponent} from "../credit-box/credit-box.component";
 
 
 @Component({
@@ -40,38 +41,55 @@ export class ClickerComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Subscribe to only first upgrades change
+    this.subscribeToAuthState();
+    this.loading = true;
+    this.subscribeToUpgrades();
+  }
+
+  private subscribeToUpgrades() {
     this.upgradesObs$.pipe(take(1)).subscribe(value => {
-      this.upgrades = value
-      this.service.firstCalc(this.upgrades)
-    })
-    // Subscribe to authentication state changes
+      this.upgrades = value;
+      this.service.firstCalc(this.upgrades);
+    });
+  }
+
+  private subscribeToAuthState() {
     this.service.authState$.subscribe((user) => {
       if (user) {
-        this.loading = true;
-        // Fetch the initial debux value from the database
-        this.service.getDebux().pipe(take(1)).subscribe((value) => {
-          this.debux = value || 0; // If the value is null or undefined, default to 0
-          this.loading = false;
-
-          interval(1000).subscribe(() => {
-            this.zone.run(() => {
-              this.service.setDebux(this.debux, this.service.calculateTotalDebuxPerSec());
-              this.debux += this.service.calculateTotalDebuxPerSec();
-              this.updateAffordability(); // Update affordability so upgrades can open up
-              this.service.addDebux(this.debux); // Update DeBux in the service
-              this.cdr.detectChanges(); // Manually trigger change detection
-              const currentTime = new Date();
-              const timeDifferenceInMillis = currentTime.getTime() - this.service.autosaveDate.getTime();
-              this.timeDifferenceInSeconds = Math.floor(timeDifferenceInMillis / (1000 * 1));
-              if (this.timeDifferenceInSeconds == 30) {
-                this.clickCount = 0;
-              }
-            });
-          });
-        });
+        this.handleAuthenticatedUser();
       }
     });
+  }
+
+  private handleAuthenticatedUser() {
+    this.loading = true;
+    this.service.getDebux().pipe(take(1)).subscribe((value) => {
+      this.debux = value || 0;
+      this.loading = false;
+      this.setupDebuxInterval();
+    });
+  }
+
+  public setupDebuxInterval() {
+    interval(1000).subscribe(() => {
+      this.zone.run(() => {
+        this.debux += this.service.calculateTotalDebuxPerSec();
+        this.updateAffordability();
+        this.service.addDebux(this.debux);
+        this.service.setDebux(this.debux, this.service.calculateTotalDebuxPerSec());
+        this.cdr.detectChanges();
+        this.handleAutoSave();
+      });
+    });
+  }
+
+  private handleAutoSave() {
+    const currentTime = new Date();
+    const timeDifferenceInMillis = currentTime.getTime() - this.service.autosaveDate.getTime();
+    this.timeDifferenceInSeconds = Math.floor(timeDifferenceInMillis / (1000 * 1));
+    if (this.timeDifferenceInSeconds === 30) {
+      this.clickCount = 0;
+    }
   }
 
   addDebux() {

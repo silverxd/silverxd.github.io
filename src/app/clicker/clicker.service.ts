@@ -93,7 +93,10 @@ export class ClickerService {
   private purchasedUpgradesPerSec: { name: string, debuxPerSec: number }[] = [];
   private purchasedUpgradesPerClick: { name: string, debuxPerClick: number }[] = [];
 
-  private debuxSubject = new BehaviorSubject<{ debuxsend: number; anotherValue: any }>({debuxsend: 0, anotherValue: null});
+  private debuxSubject = new BehaviorSubject<{ debuxsend: number; anotherValue: any }>({
+    debuxsend: 0,
+    anotherValue: null
+  });
   debux$ = this.debuxSubject.asObservable()
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
@@ -177,10 +180,12 @@ export class ClickerService {
       }
 
       this.autosaveDate = new Date();
+      this.setDebux(this.debuxValue, this.calculateTotalDebuxPerSec());
 
       return from(this.db.doc(`User/${this.user?.uid}`).update(updateData)).pipe(
         map(() => {
           // Clear the queue after a successful write
+
           this.debuxValue = 0;
           console.log('cleared')
         })
@@ -229,6 +234,7 @@ export class ClickerService {
   }
 
   setDebux(debuxsend: number, anotherValue: number) {
+    console.log('sending')
     this.debuxSubject.next({debuxsend, anotherValue});
   }
 
