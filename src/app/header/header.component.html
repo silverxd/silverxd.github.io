@@ -3,9 +3,7 @@
         <a routerLink="/home"><img class="logo" id="header-logo" src="assets/img/header_logo.svg" alt="Earn2Post"></a>
     </span>
     <span class="fill-remaining-space"></span>
-    <span class="moto" id="header-moto">
-        "Post with Purpose, Earn with Pride | Join Earn2Post"
-    </span>
+    <span class="moto" id="header-moto">"Post with Purpose, Earn with Pride | Join Earn2Post"</span>
     <span class="fill-remaining-space"></span>
     <div class="search">
         <button class="search_button"></button>
@@ -39,11 +37,11 @@
                 </div>
             </div>
             <div class="bottom-nav">
-                <div class="box-no-border" (click)="openOverlay()">
+                <div class="box-no-border" (click)="openSettings()">
                     <img src="assets\img\menu_settings.svg" alt="">
                     <h4>Settings</h4>
                 </div>
-                <div class="box">
+                <div class="box" (click)="openBugReport()">
                     <img src="assets\img\menu_bug.svg" alt="">
                     <h4>Bug Report</h4>
                 </div>

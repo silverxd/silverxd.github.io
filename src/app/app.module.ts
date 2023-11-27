@@ -15,17 +15,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PostComponent } from './post/post.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { AngularFireModule } from  '@angular/fire/compat';
+import { AngularFirestoreModule } from  '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { ClickerComponent } from './clicker/clicker.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreditBoxComponent } from './credit-box/credit-box.component';
 import { ClickerService } from './clicker/clicker.service';
 import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {AngularFireModule} from "@angular/fire/compat";
-import {NgxMicRecorderModule} from "ngx-mic-recorder";
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 
@@ -40,7 +39,7 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
     PostComponent,
     ClickerComponent,
     ProfileComponent,
-    CreditBoxComponent,
+    CreditBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -64,12 +63,12 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
-    NgxMicRecorderModule,
     EmojiModule,
     PickerComponent,
 
   ],
   providers: [AuthService, ClickerService],
+  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {

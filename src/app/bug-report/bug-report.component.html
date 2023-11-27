@@ -1,0 +1,87 @@
+<div class="bug-report-overlay">
+    <div class="top-bar">
+        <div class="title" id="center">
+            <img src="assets\img\menu_bug.svg" alt="">
+            <h1>Bug Report</h1>
+        </div>
+        <div class="close" id="end">
+            <button (click)="toggleCancel()">X</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="top-part">
+            <h3>I have a problem with:</h3>
+            <div class="dropdown" (click)="toggleDropdown()">
+                <h4>{{ problem_with }}</h4>
+                <div class="arrow-down" *ngIf="!dropdownIsOpen"></div>
+                <div class="arrow-up" *ngIf="dropdownIsOpen"></div>
+
+                <ng-template #dropdownTemplate>
+                    <div class="dropdown-content">
+                        <div class="dropdown-element"
+                        *ngFor="let problem of problems"
+                        (mouseenter)="changeDropdownDisplayHover(problem)"
+                        (click)="changeDropdownDisplayClick(problem)"
+                        ><h4>{{ problem }}</h4>
+                        </div>
+                    </div>
+                  </ng-template>
+
+            </div>
+        </div>
+        <div class="middle">
+            <textarea placeholder="Please provide a detailed explanation of the problem you are experiencing..."></textarea>
+        </div>
+        <div class="bottom-buttons">
+
+            <button class="cancel" (click)="toggleCancel()"><h3>Cancel</h3></button>
+            <ng-template #cancelTemplate>
+                <div class="overlay">
+                    <div class="overlay-title">
+                        <h1>Cancel?</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Are you sure?</p>
+                        <p>Your report will be lost.</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="cancel-no" (click)="toggleCancel()">No</p>
+                            <p class="overlay-button" id="cancel-yes" (click)="cancelYes()">Yes</p>
+                        </div>
+                    </div>
+                </div>
+              </ng-template>
+
+
+
+            <button class="send" (click)="toggleSend()"><h3>Send</h3></button>
+            <ng-template #sendTemplate>
+                <div class="overlay" *ngIf="!sendIsYes">
+                    <div class="overlay-title">
+                        <h1>Are you sure?</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Your report will be sent to</p>
+                        <p>company.</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="send-no" (click)="toggleSend()">No</p>
+                            <p class="overlay-button" id="send-yes" (click)="sendYes()">Yes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overlay" *ngIf="sendIsYes">
+                    <div class="overlay-title">
+                        <h1>Successfully sent</h1>
+                    </div>
+                    <div class="overlay-container">
+                        <p>Thank you for your feedback!</p>
+                        <div class="overlay-buttons">
+                            <p class="overlay-button" id="send-done" (click)="cancelYes()">Done!</p>
+                        </div>
+                    </div>
+                </div>
+              </ng-template>
+
+        </div>
+    </div>
+ </div>
