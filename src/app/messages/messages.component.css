@@ -75,7 +75,7 @@ body, html {
 .text-box {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 30vw;
   overflow: auto;
   padding: 10px;
   padding-bottom: 30px;
