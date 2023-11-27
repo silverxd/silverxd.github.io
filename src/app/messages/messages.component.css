@@ -21,16 +21,20 @@ body, html {
 }
 
 .chat-container {
-  padding: 10px;
   border-radius: 20px;
   background-color: #313131;
+  border-bottom: 1px solid #6A5988;
 }
 
 
 .friend-name-row {
   display: flex;
   margin: 0px;
-  padding: 0px;
+  padding: 10px;
+  border-bottom: thin solid orange;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #6a5988;
+
 }
 
 .friend-name-row img {
@@ -73,7 +77,8 @@ body, html {
   flex-direction: column;
   height: 500px;
   overflow: auto;
-  margin-top: 20px;
+  padding: 10px;
+  padding-bottom: 30px;
 }
 
 #scrollbar::-webkit-scrollbar-thumb {
@@ -116,9 +121,11 @@ body, html {
 
 .input-field {
   display: flex;
-  margin-top: 20px;
+  padding: 10px;
   justify-content: space-around;
   align-items: center;
+  background-color: #212121;
+  border-radius: 0px 0px 20px 20px;
 }
 
 
@@ -137,14 +144,18 @@ body, html {
 }
 
 emoji-mart {
+  background-color: #212121;
+  border-radius: 20px;
+  color: #E0E1E1;
   position: absolute;
   top: 50px;
-  left: 10px;
-  /* Add more styles as needed */
+  left: 30%;
+  overflow: auto;
+  max-height: 600px;
 }
 
 .custom-file-input-label img {
-  width: 80%; /* Adjust the width as needed */
+  width: 80%;
   height: 50%;
 }
 
@@ -154,8 +165,8 @@ emoji-mart {
   padding: 15px;
   align-items: center;
   border-radius: 40px;
-  background-color: #212121;
-  color: white;
+  background-color: #151515;
+  color: #E0E1E1;
   font-size: 20px;
   font-weight: 200;
   word-wrap: break-word;

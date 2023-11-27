@@ -34,7 +34,7 @@
       <label class="custom-file-input-label">
         <img src="assets/img/emoji.svg" alt="Emojis" (click)="toggleEmojiPicker()">
       </label>
-      <emoji-mart (emojiClick)="handleEmojiClick($event)"></emoji-mart>
+      <emoji-mart *ngIf="isEmojiPickerVisible"></emoji-mart>
       <label for="fileInput" class="custom-file-input-label">
         <img src="assets/img/pictures.svg" alt="Pictures">
         <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
