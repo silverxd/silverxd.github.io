@@ -27,6 +27,7 @@ import { OverlayModule } from '@angular/cdk/overlay'
 import {AuthService} from "./auth.service";
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
+import {FriendsBoxComponent} from "./friends-box/friends-box.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -39,7 +40,7 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
     PostComponent,
     ClickerComponent,
     ProfileComponent,
-    CreditBoxComponent
+    CreditBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +66,7 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
     OverlayModule,
     EmojiModule,
     PickerComponent,
+    FriendsBoxComponent,
 
   ],
   providers: [AuthService, ClickerService],

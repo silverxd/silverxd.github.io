@@ -4,12 +4,13 @@ import {RouterLink} from "@angular/router";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
+import {FriendsBoxComponent} from "../friends-box/friends-box.component";
 
 
 @Component({
   selector: 'app-messages',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatFormFieldModule, MatInputModule, PickerComponent],
+  imports: [CommonModule, RouterLink, MatFormFieldModule, MatInputModule, PickerComponent, FriendsBoxComponent],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css',
 })
