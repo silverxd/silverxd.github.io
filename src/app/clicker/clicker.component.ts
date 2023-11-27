@@ -28,10 +28,12 @@ export class ClickerComponent implements OnInit {
   timeDifferenceInSeconds: number = 0;
   maxClicks: number = 2; // per save
   clickCount: number = 0;
+  debuxLoaded: Boolean;
 
   constructor(public service: ClickerService, private zone: NgZone, private cdr: ChangeDetectorRef) {
     this.debux = 0;
     this.loading = false;
+    this.debuxLoaded = false
     this.upgrades = this.service.upgradesDefault // To display upgrades right away
     this.upgradesObs$ = this.service.getUpgrades()
 
@@ -48,18 +50,17 @@ export class ClickerComponent implements OnInit {
       if (user) {
         this.loading = true;
         // Fetch the initial debux value from the database
-
         this.service.getDebux().pipe(take(1)).subscribe((value) => {
           this.debux = value || 0; // If the value is null or undefined, default to 0
           this.loading = false;
 
           interval(1000).subscribe(() => {
             this.zone.run(() => {
+              this.service.setDebux(this.debux, this.service.calculateTotalDebuxPerSec());
               this.debux += this.service.calculateTotalDebuxPerSec();
               this.updateAffordability(); // Update affordability so upgrades can open up
               this.service.addDebux(this.debux); // Update DeBux in the service
               this.cdr.detectChanges(); // Manually trigger change detection
-
               const currentTime = new Date();
               const timeDifferenceInMillis = currentTime.getTime() - this.service.autosaveDate.getTime();
               this.timeDifferenceInSeconds = Math.floor(timeDifferenceInMillis / (1000 * 1));
@@ -104,6 +105,7 @@ export class ClickerComponent implements OnInit {
     }
     this.service.addDebux(this.debux); // Update DeBux in the service
     this.service.addUpgrades(this.upgrades)
+    this.service.setDebux(this.debux, this.service.calculateTotalDebuxPerSec());
     this.updateAffordability(); // Update affordability so upgrades can open up
   }
 

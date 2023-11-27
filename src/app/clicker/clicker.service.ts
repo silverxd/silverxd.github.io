@@ -3,7 +3,8 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import User = firebase.User;
-import {from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
+import {BehaviorSubject, from, map, Observable, of, switchMap, throttleTime, timer} from "rxjs";
+import {ClickerComponent} from "./clicker.component";
 
 @Injectable({
   providedIn: 'root',
@@ -92,12 +93,14 @@ export class ClickerService {
   private purchasedUpgradesPerSec: { name: string, debuxPerSec: number }[] = [];
   private purchasedUpgradesPerClick: { name: string, debuxPerClick: number }[] = [];
 
+  private debuxSubject = new BehaviorSubject<{ debuxsend: number; anotherValue: any }>({debuxsend: 0, anotherValue: null});
+  debux$ = this.debuxSubject.asObservable()
+
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
     this.authState$ = this.afAuth.authState;
     this.authState$.subscribe((user) => {
       this.user = user;
-
       // Start the autosave timer when the user is authenticated
       if (user) {
         this.startAutosave();
@@ -159,7 +162,6 @@ export class ClickerService {
         switchMap(() => this.autosave()), // The switchMap operator is used to switch to the result of the autosave method.
         throttleTime(this.saveInterval) // The throttleTime operator limits the frequency of autosave operations to prevent excessive calls.
       )
-      .subscribe();
   }
 
   autosave(): Observable<void> {
@@ -225,4 +227,9 @@ export class ClickerService {
       })
     );
   }
+
+  setDebux(debuxsend: number, anotherValue: number) {
+    this.debuxSubject.next({debuxsend, anotherValue});
+  }
+
 }
