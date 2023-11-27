@@ -8,12 +8,8 @@ body, html {
 }
 
 .left-side, .right-side {
-  display: flex;
-  justify-content: center;
-  border-radius: 20px;
-  background-color: #313131;
   width: 20%;
-  height: 50%;
+  height: auto;
 }
 
 .middle {
