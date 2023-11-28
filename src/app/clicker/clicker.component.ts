@@ -26,7 +26,6 @@ export class ClickerComponent implements OnInit {
 
 
     ngOnInit() {
-        this.service.ngOnInit();
         this.subscribeToData()
     }
 

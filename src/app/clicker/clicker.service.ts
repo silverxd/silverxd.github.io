@@ -61,9 +61,9 @@ export class ClickerService implements OnInit {
 
 
     ngOnInit() {
-        this.afAuth.authState.subscribe((user) => {
+        console.log('OnInitCalled')
+        this.afAuth.authState.pipe(take(1)).subscribe((user) => {
             this.user = user;
-            console.log(user)
             if (user) {
                 this.startSaveInterval();
                 this.startDebuxInterval()
@@ -176,9 +176,9 @@ export class ClickerService implements OnInit {
     }
 
     firstCalc(upgrades: any) {
+        this.firstCalcHasPerformed = true;
         let totalDebuxPerClick = 0;
         let totalDebuxPerSec = 0;
-        this.firstCalcHasPerformed = true;
         for (const key in upgrades) {
             const value = upgrades[key]
             if (value.debuxPerSec != null) {
