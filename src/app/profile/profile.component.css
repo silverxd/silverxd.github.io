@@ -102,3 +102,9 @@ p {
   text-shadow: 2px 2px 4px #212121;
   white-space: nowrap;
 }
+.add-friends-overlay:hover {
+  cursor: pointer;
+}
+.add-friends-overlay:active {
+  transform: scale(0.9);
+}

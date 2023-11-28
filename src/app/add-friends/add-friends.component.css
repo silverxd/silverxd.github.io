@@ -1,0 +1,263 @@
+.add-friends-overlay {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #E0E1E1;
+    border-radius: 40px;
+}
+.add-friends-overlay h1 {
+    padding: 0;
+    margin: 0;
+}
+h3 {
+    font-weight: lighter;
+    font-size: 2vw;
+    padding: 0px;
+    margin: 0px;
+}
+/* ----------------------------------- */
+.top-bar {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background-color: #212121;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    border-bottom: thin solid #E37A70;
+}
+.top-bar #center {
+    justify-content: center;
+}
+.top-bar #end {
+    justify-content: end;
+}
+/* ----------------------------------- */
+.title {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* ----------------------------------- */
+.close button  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #E0E1E1;
+    font-weight: bolder;
+    background: transparent;
+    font-size: 40px;
+    border: none;
+    margin-right: 20px;
+}
+.close button:hover  {
+    cursor: pointer;
+    color: #E37A70;
+}
+.close button:active  {
+    color: #E37A70;
+    transform: scale(0.9);
+}
+/* ----------------------------------- */
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #313131;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding-top: 2.2vw;
+    padding-bottom: 2.2vw;
+}
+/* ----------------------------------- */
+.search-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.8vw;
+}
+/* ----------------------------------- */
+.search {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    border: none;
+    border-radius: 40px;
+    outline: none;
+    color: #E0E1E1;
+    background-color: #212121;
+  }
+  .search_button {
+    height: 61px;
+    width: 61px;
+    border: none;
+    border-radius: 40px;
+    background: transparent url("/assets/img/search.svg") no-repeat;
+    background-size: 78%;
+    background-position: 6px 11px;
+  }
+  .search_input {
+    width: 100%;
+    border: none;
+    border-radius: 40px;
+    outline: none;
+    color: #E0E1E1;
+    background: transparent;
+    font-size: 1.5vw;
+    font-family: 'IBM Plex Mono ExtraLight', monospace;
+    padding: 13px 5px 13px 0px;
+  }
+  .search_button:hover {
+    background-color: #2D2D2D;
+    cursor: pointer;
+  }
+  .search_button:active {
+    transform: scale(0.9)
+  }
+/* ----------------------------------- */
+.search-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(28vw - 40px);
+    background-color: #212121;
+    border-radius: 40px;
+    padding: 20px 20px 0px 20px;
+}
+.search-content #people {
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+.search-content #people:hover {
+    background-color: #464646;
+}
+/* ----------------------------------- */
+.tip p{
+    font-size: 1vw;
+    padding: 0px;
+    margin: 0px;
+}
+/* ----------------------------------- */
+.people-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* ----------------------------------- */
+.text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 2vw;
+    margin-bottom: 1.4vw;
+}
+/* ----------------------------------- */
+.people {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row: auto auto;
+    grid-column-gap: 3vw;
+    grid-row-gap: 2vw;
+}
+/* ----------------------------------- */
+.person {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 40px;
+}
+.person h6 {
+    font-size: 1vw;
+    font-weight: 500;
+    margin: 0px;
+    padding: 0px;
+}
+/* ----------------------------------- */
+.start {
+    display: flex;
+    align-items: center;
+}
+/* ----------------------------------- */
+.pic {
+    height: 2.5vw;
+    width: 2.5vw;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.name {
+    margin-right: 10px;
+}
+.dbs {
+    margin-right: 10px;
+}
+/* ----------------------------------- */
+.overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25vw;
+    border-radius: 30px;
+}
+.overlay-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    border-bottom: thin solid #E37A70;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.overlay-title h1 {
+    font-size: 2vw;
+    padding: 0px;
+    margin: 0px;
+}
+.overlay-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #313131;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+.overlay-container p {
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.2vw;
+}
+.overlay-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1vw;
+}
+.overlay-button:hover {
+    cursor: pointer;
+}
+.overlay-button:active {
+    transform: scale(0.8);
+}
+.overlay #person {
+    margin-top: 10px;
+    width: 90%;
+}
+#no {
+    color: #C64A49;
+}
+#yes, #done {
+    font-weight: bold;
+    color: #92EE61;
+}
