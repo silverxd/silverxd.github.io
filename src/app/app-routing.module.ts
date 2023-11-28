@@ -6,6 +6,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { ClickerComponent } from './clicker/clicker.component';
 import {ProfileComponent} from "./profile/profile.component";
 import { AuthGuard } from "./auth.guard";
+import {MessagesComponent} from "./messages/messages.component";
 
 
 const routes: Routes = [
@@ -27,10 +28,16 @@ const routes: Routes = [
     component: ClickerComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'profile',
+  {
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'messages',
+    component: MessagesComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
