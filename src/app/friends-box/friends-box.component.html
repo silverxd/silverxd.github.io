@@ -1,0 +1,15 @@
+<div class="box">
+  <div class="header">
+    <h2>Friends</h2>
+  </div>
+  <div class="field">
+    <div class="bubble" *ngFor="let friend of myFriends">
+      <div class="user">
+        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
+        <h3>{{friend[0]}}</h3>
+      </div>
+      <span class="dot" *ngIf="friend[1]"></span>
+    </div>
+  </div>
+</div>
