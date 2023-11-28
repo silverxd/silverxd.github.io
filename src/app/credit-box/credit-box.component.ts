@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {ClickerService} from "../clicker/clicker.service";
 import {Subscription, take} from "rxjs";
 
@@ -11,7 +11,9 @@ export class CreditBoxComponent implements OnInit {
   debux: number;
   loading: boolean;
   perSecond: number
-  private debuxSubscription: Subscription | undefined;
+
+  debuxFirstSubscription: Subscription | undefined;
+  debuxSubscription: Subscription | undefined;
   upgrades: any
 
   constructor(private clickerService: ClickerService, private cdr: ChangeDetectorRef) {
@@ -21,35 +23,37 @@ export class CreditBoxComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.subscribeToGetFirstDebux()
+    // this.subscribeToGetUpgrades()
     this.subscribeToGetDebux()
-    this.subscribeToGetUpgrades()
-    this.debuxSubscription = this.clickerService.debux$.subscribe(({debuxsend, anotherValue}) => {
-      this.debux = debuxsend;
-      this.perSecond = anotherValue || 0;
-      this.loading = false
-      this.cdr.detectChanges();
-    });
   }
+
 
   subscribeToGetDebux() {
-    this.clickerService.getDebux().subscribe((value) => {
-      this.debux = value || 0;
-      this.loading = false;
-      this.cdr.detectChanges();
-    })
+    if (!this.debuxSubscription) {
+      console.log('again');
+      // Check if debux data has already been fetched
+      if (!this.debux) {
+        this.debuxSubscription = this.clickerService.debux$.subscribe(({debuxSend, debuxPerSecSend}) => {
+          this.debux = debuxSend;
+          this.perSecond = debuxPerSecSend || 0;
+          this.loading = false;
+          this.cdr.detectChanges();
+        });
+      }
+    }
   }
 
-  subscribeToGetUpgrades() {
-    this.clickerService.getUpgrades().pipe(take(1)).subscribe(value => {
-      console.log('hei hopsti')
-      this.upgrades = value;
-      this.clickerService.firstCalc(this.upgrades);
-      this.perSecond = this.clickerService.calculateTotalDebuxPerSec()
-    });
+
+
+
+  ngOnDestroy() {
+    if (this.debuxSubscription) {
+      this.debuxSubscription.unsubscribe();
+    }
+    if (this.debuxFirstSubscription) {
+      this.debuxFirstSubscription.unsubscribe();
+    }
   }
 
-  addDebux(debuxValue: number, perSec: number) {
-    this.debux = debuxValue;
-    this.perSecond = perSec;
-  }
 }

@@ -1,13 +1,14 @@
 <div class="top">
   <div class="credit">
-    <p id="debux" *ngIf="!loading">DeBux: {{ debux }}</p>
-    <p id="debux" class='loading-text' *ngIf="loading">Loading Debuxes</p>
+    <app-credit-box></app-credit-box>
+    <p id="debux" *ngIf="!service.loading">DeBux: {{ service.debux }}</p>
+    <p id="debux" class='loading-text' *ngIf="service.loading">Loading Debuxes</p>
   </div>
   <div class="clicker">
-    <button id="debug" (click)=addDebux()></button>
+    <button id="debug" (click)=service.clickDebux()></button>
     <div>
-      <p>Last autosave: {{this.timeDifferenceInSeconds}} seconds ago</p>
-      <a (click)="manualAutosave()" [class.disabled]="this.clickCount >= maxClicks">Save now</a>
+      <p>Last autosave: {{time}} seconds ago</p>
+      <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
     </div>
   </div>
   <div class="profile" *ngIf="service.user">
@@ -36,7 +37,7 @@
       </div>
       <div class="sideContent">
         <ng-container *ngFor="let upgrade of upgrades; let i = index">
-          <div *ngIf="i < 6" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+          <div *ngIf="i < 6" (click)="service.buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
             <div class="box-text">
               <p>{{ upgrade.name }}</p>
               <h4>{{ upgrade.description}}</h4>
@@ -60,7 +61,7 @@
       </div>
       <div class="middleContent">
         <ng-container *ngFor="let upgrade of upgrades; let i = index">
-          <div *ngIf="6 <= i && i < 11" (click)="buyUpgrade(upgrade)" class="box"
+          <div *ngIf="6 <= i && i < 11" (click)="service.buyUpgrade(upgrade)" class="box"
                [class.box-disabled]="!upgrade.affordable">
             <div class="box-text">
               <p>{{ upgrade.name }}</p>
@@ -85,7 +86,7 @@
       </div>
       <div class="sideContent">
         <ng-container *ngFor="let upgrade of upgrades; let i = index">
-          <div *ngIf="11 <= i" (click)="buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+          <div *ngIf="11 <= i" (click)="service.buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
             <div class="box-text">
               <p>{{ upgrade.name }}</p>
               <h4>{{ upgrade.description}}</h4>
