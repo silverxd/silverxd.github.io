@@ -12,9 +12,11 @@ import { TemplatePortal } from '@angular/cdk/portal';
   templateUrl: './add-friends.component.html',
   styleUrl: './add-friends.component.css'
 })
-export class AddFriendsComponent {
+export class AddFriendsComponent implements AfterViewInit {
   @ViewChild('searchTemplate', { static: true }) searchTemplate!: TemplateRef<any>;
+  @ViewChild('requestTemplate', { static: true }) requestTemplate!: TemplateRef<any>;
   private searchoverlayRef!: OverlayRef;
+  private requestoverlayRef!: OverlayRef;
 
   people: {pic: string, name: string, debux: string}[] = [
     {pic: "#C91CAD", name: "Sass", debux: "98k"},
@@ -23,6 +25,8 @@ export class AddFriendsComponent {
     {pic: "#5D675E",name: "Tormi", debux: "103k"},
   ]
   public searchIsOpen: boolean = false;
+  public requestIsYes: boolean = false;
+  public clickedPerson!: {pic: string, name: string, debux: string};
 
   constructor(
     private overlay: Overlay,
@@ -33,6 +37,7 @@ export class AddFriendsComponent {
 
   ngAfterViewInit() {
     this.initializeSearch();
+    this.initializeRequest();
   }
 
   private initializeSearch() {
@@ -48,10 +53,24 @@ export class AddFriendsComponent {
       this.searchoverlayRef = this.overlay.create({
         positionStrategy,
         hasBackdrop: true,
+        backdropClass: 'transparent-backdrop'
       });
 
       this.searchoverlayRef.backdropClick().subscribe(() => this.toggleSearch());
     }
+  }
+
+  private initializeRequest() {
+    const positionStrategy = this.overlay.position()
+          .global()
+          .centerHorizontally()
+          .centerVertically();
+  
+        this.requestoverlayRef = this.overlay.create({
+          positionStrategy,
+          hasBackdrop: true,
+          backdropClass: 'overlay-backdrop',
+        });
   }
 
   toggleSearch() {
@@ -65,6 +84,24 @@ export class AddFriendsComponent {
     }
   }
 
+  openRequest(person: {pic: string, name: string, debux: string}) {
+    this.clickedPerson = person
+    this.toggleRequest()
+  }
+
+  toggleRequest() {
+    if (this.requestoverlayRef.hasAttached()) {
+      this.requestoverlayRef.detach();
+      this.requestIsYes = false;
+    } else {
+      const portal = new TemplatePortal(this.requestTemplate, this.viewContainerRef);
+      this.requestoverlayRef.attach(portal);
+    }
+  }
+
+  isYes() {
+    this.requestIsYes = true;
+  }
 
   closeOverlay() {
     this.overlayService.closeOverlay();

@@ -3,7 +3,7 @@
         <div class="title" id="center">
             <h1>Add Friends</h1>
         </div>
-        <div class="close" id="end">
+        <div class="close" id="end"> 
             <button (click)="closeOverlay()">X</button>
         </div>
     </div>
@@ -15,7 +15,7 @@
 
                 <ng-template #searchTemplate>
                     <div class="search-content">
-                        <div class="person" *ngFor="let person of people">
+                        <div class="person" id="people" *ngFor="let person of people" (click)="openRequest(person)">
                             <div class="start">
                                 <div class="pic" style.background-color="{{person.pic}}"></div>
                                 <div class="name"><h6>{{person.name}}</h6></div>
@@ -24,6 +24,40 @@
                         </div>
                     </div>
                   </ng-template>
+
+                  <ng-template #requestTemplate>
+                    <div class="overlay" *ngIf="!requestIsYes">
+                        <div class="overlay-title">
+                            <h1>Friend request</h1>
+                        </div>
+                        <div class="overlay-container">
+                            <p>Do you want to send <<span>{{clickedPerson.name}}</span>> a friend request?</p>
+                            <div class="person" id="person">
+                                <div class="start">
+                                    <div class="pic" style.background-color="{{clickedPerson.pic}}"></div>
+                                    <div class="name"><h6>{{clickedPerson.name}}</h6></div>
+                                </div>
+                                <div class="dbs" id="end"><h6><<span style="color: #7D93DF;">{{clickedPerson.debux}}</span>>  DBs</h6></div>
+                            </div>
+                            <div class="overlay-buttons">
+                                <p class="overlay-button" id="no" (click)="toggleRequest()">No</p>
+                                <p class="overlay-button" id="yes" (click)=" isYes()">Yes</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="overlay" *ngIf="requestIsYes">
+                        <div class="overlay-title">
+                            <h1>Successfully sent</h1>
+                        </div>
+                        <div class="overlay-container">
+                            <p>You have sent a friend request to <<span>{{clickedPerson.name}}</span>>.</p>
+                            <div class="overlay-buttons">
+                                <p class="overlay-button" id="done" (click)="toggleRequest()">Done!</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
 
             </div>
             <div class="tip"><p>(Use alias or email)</p></div>
