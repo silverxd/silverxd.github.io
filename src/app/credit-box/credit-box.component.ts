@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {ClickerService} from "../clicker/clicker.service";
+import {Subscription, take} from "rxjs";
 
 @Component({
   selector: 'app-credit-box',
@@ -9,17 +10,51 @@ import {ClickerService} from "../clicker/clicker.service";
 export class CreditBoxComponent implements OnInit {
   debux: number;
   loading: boolean;
+  perSecond: number
 
-  constructor(private clickerService: ClickerService) {
+  debuxFirstSubscription: Subscription | undefined;
+  debuxSubscription: Subscription | undefined;
+  upgrades: any
+
+  constructor(private clickerService: ClickerService, private cdr: ChangeDetectorRef) {
     this.debux = 0;
-    this.loading = true
+    this.perSecond = 0
+    this.loading = false;
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.clickerService.getDebux().subscribe((value) => {
-      this.debux = value || 0;
-      this.loading = false;
-    })
+
+    this.clickerService.ngOnInit();
+    this.subscribeToGetDebux()
   }
+
+
+  subscribeToGetDebux() {
+    this.loading = true;
+    if (!this.debuxSubscription) {
+      console.log('again');
+      // Check if debux data has already been fetched
+      if (!this.debux) {
+        this.debuxSubscription = this.clickerService.debux$.subscribe(({debuxSend, debuxPerSecSend}) => {
+          this.debux = debuxSend;
+          this.perSecond = debuxPerSecSend || 0;
+          this.loading = false;
+          this.cdr.detectChanges();
+        });
+      }
+    }
+  }
+
+
+
+
+  ngOnDestroy() {
+    if (this.debuxSubscription) {
+      this.debuxSubscription.unsubscribe();
+    }
+    if (this.debuxFirstSubscription) {
+      this.debuxFirstSubscription.unsubscribe();
+    }
+  }
+
 }
