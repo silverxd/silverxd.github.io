@@ -3,9 +3,21 @@ body,html{
 }
 .center-container{
   display:flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
 }
+.left-container, .right-container{
+  margin-top: 30px;
+  width: 20%;
+  text-align: center;
+}
+.right-container {
+  justify-content: center;
+  height: 100px;
+  color: white;
+}
+
+
 p {
   color:white;
 }
