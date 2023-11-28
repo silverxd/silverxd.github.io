@@ -1,8 +1,6 @@
 <div class="top">
   <div class="credit">
     <app-credit-box></app-credit-box>
-    <p id="debux" *ngIf="!service.loading">DeBux: {{ service.debux }}</p>
-    <p id="debux" class='loading-text' *ngIf="service.loading">Loading Debuxes</p>
   </div>
   <div class="clicker">
     <button id="debug" (click)=service.clickDebux()></button>

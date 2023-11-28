@@ -4,7 +4,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import User = firebase.User;
 import {upgradesDefault} from "./upgrades-data";
-import {BehaviorSubject, interval, map, Observable, of, Subscription} from "rxjs";
+import {BehaviorSubject, interval, map, Observable, of, Subscription, take} from "rxjs";
 
 @Injectable({
     providedIn: 'root',
@@ -68,10 +68,10 @@ export class ClickerService implements OnInit {
                 this.startSaveInterval();
                 this.startDebuxInterval()
                 if (!this.firstCalcHasPerformed) {
-                    this.getDebuxFromDatabase().subscribe(value => {
+                    this.getDebuxFromDatabase().pipe(take(1)).subscribe(value => {
                         this.debux = value | 0
                     })
-                    this.getUpgradesFromDatabase().subscribe(value => {
+                    this.getUpgradesFromDatabase().pipe(take(1)).subscribe(value => {
                         this.upgrades = value || upgradesDefault
                         this.firstCalc(this.upgrades);
                     })

@@ -18,18 +18,19 @@ export class CreditBoxComponent implements OnInit {
 
   constructor(private clickerService: ClickerService, private cdr: ChangeDetectorRef) {
     this.debux = 0;
-    this.loading = true
     this.perSecond = 0
+    this.loading = false;
   }
 
   ngOnInit() {
-    //this.subscribeToGetFirstDebux()
-    // this.subscribeToGetUpgrades()
+
+    this.clickerService.ngOnInit();
     this.subscribeToGetDebux()
   }
 
 
   subscribeToGetDebux() {
+    this.loading = true;
     if (!this.debuxSubscription) {
       console.log('again');
       // Check if debux data has already been fetched
