@@ -14,18 +14,24 @@ export class ClickerService implements OnInit {
     loading = false;
     user: User | null
     upgrades: {
-        name: string;
-        cost: number;
-        debuxPerSec?: number;
-        debuxPerClick?: number;
-        affordable: boolean;
-        purchased: number;
+        name: string,
+        cost: number,
+        debuxPerSec?: number,
+        debuxPerClick?: number,
+        randomButton?: boolean,
+        perClickX2?: boolean,
+        filler?: boolean,
+        perSecX2?: boolean,
+        lowerMultipler?: boolean,
+        canPrestige?: boolean,
+        affordable: boolean,
+        purchased: number | boolean,
         description: string
     }[]
     private purchasedUpgradesPerSec: { name: string, debuxPerSec: number }[] = [];
     private purchasedUpgradesPerClick: { name: string, debuxPerClick: number }[] = [];
 
-    saveInterval = 60;
+    saveInterval:number;
     intervalSaveSubscription: Subscription | undefined;
     interval: Subscription | undefined;
     autosaveDate: Date;
@@ -34,21 +40,28 @@ export class ClickerService implements OnInit {
     clickCount: number;
     maxClicks: number;
 
+    costMultiplier: number;
+    perSecMultiplier: number;
+    perClickMultiplier: number;
+
+    discountBought: boolean;
+
     firstCalcHasPerformed: boolean = false;
 
     debuxSubject = new BehaviorSubject<{ debuxSend: number; debuxPerSecSend: any }>({
         debuxSend: 0,
         debuxPerSecSend: 0
     });
-    debux$ = this.debuxSubject.asObservable()
+    debux$ = this.debuxSubject.asObservable();
 
     dataSubject = new BehaviorSubject<{ upgradesSend: any; timeSend: number }>({
         upgradesSend: null,
         timeSend: 0
     });
-    data$ = this.dataSubject.asObservable()
+    data$ = this.dataSubject.asObservable();
 
     constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
+        this.saveInterval = 60;
         this.user = null; // Before getting user the value is null
         this.debux = 0;
         this.upgrades = upgradesDefault; // Setting upgrades firstly as upgradesDefault
@@ -57,24 +70,28 @@ export class ClickerService implements OnInit {
         this.maxClicks = 2;
         this.timeDifferenceInSeconds = 0;
 
+        this.costMultiplier = 0.3;
+        this.perSecMultiplier = 1;
+        this.perClickMultiplier = 1;
+
+        this.discountBought = false
     }
 
 
     ngOnInit() {
-        console.log('OnInitCalled')
         this.afAuth.authState.pipe(take(1)).subscribe((user) => {
             this.user = user;
             if (user) {
                 this.startSaveInterval();
-                this.startDebuxInterval()
+                this.startDebuxInterval();
                 if (!this.firstCalcHasPerformed) {
                     this.getDebuxFromDatabase().pipe(take(1)).subscribe(value => {
                         this.debux = value | 0
-                    })
+                    });
                     this.getUpgradesFromDatabase().pipe(take(1)).subscribe(value => {
                         this.upgrades = value || upgradesDefault
                         this.firstCalc(this.upgrades);
-                    })
+                    });
                 }
             }
         })
@@ -129,6 +146,10 @@ export class ClickerService implements OnInit {
     }
 
     autosave() {
+        if (this.discountBought) {
+            this.discountBought = false;
+            this.priceDefault();
+        }
         this.autosaveDate = new Date();
         this.sendToDatabase();
     }
@@ -143,7 +164,7 @@ export class ClickerService implements OnInit {
     startDebuxInterval() {
         if (!this.interval) {
             this.interval = interval(1000).subscribe(() => {
-                this.debux += this.calculateTotalDebuxPerSec();
+                this.debux = this.debux + this.calculateTotalDebuxPerSec();
                 this.updateAffordability();
                 this.lastSaveTime();
                 this.setDebux(this.debux, this.calculateTotalDebuxPerSec())
@@ -163,7 +184,7 @@ export class ClickerService implements OnInit {
 
 
     clickDebux() {
-        this.debux += this.calculateTotalDebuxPerClick();
+        this.debux += this.calculateTotalDebuxPerClick() * this.perClickMultiplier;
         console.log(this.debux)
         this.updateAffordability();
         this.setDebux(this.debux, this.calculateTotalDebuxPerSec())
@@ -193,19 +214,28 @@ export class ClickerService implements OnInit {
     }
 
     buyUpgrade(upgrade: any): void {
-        if (upgrade.affordable && (this.debux - upgrade.cost) < upgrade.cost) {
+        if (upgrade.affordable) {
             this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
-            upgrade.cost += 5; // Increase upgrades cost
+            if (this.discountBought) {
+                this.discountBought = false;
+                this.priceDefault()
+            }
+            upgrade.cost += Math.round(upgrade.cost * this.costMultiplier); // Increase upgrades cost
             upgrade.purchased += 1; // Increase purchased amount
             this.addUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
-            upgrade.affordable = false; // Disable the button after purchase
-            // You might want to implement logic to increase debuxPerSec or other effects here
-        } else if (upgrade.affordable && (this.debux - upgrade.cost) >= upgrade.cost) {
-            this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
-            upgrade.cost += 5; // Increase upgrades cost
-            upgrade.purchased += 1; // Increase purchased amount
-            this.addUpgrade(upgrade.name, upgrade.debuxPerSec, upgrade.debuxPerClick); // Call the buyUpgrade method in ClickerService
-            // You might want to implement logic to increase debuxPerSec or other effects here
+            if ((this.debux - upgrade.cost) < upgrade.cost) {
+                upgrade.affordable = false; // Disable the button after purchase
+            }
+            if (upgrade === this.upgrades[14] && this.upgrades[14].purchased != 0) {
+                this.perSecMultiplier = this.perSecMultiplier * 2;
+            } else if (upgrade === this.upgrades[12] && this.upgrades[12].purchased != 0) {
+                this.perClickMultiplier = this.perClickMultiplier * 2;
+            } else if (upgrade === this.upgrades[15]) {
+                this.costMultiplier = 0.25;
+            } else if (upgrade === this.upgrades[13]) {
+                this.discountBought = true;
+                this.changePrices(0.5);
+            }
         } else {
             console.log('Not enough DeBux for this upgrade.');
         }
@@ -232,7 +262,7 @@ export class ClickerService implements OnInit {
 
     calculateTotalDebuxPerSec(): number {
         return this.purchasedUpgradesPerSec.reduce((total, upgrade) =>
-            total + upgrade.debuxPerSec, 0
+        total + (upgrade.debuxPerSec * this.perSecMultiplier), 0
         );
     }
 
@@ -240,7 +270,33 @@ export class ClickerService implements OnInit {
         this.debuxSubject.next({debuxSend, debuxPerSecSend});
     }
 
-    setTimeAndUpgrades(upgradesSend: { name: string; cost: number; debuxPerSec?: number; debuxPerClick?: number; affordable: boolean; purchased: number; description: string }[], timeSend: number) {
+    setTimeAndUpgrades(upgradesSend: {
+        name: string,
+        cost: number,
+        debuxPerSec?: number,
+        debuxPerClick?: number,
+        randomButton?: boolean,
+        perClickX2?: boolean,
+        filler?: boolean,
+        perSecX2?: boolean,
+        lowerMultipler?: boolean,
+        canPrestige?: boolean,
+        affordable: boolean,
+        purchased: number | boolean,
+        description: string
+    }[], timeSend: number) {
         this.dataSubject.next({upgradesSend, timeSend})
+    }
+
+    changePrices(discount: number) {
+        for (const dict in this.upgrades) {
+            this.upgrades[dict].cost = this.upgrades[dict].cost * discount
+        }
+    }
+
+    priceDefault() {
+        for (const dict in this.upgrades) {
+            this.upgrades[dict].cost = this.upgrades[dict].cost * 2
+        } 
     }
 }
