@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
-import {AngularFireAuth} from "@angular/fire/compat/auth";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { PostService } from "./post.service";
 
 
