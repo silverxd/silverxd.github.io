@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, ChangeDetectorRef, HostListener} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {ClickerService} from "./clicker.service";
 import {upgradesDefault} from "./upgrades-data";
@@ -17,7 +17,7 @@ export class ClickerComponent implements OnInit {
 
     dataSubscription: Subscription | undefined;
 
-    constructor(public service: ClickerService, private zone: NgZone, private cdr: ChangeDetectorRef) {
+    constructor(public service: ClickerService, private cdr: ChangeDetectorRef) {
         this.debux = 0;
         this.upgrades = upgradesDefault;
         this.time = 0;
