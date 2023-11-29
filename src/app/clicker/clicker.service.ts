@@ -25,7 +25,8 @@ export class ClickerService implements OnInit {
         lowerMultipler?: boolean,
         canPrestige?: boolean,
         affordable: boolean,
-        purchased: number | boolean,
+        onetime?: boolean,
+        purchased: number,
         description: string
     }[]
     private purchasedUpgradesPerSec: { name: string, debuxPerSec: number }[] = [];
@@ -190,7 +191,9 @@ export class ClickerService implements OnInit {
 
     updateAffordability() {
         this.upgrades.forEach((upgrade) => {
-            upgrade.affordable = upgrade.cost <= this.debux;
+            if (!upgrade.onetime || upgrade.purchased != 1) {
+                upgrade.affordable = upgrade.cost <= this.debux;
+            }
         });
     }
 
@@ -212,7 +215,9 @@ export class ClickerService implements OnInit {
     }
 
     buyUpgrade(upgrade: any): void {
-        if (upgrade.affordable) {
+        if (upgrade.onetime && upgrade.purchased === 1) {
+
+        } else if (upgrade.affordable) {
             this.debux -= upgrade.cost; // Deduct the cost from user's DeBux
             if (this.discountBought) {
                 this.discountBought = false;
@@ -233,6 +238,8 @@ export class ClickerService implements OnInit {
             } else if (upgrade === this.upgrades[13]) {
                 this.discountBought = true;
                 this.changePrices(0.5);
+            } else if (upgrade.onetime) {
+                upgrade.affordable = true
             }
         } else {
             console.log('Not enough DeBux for this upgrade.');
@@ -280,7 +287,8 @@ export class ClickerService implements OnInit {
         lowerMultipler?: boolean,
         canPrestige?: boolean,
         affordable: boolean,
-        purchased: number | boolean,
+        onetime?: boolean,
+        purchased: number,
         description: string
     }[], timeSend: number) {
         this.dataSubject.next({upgradesSend, timeSend})
@@ -288,7 +296,7 @@ export class ClickerService implements OnInit {
 
     changePrices(discount: number) {
         for (const dict in this.upgrades) {
-            this.upgrades[dict].cost = this.upgrades[dict].cost * discount
+            this.upgrades[dict].cost = Math.round(this.upgrades[dict].cost * discount)
         }
     }
 

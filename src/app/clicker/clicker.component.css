@@ -170,16 +170,17 @@
 .box-disabled {
   filter: blur(4px);
 }
-
-.box-disabled:hover {
+.box-onetime {
+  border: thin solid #92ee61;
+}
+.box-disabled:hover, .box-onetime:hover {
   cursor: auto;
   box-shadow: none;
 }
 
-.box-disabled:active {
+.box-disabled:active, .box-onetime:active {
   transform: none;
 }
-
 /*------------------------------------ */
 .box-text {
   display: flex;
