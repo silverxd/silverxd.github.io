@@ -1,4 +1,4 @@
-.comment-overlay {
+.bug-report-overlay {
     width: 50vw;
     height: 80vh;
     display: flex;
@@ -7,7 +7,7 @@
     color: #E0E1E1;
     border-radius: 40px;
 }
-.comment-overlay h1 {
+.bug-report-overlay h1 {
     padding: 0;
     margin: 0;
 }
@@ -88,6 +88,47 @@ h3 {
     margin-right: 30px;
 }
 /* ----------------------------------- */
+.dropdown, .dropdown-element {
+    display: flex;
+    width: 15vw;
+    padding: 10px;
+    background-color: #505050;
+    border-radius: 40px;
+}
+.dropdown {
+    justify-content: space-between;
+    align-items: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown h4, .dropdown-element h4 {
+    color: #A1A1A1;
+    font-size: 1.3vw;
+    font-weight: 500;
+    padding: 0px;
+    margin: 0px;
+}
+.dropdown-content {
+    flex-direction: column;
+    justify-content: center;
+}
+.dropdown-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.dropdown:hover, .dropdown-element:hover {
+    cursor: pointer;
+}
+.dropdown-element:hover {
+    background-color: #505050;
+}
+/* ----------------------------------- */
 .arrow-down {
     width: 0; 
     height: 0; 
@@ -120,8 +161,38 @@ h3 {
     margin-bottom: 1.8vw;
 }
 /* ----------------------------------- */
+.avatar {
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+}
+.mainText {
+    color: white; 
+    font-size: 30px; 
+    font-family: IBM Plex Mono; 
+    font-weight: 400; 
+    word-wrap: break-word;
+    margin: auto;
+}
+.subText {
+    color: white;
+    font-size: 25px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: auto;
+}
+.section {
+    background-color: #212121;
+    border-radius: 40px;
+    padding: 40px;
+}
+/* ----------------------------------- */
 @media screen and (max-width: 790px) {
-    .comment-overlay {
+    .bug-report-overlay {
         width: 100vw;
         height: 60vh;
     }
@@ -130,6 +201,12 @@ h3 {
     }
     .top-part h3 {
         font-size: 4vw;
+    }
+    .dropdown, .dropdown-element {
+        width: 30vw;
+    }
+    .dropdown h4, .dropdown-element h4 {
+        font-size: 2.6vw;
     }
     .middle textarea {
         width: 82vw;
@@ -187,6 +264,7 @@ h3 {
 .overlay-button:active {
     transform: scale(0.8);
 }
+
 @media screen and (max-width: 790px) {
     .overlay {
         width: 70vw;

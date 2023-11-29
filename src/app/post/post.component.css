@@ -23,6 +23,17 @@
     word-wrap: break-word;
     margin: auto;
 }
+.hoverableSubText {
+    color: white;
+    font-size: 25px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: auto;
+}
+.hoverableSubText:hover {
+    cursor: pointer;
+}
 .avatar {
     vertical-align: middle;
     width: 80px;

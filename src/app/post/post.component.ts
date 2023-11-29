@@ -48,17 +48,16 @@ export class PostComponent implements OnInit{
   };
   openCommentOverlay(i: number) {
     // Subscribe to authentication state changes
-    this.service.authState$.subscribe((user) => {
-      if (user) {
-        this.loading = true;
-        // Fetch comments from the database
-        this.service.getComments(i + 1).subscribe((value) => {
-          this.comments = value || 0;
-          this.loading = false;
-        });
-      }
-    });
-    console.log('tryina open le overlay')
+    // this.service.authState$.subscribe((user) => {
+    //   if (user) {
+    //     this.loading = true;
+    //     // Fetch comments from the database
+    //     this.service.getComments(i).subscribe((value) => {
+    //       this.comments = value // CommentOverlayComponent.comments = value || 0;
+    //       this.loading = false;
+    //     });
+    //   }
+    // });
     this.overlayService.openOverlay(CommentOverlayComponent);
   };
 };

@@ -13,7 +13,7 @@
     <!-- <p class="subText" style="float:left;">{{ item.likes }} {{ 2 === 1 ? 'like' : 'likes' }}</p>
     <p class="subText" style="float:right;">{{ item.comments }} {{ 2 === 1 ? 'comment' : 'comments' }}</p> -->
     <p class="subText" style="float:left;">{{ post.likes.length }} {{ post.likes.length === 1 ? 'like' : 'likes' }}</p>
-    <p class="subText" style="float:right;" (click)="openCommentOverlay(i)">{{ post.comments.length }} {{ post.comments.length === 1 ? 'comment' : 'comments' }}</p>
+    <p class="hoverableSubText" style="float:right;" (click)="openCommentOverlay(i)">{{ post.comments.length }} {{ post.comments.length === 1 ? 'comment' : 'comments' }}</p>
     
     <br><br>
     <hr/>

@@ -1,9 +1,6 @@
-import { Component, ElementRef, ViewChild, TemplateRef, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayService } from '../overlay.service';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-comment-overlay',
@@ -15,14 +12,10 @@ import { PostComponent } from '../post/post.component';
 export class CommentOverlayComponent {
 
   constructor(
-    private overlay: Overlay,
     private overlayService: OverlayService,
-    private viewContainerRef: ViewContainerRef,
-    private elementRef: ElementRef,
-    private Post: PostComponent
   ) {}
-  comments = this.Post.comments;
-
+  // comments: any;
+  comments = [{'comment': 'See kommentaar ei ole (veel) laetud andmebaasist! :(', 'profile_pic': "https://media.discordapp.net/attachments/1149290454819553420/1164864763105390592/b61f156cac360ab208b71ce5102ee9c5_400x400.png", "display_name": "Silver", "timestamp": "29/11/2023, 5:46 AM", }]
   closeOverlay() {
     this.overlayService.closeOverlay();
   }
