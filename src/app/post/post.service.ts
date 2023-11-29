@@ -15,6 +15,14 @@ interface Post {
   text: string;
   timestamp: any;
 }
+interface Comment {
+  comment: string;
+  comment_author_uid: string;
+  display_name: string;
+  comment_likes: Array<string>;
+  profile_pic: string;
+  timestamp: any;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +31,7 @@ export class PostService {
   user: User | null;
   authState$: Observable<User | null>;
   posts$: Observable<Post[]> = of([]);
+  comments$: Observable<Comment[]> = of([]);
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
@@ -53,6 +62,30 @@ export class PostService {
         )
       );
       return this.posts$
+    } else {
+      console.warn('User not authenticated.');
+      return of([]);
+    };
+  };
+  getComments(post_id: number): Observable<Comment[]> {
+    if (this.user) {
+      this.comments$ = this.db
+      .collection<Comment>('posts/' + post_id + '/comments')
+        .valueChanges()
+          .pipe(switchMap((comments) => combineLatest(
+            comments.map((comment) =>
+            this.db
+            .doc(`User/${comment.comment_author_uid}`)
+            .valueChanges()
+            .pipe(
+              map((user_temp: any) => ({
+                ...comment, display_name: user_temp.displayName, profile_pic: user_temp.profilepic
+              }))
+            )
+          )
+        )
+      ));
+      return this.comments$
     } else {
       console.warn('User not authenticated.');
       return of([]);

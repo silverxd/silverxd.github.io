@@ -88,47 +88,6 @@ h3 {
     margin-right: 30px;
 }
 /* ----------------------------------- */
-.dropdown, .dropdown-element {
-    display: flex;
-    width: 15vw;
-    padding: 10px;
-    background-color: #505050;
-    border-radius: 40px;
-}
-.dropdown {
-    justify-content: space-between;
-    align-items: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.dropdown h4, .dropdown-element h4 {
-    color: #A1A1A1;
-    font-size: 1.3vw;
-    font-weight: 500;
-    padding: 0px;
-    margin: 0px;
-}
-.dropdown-content {
-    flex-direction: column;
-    justify-content: center;
-}
-.dropdown-element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-.dropdown:hover, .dropdown-element:hover {
-    cursor: pointer;
-}
-.dropdown-element:hover {
-    background-color: #505050;
-}
-/* ----------------------------------- */
 .arrow-down {
     width: 0; 
     height: 0; 
@@ -161,39 +120,6 @@ h3 {
     margin-bottom: 1.8vw;
 }
 /* ----------------------------------- */
-.buttom-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.cancel, .send {
-    width: 10vw;
-    border: none;
-    border-radius: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #212121;
-}
-.cancel {
-    margin-right: 5vw;
-}
-.cancel h3 {
-    font-size: 1.5vw;
-    color: #C64A49;
-}
-.send h3 {
-    font-size: 1.5vw;
-    color: #92EE61;
-}
-.cancel:hover, .send:hover {
-    background-color: #2D2D2D;
-    cursor: pointer;
-}
-.cancel:active, .send:active {
-    background-color: #2D2D2D;
-    transform: scale(0.9);
-}
-/* ----------------------------------- */
 @media screen and (max-width: 790px) {
     .comment-overlay {
         width: 100vw;
@@ -205,22 +131,10 @@ h3 {
     .top-part h3 {
         font-size: 4vw;
     }
-    .dropdown, .dropdown-element {
-        width: 30vw;
-    }
-    .dropdown h4, .dropdown-element h4 {
-        font-size: 2.6vw;
-    }
     .middle textarea {
         width: 82vw;
         height: 46vw;
         font-size: 3vw;
-    }
-    .cancel, .send {
-        width: 30vw;
-    }
-    .cancel h3, .send h3 {
-        font-size: 4.5vw;
     }
 }
 /* ----------------------------------- */
@@ -272,16 +186,6 @@ h3 {
 }
 .overlay-button:active {
     transform: scale(0.8);
-}
-#cancel-no {
-    font-weight: bolder;
-}
-#cancel-yes {
-    color: #C64A49;
-}
-#send-yes, #send-done {
-    font-weight: bolder;
-    color: #92EE61;
 }
 @media screen and (max-width: 790px) {
     .overlay {
