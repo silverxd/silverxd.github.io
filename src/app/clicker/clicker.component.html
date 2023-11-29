@@ -3,8 +3,13 @@
     <app-credit-box></app-credit-box>
   </div>
   <div class="clicker">
-    <button id="debug" (click)=service.clickDebux()></button>
-    <div>
+    <div class="clicker-top">
+      <h1>DeBug Clicker</h1>
+    </div>
+    <div class="clicker-content">
+      <code id="clicker-code">{{snippet}}</code>
+    </div>
+    <div class="clicker-bottom">
       <p>Last autosave: {{time}} seconds ago</p>
       <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
     </div>

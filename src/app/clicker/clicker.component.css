@@ -6,7 +6,6 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 40px;
-  text-align: center;
   margin-bottom: 40px;
 }
 
@@ -17,56 +16,64 @@
   width: 20%;
   background: #313131;
   border-radius: 40px;
+  text-align: center;
 
 }
-
 .loading-text {
   color: #b7514c
 }
-
 /*------------------------------------ */
 .clicker {
-  display: inline-block;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   color: #E0E1E1;
-  width: 30%;
   background: #313131;
   border-radius: 40px;
-  padding: 20px;
   margin-left: 100px;
   margin-right: 100px;
+  border: thick solid #6A5988;
+  padding: 0px;
 }
-
-#debug {
-  background: transparent url("/assets/img/clicker_icon_with_text.svg") no-repeat;
-  background-size: 100%;
-  height: 125px;
-  width: 200px;
-  border: none;
-  cursor: pointer;
+/*------------------------------------ */
+.clicker-top {
+  width: 100%;
+  border-bottom: thick solid #6A5988;
+  text-align: center;
 }
-.clicker a {
+.clicker-top h1 {
+  padding: 0px;
+  margin: 0px;
+}
+/*------------------------------------ */
+.clicker-content {
+  width: 100%;
+}
+/*------------------------------------ */
+.clicker-bottom {
+  width: 100%;
+  border-top: thick solid #6A5988;
+  text-align: center;
+}
+.clicker-bottom a {
   color: #6A5988;
   cursor: pointer;
   transition: transfrom 0.3s ease;
 }
-.clicker a:active {
+.clicker-bottom a:active {
   font-size: 90%;
 }
-.clicker a.disabled {
+.clicker-bottom a.disabled {
   pointer-events: none;
   opacity: 0.5;
 }
-
-.clicker button:active {
-  transform: scale(0.9);
-}
-
-.clicker p {
+.clicker-bottom p {
   margin: 0px;
   margin-top: 3%;
   font-size: 100%;
 }
-
 /*------------------------------------ */
 .profile {
   display: inline-block;
@@ -74,6 +81,7 @@
   width: 20%;
   background: #313131;
   border-radius: 40px;
+  text-align: center;
 }
 
 /*------------------------------------ */
