@@ -5,7 +5,7 @@ export const upgradesDefault: {
   debuxPerClick?: number,
   randomButton?: boolean,
   perClickX2?: boolean,
-  filler?: boolean,
+  minusFifty?: boolean,
   perSecX2?: boolean,
   lowerMultipler?: boolean,
   canPrestige?: boolean,
@@ -58,7 +58,7 @@ export const upgradesDefault: {
     description: 'Improve click effectiveness by enhancing mouse sensitivity.'
   },
   {
-    name: 'Automated Testing', cost: 100000, randomButton: false, affordable: false, purchased: false,
+    name: 'Automated Testing', cost: 100000, randomButton: false, affordable: false, purchased: 0,
     description: 'Develop a robust automated testing system that quickly identifies and reports bugs, making debugging more efficient.'
   },
   {
@@ -66,7 +66,7 @@ export const upgradesDefault: {
     description: 'Integrate AI-driven code refactoring to automatically improve code structure and readability during the debugging process.'
   },
   {
-    name: 'Codebase Analysis', cost: 200, filler: false, affordable: false, purchased: 0,
+    name: 'Codebase Analysis', cost: 200, minusFifty: false, affordable: false, purchased: 0,
     description: 'Unlock in-depth analysis tools that provide insights into code quality, performance, and potential issues, aiding in targeted debugging efforts.'
   },
   {
@@ -74,11 +74,11 @@ export const upgradesDefault: {
     description: 'Upgrade Tabnine\'s capabilities, allowing it to suggest code snippets and completions at an accelerated rate, improving coding speed and accuracy.'
   },
   {
-    name: 'ChatGPT Evolution', cost: 100000000000, lowerMultipler: false, affordable: false, purchased: false,
+    name: 'ChatGPT Evolution', cost: 100000000000, lowerMultipler: false, affordable: false, purchased: 0,
     description: 'Upgrade ChatGPT to a more advanced version, increasing its problem-solving capabilities and assistance in debugging.'
   },
   {
-    name: 'Progarm that solves every bug', cost: 3141592653589, canPrestige: false, affordable: false, purchased: false,
-    description: 'TBD'
+    name: 'Progarm that solves every bug', cost: 3141592653589, canPrestige: false, affordable: false, purchased: 0,
+    description: 'You have found the key to bugless universe.'
   },
 ];

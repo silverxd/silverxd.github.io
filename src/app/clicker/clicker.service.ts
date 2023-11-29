@@ -20,7 +20,7 @@ export class ClickerService implements OnInit {
         debuxPerClick?: number,
         randomButton?: boolean,
         perClickX2?: boolean,
-        filler?: boolean,
+        minusFifty?: boolean,
         perSecX2?: boolean,
         lowerMultipler?: boolean,
         canPrestige?: boolean,
@@ -43,7 +43,6 @@ export class ClickerService implements OnInit {
     costMultiplier: number;
     perSecMultiplier: number;
     perClickMultiplier: number;
-
     discountBought: boolean;
 
     firstCalcHasPerformed: boolean = false;
@@ -73,7 +72,6 @@ export class ClickerService implements OnInit {
         this.costMultiplier = 0.3;
         this.perSecMultiplier = 1;
         this.perClickMultiplier = 1;
-
         this.discountBought = false
     }
 
@@ -277,7 +275,7 @@ export class ClickerService implements OnInit {
         debuxPerClick?: number,
         randomButton?: boolean,
         perClickX2?: boolean,
-        filler?: boolean,
+        minusFifty?: boolean,
         perSecX2?: boolean,
         lowerMultipler?: boolean,
         canPrestige?: boolean,
