@@ -17,11 +17,9 @@ export class FriendRequestService {
   }
 
   addFriend(person: any) {
-    console.log('it works?')
     person["requestAccepted"] = false;
     this.outgoingFriendRequest.push(person)
     this.sendFriendRequest(person)
-    console.log('activated')
   }
 
   sendFriendRequest(person: any) {
