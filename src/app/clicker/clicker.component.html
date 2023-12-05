@@ -2,11 +2,32 @@
   <div class="credit">
     <app-credit-box></app-credit-box>
   </div>
-  <div class="clicker">
-    <button id="debug" (click)=service.clickDebux()></button>
-    <div>
-      <p>Last autosave: {{time}} seconds ago</p>
-      <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
+  <div class="clicker-container">
+    <div class="side-pannel" *ngIf="service.sidePannelOpen">
+      <div class="side-pannel-top">
+        <h1>Specials</h1>
+      </div>
+      <div class="side-pannel-container">
+        <div class="side-pannel-box" *ngIf="service.randomDBsOpen" (click)="service.randomDBs()" [class.side-pannel-box-disabled]="service.counter < 61">
+          <p *ngIf="service.counter === 61">Random DBs</p>
+          <p *ngIf="service.counter < 61">Locked for {{service.counter}} sec</p>
+        </div>
+        <div class="side-pannel-box" *ngIf="service.prestigeOpen">
+          <p>Prestige</p>
+        </div>
+      </div>
+    </div>
+    <div class="clicker">
+      <div class="clicker-top">
+        <h1>DeBug Clicker</h1>
+      </div>
+      <div class="clicker-content" (click)="service.clickDebux()">
+        <code id="clicker-code">{{service.snippet}}</code>
+      </div>
+      <div class="clicker-bottom">
+        <p>Last autosave: {{time}} seconds ago</p>
+        <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
+      </div>
     </div>
   </div>
   <div class="profile" *ngIf="service.user">
@@ -84,11 +105,13 @@
       </div>
       <div class="sideContent">
         <ng-container *ngFor="let upgrade of upgrades; let i = index">
-          <div *ngIf="11 <= i" (click)="service.buyUpgrade(upgrade)" class="box" [class.box-disabled]="!upgrade.affordable">
+          <div *ngIf="11 <= i" (click)="service.buyUpgrade(upgrade)" class="box"
+                [class.box-disabled]="!upgrade.affordable"  [class.box-onetime]="upgrade.onetime && upgrade.purchased === 1">
             <div class="box-text">
               <p>{{ upgrade.name }}</p>
               <h4>{{ upgrade.description}}</h4>
-              <div class="cost"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+              <div class="cost" *ngIf="!upgrade.onetime || upgrade.purchased != 1"><h4>Cost: {{ upgrade.cost }}DB</h4></div>
+              <div class="cost" *ngIf="upgrade.onetime && upgrade.purchased === 1"><h4  style="color: #92ee61;">Purchased</h4></div>
             </div>
             <div class="bought">
               <h4>{{ upgrade.purchased }}</h4>
