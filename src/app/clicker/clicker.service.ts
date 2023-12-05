@@ -5,6 +5,18 @@ import firebase from "firebase/compat";
 import User = firebase.User;
 import {upgradesDefault} from "./upgrades-data";
 import {BehaviorSubject, interval, map, Observable, of, Subscription, take} from "rxjs";
+import {
+    firstLine,
+    secondLine,
+    thirdLine,
+    fourthLine,
+    fifthLine,
+    sixthLine,
+    seventhLine,
+    eighthLine,
+    ninthLine,
+    tenthLine
+} from './debug-data';
 
 @Injectable({
     providedIn: 'root',
@@ -60,6 +72,21 @@ export class ClickerService implements OnInit {
     });
     data$ = this.dataSubject.asObservable();
 
+    firstLine: string[];
+    secondLine: string[];
+    thirdLine: string[];
+    fourthLine: string[];
+    fifthLine: string[];
+    sixthLine: string[];
+    seventhLine: string[];
+    eighthLine: string[];
+    ninthLine: string[];
+    tenthLine: string[];
+
+    linesList: any;
+    snippet: string;
+    line: any;
+
     constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
         this.saveInterval = 60;
         this.user = null; // Before getting user the value is null
@@ -74,6 +101,19 @@ export class ClickerService implements OnInit {
         this.perSecMultiplier = 1;
         this.perClickMultiplier = 1;
         this.discountBought = false
+
+        this.firstLine = this.randomChoice(firstLine);
+        this.secondLine = this.randomChoice(secondLine);
+        this.thirdLine = this.randomChoice(thirdLine);
+        this.fourthLine = this.randomChoice(fourthLine);
+        this.fifthLine = this.randomChoice(fifthLine);
+        this.sixthLine = this.randomChoice(sixthLine);
+        this.seventhLine = this.randomChoice(seventhLine);
+        this.eighthLine = this.randomChoice(eighthLine);
+        this.ninthLine = this.randomChoice(ninthLine);
+        this.tenthLine = this.randomChoice(tenthLine);
+
+        this.snippet = ""
     }
 
 
@@ -186,7 +226,9 @@ export class ClickerService implements OnInit {
         this.debux += this.calculateTotalDebuxPerClick() * this.perClickMultiplier;
         console.log(this.debux)
         this.updateAffordability();
-        this.setDebux(this.debux, this.calculateTotalDebuxPerSec())
+        this.setDebux(this.debux, this.calculateTotalDebuxPerSec());
+        this.changeOneLine();
+        this.generateSnippet();
     }
 
     updateAffordability() {
@@ -304,5 +346,60 @@ export class ClickerService implements OnInit {
         for (const dict in this.upgrades) {
             this.upgrades[dict].cost = this.upgrades[dict].cost * 2
         } 
+    }
+
+    randomChoice(arr: any[]){
+        return arr[Math.floor(Math.random() * arr.length)]
+    }
+
+    generateSnippet() {
+        this.snippet = 
+            this.firstLine + "\n" +
+            this.secondLine + "\n" +
+            this.thirdLine + "\n" +
+            this.fourthLine + "\n" +
+            this.fifthLine + "\n" +
+            this.sixthLine + "\n" +
+            this.seventhLine + "\n" +
+            this.eighthLine + "\n" +
+            this.ninthLine  + "\n" +
+            this.tenthLine
+    }
+    
+    changeOneLine() {
+        this.linesList = [
+            this.firstLine,
+            this.secondLine,
+            this.thirdLine,
+            this.fourthLine,
+            this.fifthLine,
+            this.sixthLine,
+            this.seventhLine,
+            this.eighthLine,
+            this.ninthLine,
+            this.tenthLine
+        ]
+        this.line = this.randomChoice(this.linesList);
+        if (this.line === this.firstLine) {
+            this.firstLine = this.randomChoice(firstLine)
+        } else if (this.line === this.secondLine) {
+            this.secondLine = this.randomChoice(secondLine)
+        } else if (this.line === this.thirdLine) {
+            this.thirdLine = this.randomChoice(thirdLine)
+        } else if (this.line === this.fourthLine) {
+            this.fourthLine = this.randomChoice(fourthLine)
+        } else if (this.line === this.fifthLine) {
+            this.fifthLine = this.randomChoice(fifthLine)
+        } else if (this.line === this.sixthLine) {
+            this.sixthLine = this.randomChoice(sixthLine)
+        } else if (this.line === this.seventhLine) {
+            this.seventhLine = this.randomChoice(seventhLine)
+        } else if (this.line === this.eighthLine) {
+            this.eighthLine = this.randomChoice(eighthLine)
+        } else if (this.line === this.ninthLine) {
+            this.ninthLine = this.randomChoice(ninthLine)
+        } else if (this.line === this.tenthLine) {
+            this.tenthLine = this.randomChoice(tenthLine)
+        }
     }
 }
