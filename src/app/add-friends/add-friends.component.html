@@ -3,7 +3,7 @@
         <div class="title" id="center">
             <h1>Add Friends</h1>
         </div>
-        <div class="close" id="end"> 
+        <div class="close" id="end">
             <button (click)="closeOverlay()">X</button>
         </div>
     </div>
@@ -11,7 +11,7 @@
         <div class="search-box">
             <div class="search">
                 <button class="search_button" (click)="toggleSearch()"></button>
-                <input class="search_input" type="search" placeholder="Search for a friend...">
+                <input class="search_input" (input)="onSearchInputChange($event)" type="search" placeholder="Search for a friend...">
 
                 <ng-template #searchTemplate>
                     <div class="search-content">
@@ -41,11 +41,11 @@
                             </div>
                             <div class="overlay-buttons">
                                 <p class="overlay-button" id="no" (click)="toggleRequest()">No</p>
-                                <p class="overlay-button" id="yes" (click)=" isYes()">Yes</p>
+                                <p class="overlay-button" id="yes" (click)=" isYes(clickedPerson)">Yes</p>
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="overlay" *ngIf="requestIsYes">
                         <div class="overlay-title">
                             <h1>Successfully sent</h1>
@@ -65,7 +65,7 @@
         <div class="people-box">
             <div class="text"><h3>Peole who you might know:</h3></div>
             <div class="people">
-                <div class="person" *ngFor="let person of people">
+                <div class="person" *ngFor="let person of topUsers">
                     <div class="start">
                         <div class="pic" style.background-color="{{person.pic}}"></div>
                         <div class="name"><h6>{{person.name}}</h6></div>
