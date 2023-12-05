@@ -58,6 +58,11 @@ export class ClickerService implements OnInit {
     perClickMultiplier: number;
     discountBought: boolean;
 
+    sidePannelOpen: boolean;
+    randomDBsOpen: boolean;
+    prestigeOpen: boolean;
+    counter: number;
+
     firstCalcHasPerformed: boolean = false;
 
     debuxSubject = new BehaviorSubject<{ debuxSend: number; debuxPerSecSend: any }>({
@@ -87,8 +92,10 @@ export class ClickerService implements OnInit {
     snippet: string;
     line: any;
 
+
     constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
         this.saveInterval = 60;
+        this.counter = 61;
         this.user = null; // Before getting user the value is null
         this.debux = 0;
         this.upgrades = upgradesDefault; // Setting upgrades firstly as upgradesDefault
@@ -100,7 +107,11 @@ export class ClickerService implements OnInit {
         this.costMultiplier = 0.3;
         this.perSecMultiplier = 1;
         this.perClickMultiplier = 1;
-        this.discountBought = false
+        this.discountBought = false;
+
+        this.sidePannelOpen = false;
+        this.randomDBsOpen = false;
+        this.prestigeOpen = false;
 
         this.firstLine = this.randomChoice(firstLine);
         this.secondLine = this.randomChoice(secondLine);
@@ -113,7 +124,7 @@ export class ClickerService implements OnInit {
         this.ninthLine = this.randomChoice(ninthLine);
         this.tenthLine = this.randomChoice(tenthLine);
 
-        this.snippet = ""
+        this.snippet = "";
     }
 
 
@@ -251,6 +262,14 @@ export class ClickerService implements OnInit {
             if (value.debuxPerClick != null) {
                 totalDebuxPerClick = value.debuxPerClick * value.purchased
             }
+            if ((value.name === 'Automated Testing' || value.name === 'Progarm that solves every bug') && value.purchased === 1) {
+                this.sidePannelOpen = true;
+                if (value.name === 'Automated Testing') {
+                    this.randomDBsOpen = true;
+                } else {
+                    this.prestigeOpen = true;
+                }
+            }
             // console.log(value.name, totalDebuxPerSec, totalDebuxPerClick)
             this.addUpgrade(value.name, totalDebuxPerSec, totalDebuxPerClick)
         }
@@ -273,13 +292,19 @@ export class ClickerService implements OnInit {
             }
             if (upgrade === this.upgrades[14] && this.upgrades[14].purchased != 0) {
                 this.perSecMultiplier = this.perSecMultiplier * 2;
+            } else if (upgrade === this.upgrades[11] && this.upgrades[11].purchased != 0) {
+                this.sidePannelOpen = true;
+                this.randomDBsOpen = true;
             } else if (upgrade === this.upgrades[12] && this.upgrades[12].purchased != 0) {
                 this.perClickMultiplier = this.perClickMultiplier * 2;
-            } else if (upgrade === this.upgrades[15]) {
-                this.costMultiplier = 0.25;
             } else if (upgrade === this.upgrades[13]) {
                 this.discountBought = true;
                 this.changePrices(0.5);
+            } else if (upgrade === this.upgrades[15]) {
+                this.costMultiplier = 0.25;
+            } else if (upgrade === this.upgrades[11] && this.upgrades[11].purchased != 0) {
+                this.sidePannelOpen = true;
+                this.prestigeOpen = true;
             } else if (upgrade.onetime) {
                 upgrade.affordable = true
             }
@@ -400,6 +425,25 @@ export class ClickerService implements OnInit {
             this.ninthLine = this.randomChoice(ninthLine)
         } else if (this.line === this.tenthLine) {
             this.tenthLine = this.randomChoice(tenthLine)
+        }
+    }
+
+    randomDBs() {
+        if (this.counter === 61) {
+            this.counter = this.counter - 1;
+
+            this.debux += Math.floor(Math.random() * (10000 - 1 + 1) + 1);
+            this.setDebux(this.debux, this.calculateTotalDebuxPerSec());
+            this.updateAffordability();
+
+            let intervalId = setInterval(() => {
+                this.counter = this.counter - 1;
+                console.log(this.counter)
+                if(this.counter === 0) {
+                    clearInterval(intervalId)
+                    this.counter = 61;
+                }
+            }, 1000)
         }
     }
 }
