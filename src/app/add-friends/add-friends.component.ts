@@ -40,7 +40,7 @@ export class AddFriendsComponent implements AfterViewInit {
         private viewContainerRef: ViewContainerRef,
         private elementRef: ElementRef,
         private searchService: SearchService,
-        private friendService: FriendRequestService,
+        private friendRequestService: FriendRequestService,
     ) {
     }
 
@@ -124,7 +124,7 @@ export class AddFriendsComponent implements AfterViewInit {
 
     isYes(person: any) {
         this.requestIsYes = true;
-        this.friendService.addFriend(person);
+        this.friendRequestService.addFriend(person);
     }
 
     closeOverlay() {
@@ -150,7 +150,6 @@ export class AddFriendsComponent implements AfterViewInit {
         this.debounceTimer = setTimeout(() => {
             this.searchService.searchUsers(this.searchTerm).subscribe((results: any[]) => {
                 this.people = results;
-                console.log(this.people);
             });
         }, 500);
     }
