@@ -23,8 +23,82 @@
   color: #b7514c
 }
 /*------------------------------------ */
+.clicker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  border-radius: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/*------------------------------------ */
+.side-pannel {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
+  border-top: thick solid #6A5988;
+  border-bottom: thick solid #6A5988;
+  border-left: thick solid #6A5988;
+  border-right: thin solid #6A5988;
+  background: #313131;
+}
+/*------------------------------------ */
+.side-pannel-top {
+  text-align: center;
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-bottom: thick solid #6A5988;
+}
+.side-pannel-top h1 {
+  padding: 0px;
+  margin: 0px;
+}
+/*------------------------------------ */
+.side-pannel-box {
+  color: #E0E1E1;
+  text-align: center;
+  margin-top: 10px;
+  width: 8vw;
+  border-radius: 40px;
+  border: thin solid #6A5988;
+  background: #212121;
+}
+.side-pannel-box:hover {
+  cursor: pointer;
+  background-color: #2D2D2D;
+}
+.side-pannel-box:active {
+  transform: scale(0.9);
+}
+.side-pannel-box-disabled:hover {
+  cursor: default;
+  background: #212121;
+}
+.side-pannel-box-disabled:active {
+  transform: none;
+}
+.side-pannel-box p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0px;
+  font-size: 1.1vw;
+}
+/*------------------------------------ */
 .clicker {
-  width: 40%;
+  height: 40vh;
+  width: 82%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,8 +106,6 @@
   color: #E0E1E1;
   background: #313131;
   border-radius: 40px;
-  margin-left: 100px;
-  margin-right: 100px;
   border: thick solid #6A5988;
   padding: 0px;
 }
@@ -50,23 +122,20 @@
 /*------------------------------------ */
 .clicker-content {
   display: flex;
-  width: 100%;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  justify-content: start;
+  width: 100%
 }
 .clicker-content code {
   white-space: pre;
-  font-size: 1vw;
+  font-size: 0.9vw;
   color: #2f9e44;
   margin: 10px;
 }
+.clicker-content:hover {
+  cursor: pointer;
+}
 .clicker-content:active {
-  cursor: default;
-
+  cursor: pointer;
 }
 /*------------------------------------ */
 .clicker-bottom {
