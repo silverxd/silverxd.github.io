@@ -2,11 +2,32 @@
   <div class="credit">
     <app-credit-box></app-credit-box>
   </div>
-  <div class="clicker">
-    <button id="debug" (click)=service.clickDebux()></button>
-    <div>
-      <p>Last autosave: {{time}} seconds ago</p>
-      <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
+  <div class="clicker-container">
+    <div class="side-pannel" *ngIf="service.sidePannelOpen">
+      <div class="side-pannel-top">
+        <h1>Specials</h1>
+      </div>
+      <div class="side-pannel-container">
+        <div class="side-pannel-box" *ngIf="service.randomDBsOpen" (click)="service.randomDBs()" [class.side-pannel-box-disabled]="service.counter < 61">
+          <p *ngIf="service.counter === 61">Random DBs</p>
+          <p *ngIf="service.counter < 61">Locked for {{service.counter}} sec</p>
+        </div>
+        <div class="side-pannel-box" *ngIf="service.prestigeOpen" (click)="service.clickPrestige()">
+          <p>Prestige</p>
+        </div>
+      </div>
+    </div>
+    <div class="clicker">
+      <div class="clicker-top">
+        <h1>DeBug Clicker</h1>
+      </div>
+      <div class="clicker-content" (click)="service.clickDebux()">
+        <code id="clicker-code">{{service.snippet}}</code>
+      </div>
+      <div class="clicker-bottom">
+        <p>Last autosave: {{time}} seconds ago</p>
+        <a (click)="service.manualAutosave()" [class.disabled]="service.clickCount >= service.maxClicks">Save now</a>
+      </div>
     </div>
   </div>
   <div class="profile" *ngIf="service.user">
@@ -14,6 +35,11 @@
       Logged in as:
       <span style="color: #6A5988">{{ service.user.displayName }}</span>
     </p>
+    <p>
+      Current prestige:
+      <span style="color: #6A5988">{{ service.prestige }}</span>
+    </p>
+
   </div>
   <div class="profile" *ngIf="!service.user">
     <p class="loading-text">Loading</p>

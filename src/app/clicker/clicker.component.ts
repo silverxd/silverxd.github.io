@@ -14,19 +14,20 @@ export class ClickerComponent implements OnInit {
     debux: number;
     upgrades: any;
     time: number;
+    snippet: any;
 
     dataSubscription: Subscription | undefined;
+
 
     constructor(public service: ClickerService, private cdr: ChangeDetectorRef) {
         this.debux = 0;
         this.upgrades = upgradesDefault;
         this.time = 0;
-
     }
-
 
     ngOnInit() {
         this.subscribeToData()
+        this.service.generateSnippet()
     }
 
     subscribeToData() {
