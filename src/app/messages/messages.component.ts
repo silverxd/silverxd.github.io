@@ -57,7 +57,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
 
   private scrollToBottom(): void {
     try {
-      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight
+      this.cd.detectChanges()
     } catch (err) {
       console.error(err);
     }
@@ -76,7 +77,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
         console.log('works')
         this.messageService.getFriend(this.friendID).subscribe((friend) => {
           this.friend = friend
-          this.cd.detectChanges()
+          this.ngAfterViewChecked()
         })
       }
     })
@@ -85,7 +86,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   fetchMessages(chatId: string): void {
     this.messageService.getMessages(chatId).subscribe((messages) => {
       this.messages = messages;
-      this.cd.detectChanges()
+      this.ngAfterViewChecked()
     });
   }
 
@@ -101,9 +102,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
           content: this.newMessage,
           timestamp: new Date(), // Use JavaScript Date for the timestamp
         };
-
+        this.newMessage = '';
         this.messageService.sendMessage(message, this.chatID).then(() => {
-          this.newMessage = '';
           this.scrollToBottom()
         });
       }
