@@ -3,7 +3,7 @@
     <h2>Friends</h2>
   </div>
   <div class="field">
-    <div class="bubble" *ngFor="let friend of friends">
+    <div class="bubble" *ngFor="let friend of friends" (click)="openChat(friend.chatID, friend.userUID)">
       <div class="user">
         <img src="path/to/profile-pic.jpg" alt="Profile picture"
              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
