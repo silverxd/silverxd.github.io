@@ -22,10 +22,9 @@ import {
     providedIn: 'root',
 })
 export class ClickerService implements OnInit {
-    debux: number;
-    prestige: number;
+    debux: number
     loading = false;
-    user: User | null;
+    user: User | null
     upgrades: {
         name: string,
         cost: number,
@@ -99,7 +98,6 @@ export class ClickerService implements OnInit {
         this.counter = 61;
         this.user = null; // Before getting user the value is null
         this.debux = 0;
-        this.prestige = 0;
         this.upgrades = upgradesDefault; // Setting upgrades firstly as upgradesDefault
         this.autosaveDate = new Date();
         this.clickCount = 0;
@@ -144,9 +142,6 @@ export class ClickerService implements OnInit {
                         this.upgrades = value || upgradesDefault
                         this.firstCalc(this.upgrades);
                     });
-                    this.getPrestigeFromDatabase().pipe(take(1)).subscribe(value => {
-                        this.prestige = value | 0
-                    });
                 }
             }
         })
@@ -174,23 +169,11 @@ export class ClickerService implements OnInit {
         }
     }
 
-    getPrestigeFromDatabase(): Observable<number> {
-        if (this.user) {
-            return this.db.doc(`User/${this.user.uid}`).valueChanges().pipe(
-                map((userData: any) => userData ? userData.Prestige : undefined)
-            );
-        } else {
-            console.warn('User not authenticated.'); // Use warn for non-critical issues
-            return of(0); // Return an observable that completes immediately with undefined
-        }
-    }
-
     sendToDatabase() {
         if (this.user) {
             const dataToUpdate = {
                 upgrades: this.upgrades,
-                Debux: this.debux,
-                Prestige: this.prestige
+                Debux: this.debux
             };
             this.db.collection('User').doc(this.user?.uid).set(dataToUpdate, {merge: true})
         }
@@ -319,7 +302,7 @@ export class ClickerService implements OnInit {
                 this.changePrices(0.5);
             } else if (upgrade === this.upgrades[15]) {
                 this.costMultiplier = 0.25;
-            } else if (upgrade === this.upgrades[16] && this.upgrades[16].purchased != 0) {
+            } else if (upgrade === this.upgrades[11] && this.upgrades[11].purchased != 0) {
                 this.sidePannelOpen = true;
                 this.prestigeOpen = true;
             } else if (upgrade.onetime) {
@@ -462,18 +445,5 @@ export class ClickerService implements OnInit {
                 }
             }, 1000)
         }
-    }
-
-    clickPrestige() {
-        this.prestige += 1;
-        this.purchasedUpgradesPerSec = [];
-        this.purchasedUpgradesPerClick = [];
-        this.sidePannelOpen = false;
-        this.prestigeOpen = false;
-        this.randomDBsOpen = false;
-        this.upgrades = upgradesDefault;
-        this.debux = 0;
-        this.autosave();
-        this.ngOnInit;
     }
 }

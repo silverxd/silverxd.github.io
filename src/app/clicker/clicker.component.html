@@ -12,7 +12,7 @@
           <p *ngIf="service.counter === 61">Random DBs</p>
           <p *ngIf="service.counter < 61">Locked for {{service.counter}} sec</p>
         </div>
-        <div class="side-pannel-box" *ngIf="service.prestigeOpen" (click)="service.clickPrestige()">
+        <div class="side-pannel-box" *ngIf="service.prestigeOpen">
           <p>Prestige</p>
         </div>
       </div>
@@ -34,10 +34,6 @@
     <p>
       Logged in as:
       <span style="color: #6A5988">{{ service.user.displayName }}</span>
-    </p>
-    <p>
-      Current prestige:
-      <span style="color: #6A5988">{{ service.prestige }}</span>
     </p>
   </div>
   <div class="profile" *ngIf="!service.user">
