@@ -12,20 +12,22 @@
   <div class="chat-container">
     <div class="friend-name-row">
       <div class="friend-name-box">
-        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+        <img style="border-radius: 50%" src="{{friend.profilepic}}" alt="Profile picture"
              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
-        <p>Friend's name</p>
+        <p>{{friend.displayName}}</p>
         <div class="circle-active">&nbsp;</div>
       </div>
     </div>
-    <div class="text-box" id="scrollbar">
-      <div *ngFor="let message of directMessages" class="one-bubble">
-        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+    <div class="text-box" id="scrollbar" #messageContainer>
+      <div *ngFor="let message of messages" class="one-bubble" [ngClass]="{'right-align': user.uid === message.senderId}">
+        <img style="border-radius: 50%" src="{{friend.profilepic}}" alt="Profile picture" *ngIf="friendID === message.senderId"
              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
         <div class="text-timestamp">
-          <p id="message-text">{{message}}</p>
-          <p id="timestamp">10:07 11/10</p>
+          <p id="message-text">{{message.content}}</p>
+          <p id="timestamp">{{ message.timestamp | date: 'short' }}</p>
         </div>
+        <img style="border-radius: 50%" src="{{client.profilepic}}" alt="Profile picture" *ngIf="user.uid === message.senderId"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
       </div>
     </div>
     <div class="input-field">
@@ -40,8 +42,8 @@
       <label class="custom-file-input-label">
         <img src="assets/img/mic.svg" alt="Voice">
       </label>
-      <textarea class="commentText" placeholder="Description" cdkTextareaAutosize></textarea>
-      <img src="assets/img/send.svg" alt="Send">
+      <textarea class="commentText" placeholder="Type your message here" cdkTextareaAutosize [(ngModel)]="newMessage" (keyup.enter)="sendMessage($event)"></textarea>
+      <img src="assets/img/send.svg" alt="Send" (click)="sendMessage()">
     </div>
   </div>
 </div>
