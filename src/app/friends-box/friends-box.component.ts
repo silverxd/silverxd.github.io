@@ -4,9 +4,9 @@ import {FriendRequestService} from "../add-friends/friend-request.service";
 import {SearchService} from "../add-friends/search.service";
 import {AuthService} from "../auth.service";
 import {map, Observable, take} from "rxjs";
-import {AngularFirestore, fromDocRef} from "@angular/fire/compat/firestore";
-import firebase from "firebase/compat";
-import DocumentReference = firebase.firestore.DocumentReference;
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {MessagesService} from "../messages/messages.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -23,7 +23,14 @@ export class FriendsBoxComponent {
   requestsArray: any
   chatID: string
 
-  constructor(private friendsRequest: FriendRequestService, private search: SearchService, private authService: AuthService, private db: AngularFirestore, private cd: ChangeDetectorRef) {
+  constructor(private friendsRequest: FriendRequestService,
+              private search: SearchService,
+              private authService: AuthService,
+              private db: AngularFirestore,
+              private cd: ChangeDetectorRef,
+              private messagesService: MessagesService,
+              private router: Router) {
+
     this.friends = [{
       'userUID': 'default',
       'displayName': 'Imaginary friend',
@@ -140,7 +147,12 @@ export class FriendsBoxComponent {
     return this.db.collection('User').doc(userUID).valueChanges();
   }
 
-  openChat(chatID: string) {
+  openChat(chatID: string, friendID: string) {
     console.log('want to open chat', chatID)
+    if (this.router.url != '/messages') {
+      console.log('navigating you to messages')
+      this.router.navigate(['messages'])
+    }
+    this.messagesService.setChatId(chatID, friendID);
   }
 }

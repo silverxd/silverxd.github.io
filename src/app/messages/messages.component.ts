@@ -1,4 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from "@angular/router";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -7,6 +15,7 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "../friends-box/friends-box.component";
 import {Message, MessagesService} from "./messages.service";
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../auth.service";
 
 
 @Component({
@@ -17,43 +26,87 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './messages.component.css',
 })
 
-export class MessagesComponent implements OnInit {
-  @Input() chatId!: string
+export class MessagesComponent implements OnInit, AfterViewChecked {
+  @ViewChild('messageContainer') messageContainer!: ElementRef;
   messages: Message[] = [];
   newMessage: string = '';
-  directMessages = ['tere', 'yo', 'mis teed kah', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'something', 'hei hopsti', 'hei hopsti', 'hei hopsti', 'hei hopsti', 'hei hopsti', 'hei hopsti']
   isEmojiPickerVisible: boolean = false;
+  user: any
+  client: any
+  chatID: string
+  friendID: string
+  friend: any
 
-  constructor(private messageService: MessagesService) {
-
-  }
-
-  ngOnInit(): void {
-    this.fetchMessages();
-  }
-
-  fetchMessages(): void {
-    this.messageService.getMessages('sjHQ471UGOo72k3pgjHG').subscribe((messages) => {
-      this.messages = messages;
-      console.log('done', messages[1])
-      this.messages.forEach((messages) => {
-        console.log('Message Content', messages.content)
-      })
+  constructor(private messageService: MessagesService, private authService: AuthService, private cd: ChangeDetectorRef) {
+    this.chatID = ''
+    this.friend = {'displayName': ''}
+    this.friendID = 'Imaginary Friend'
+    this.authService.user$.subscribe(value => {
+      this.user = value
+      if (this.user) {
+        this.messageService.getFriend(this.user.uid).subscribe((user) => {
+          this.client = user
+        })
+      }
     });
   }
 
-  sendMessage(): void {
-    if (this.newMessage.trim() !== '') {
-      const message: Message = {
-        id: 'sjHQ471UGOo72k3pgjHG',
-        senderId: 'currentUserId', // Replace with the actual sender ID
-        content: this.newMessage,
-        timestamp: new Date(), // Use JavaScript Date for the timestamp
-      };
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
 
-      this.messageService.sendMessage(message, 'sjHQ471UGOo72k3pgjHG').then(() => {
-        this.newMessage = '';
-      });
+  private scrollToBottom(): void {
+    try {
+      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  ngOnInit(): void {
+    this.messageService.chatId$.subscribe((chatId) => {
+      this.chatID = chatId
+      if (this.chatID) {
+        this.fetchMessages(this.chatID)
+      }
+    })
+    this.messageService.friendID.subscribe((friendID) => {
+      this.friendID = friendID
+      if (this.friendID) {
+        console.log('works')
+        this.messageService.getFriend(this.friendID).subscribe((friend) => {
+          this.friend = friend
+          this.cd.detectChanges()
+        })
+      }
+    })
+  }
+
+  fetchMessages(chatId: string): void {
+    this.messageService.getMessages(chatId).subscribe((messages) => {
+      this.messages = messages;
+      this.cd.detectChanges()
+    });
+  }
+
+  sendMessage(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    if (this.chatID != '') {
+      if (this.newMessage.trim() !== '') {
+        const message: Message = {
+          id: this.chatID,
+          senderId: this.user.uid, // Replace with the actual sender ID
+          content: this.newMessage,
+          timestamp: new Date(), // Use JavaScript Date for the timestamp
+        };
+
+        this.messageService.sendMessage(message, this.chatID).then(() => {
+          this.newMessage = '';
+          this.scrollToBottom()
+        });
+      }
     }
   }
 
@@ -71,6 +124,7 @@ export class MessagesComponent implements OnInit {
     // Handle the selected emoji
     console.log('Selected Emoji:', event.emoji);
   }
+
 
 }
 
