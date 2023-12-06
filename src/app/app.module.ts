@@ -28,6 +28,7 @@ import {AuthService} from "./auth.service";
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "./friends-box/friends-box.component";
+import { CommentOverlayComponent} from './comment-overlay/comment-overlay.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -67,9 +68,10 @@ import {FriendsBoxComponent} from "./friends-box/friends-box.component";
     EmojiModule,
     PickerComponent,
     FriendsBoxComponent,
+    CommentOverlayComponent,
 
   ],
-  providers: [AuthService, ClickerService],
+  providers: [AuthService, ClickerService, CommentOverlayComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {

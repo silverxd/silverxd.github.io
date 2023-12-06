@@ -9,6 +9,7 @@ interface Post {
   author_uid: string;
   comments: Array<any>;
   display_name: string;
+  document_id: string;
   image_url: string;
   likes: Array<string>;
   profile_pic: string;
@@ -67,7 +68,7 @@ export class PostService {
       return of([]);
     };
   };
-  getComments(post_id: number): Observable<Comment[]> {
+  getComments(post_id: string): Observable<Comment[]> {
     if (this.user) {
       this.comments$ = this.db
       .collection<Comment>('posts/' + post_id + '/comments')
