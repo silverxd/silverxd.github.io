@@ -32,7 +32,7 @@ export class PostComponent implements OnInit{
     });
   }
 
-  toggleLike(i: number) {
+  toggleLike(post_id: string) {
     // if (this.allPosts[i][7] === true) {
     //   this.allPosts[i][7] = false;
     //   this.allPosts[i][2] -= 1;
@@ -40,6 +40,9 @@ export class PostComponent implements OnInit{
     //   this.allPosts[i][7] = true
     //   this.allPosts[i][2] += 1;
     // };
+    console.warn('Toggled like')
+    console.log(post_id)
+    this.service.toggleLike(post_id);
   };
   postComment(i: number) {
     // this.allPosts[i][3] += 1;
