@@ -5,6 +5,9 @@ import {SearchService} from "../add-friends/search.service";
 import {AuthService} from "../auth.service";
 import {map, Observable, take} from "rxjs";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {MessagesService} from "../messages/messages.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-friends-box',
@@ -14,20 +17,33 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   styleUrl: './friends-box.component.css'
 })
 export class FriendsBoxComponent {
-  friends = [{'userUID':'default', 'displayName': 'Imaginary friend', 'status': true}]
-  myFriends = Object.entries(this.friends);
+  friends: { userUID: any; displayName: any; status: boolean; chatID: string; }[]
   user: any
   requestNames: any = []
   requestsArray: any
+  chatID: string
 
-  constructor(private friendsRequest: FriendRequestService, private search: SearchService, private authService: AuthService, private db: AngularFirestore, private cd: ChangeDetectorRef) {
+  constructor(private friendsRequest: FriendRequestService,
+              private search: SearchService,
+              private authService: AuthService,
+              private db: AngularFirestore,
+              private cd: ChangeDetectorRef,
+              private messagesService: MessagesService,
+              private router: Router) {
+
+    this.friends = [{
+      'userUID': 'default',
+      'displayName': 'Imaginary friend',
+      'status': true,
+      'chatID': 'defaultChatID'
+    }]
+    this.chatID = ""
     this.authService.user$
       .pipe(take(1))
       .subscribe(value => {
         this.user = value;
         this.friendsRequest.getFriendRequests(this.user.uid).pipe(take(1)).subscribe((data: any) => {
           this.requestsArray = data.requests
-          console.log(this.requestsArray)
           this.requestsArray.forEach((userUID: any) => {
             this.getDisplayNameByUserUID(userUID).pipe(take(1)).subscribe((data) => {
               this.requestNames.push({'userUID': userUID, 'displayName': data})
@@ -51,45 +67,68 @@ export class FriendsBoxComponent {
 
   acceptFriendRequest(userUID: any, displayName: any) {
     console.log(userUID, displayName)
-    this.addFriend(userUID)
-    this.addToYourFriends(userUID, displayName)
+    this.createChatBetweenUsers(userUID).then(chatID => {
+      this.addFriend(userUID, chatID)
+      this.addToYourFriends(userUID, displayName, chatID)
+    })
   }
 
-  addFriend(userUID: any) {
+  addFriend(userUID: any, chatID: string) {
     this.getUserData(userUID).pipe(take(1)).subscribe((userdata) => {
       this.friends = userdata.friends || undefined
       if (this.friends != undefined) {
         const data = {
-          friends: this.friends.concat({'userUID': this.user.uid, 'displayName': this.user.displayName, 'status':false})
+          friends: this.friends.concat({
+            'userUID': this.user.uid,
+            'displayName': this.user.displayName,
+            'status': false,
+            'chatID': chatID
+          })
         };
         this.db.collection('User').doc(userUID).set(data, {merge: true})
       } else {
         const data = {
-          friends: [{'userUID': this.user.uid, 'displayName': this.user.displayName, 'status':false}]
+          friends: [{
+            'userUID': this.user.uid,
+            'displayName': this.user.displayName,
+            'status': false,
+            'chatID': chatID
+          }]
         }
         this.db.collection('User').doc(userUID).set(data, {merge: true})
       }
-      this.removeRequest(userUID)
-    });
+    })
+    this.removeRequest(userUID)
   }
 
-  addToYourFriends(userUID: any, displayName: any) {
+  addToYourFriends(userUID: any, displayName: any, chatID: string) {
     this.getUserData(this.user.uid).pipe(take(1)).subscribe((myData) => {
       const myFriends = myData.friends || undefined
       if (myFriends != undefined) {
         const data = {
-          friends: this.friends.concat({'userUID': userUID, 'displayName': displayName, 'status':false})
+          friends: this.friends.concat({
+            'userUID': userUID,
+            'displayName': displayName,
+            'status': false,
+            'chatID': chatID
+          })
         };
         this.db.collection('User').doc(this.user.uid).set(data, {merge: true})
       } else {
         const data = {
-          friends: [{'userUID': userUID, 'displayName': displayName, 'status':false}]
+          friends: [{
+            'userUID': userUID,
+            'displayName': displayName,
+            'status': false,
+            'chatID': chatID
+          }]
         }
         this.db.collection('User').doc(this.user.uid).set(data, {merge: true})
       }
     })
   }
-  removeRequest(userUID: string){
+
+  removeRequest(userUID: string) {
     this.requestNames = this.requestNames.filter((item: { userUID: string; }) => item.userUID !== userUID);
     this.requestsArray = this.requestsArray.filter((item: string) => item !== userUID);
     this.cd.detectChanges()
@@ -97,7 +136,23 @@ export class FriendsBoxComponent {
     this.db.collection('User').doc(this.user?.uid).set({requests: this.requestsArray}, {merge: true})
   }
 
+  createChatBetweenUsers(userUID: string): Promise<any> {
+    return this.db.collection('Chats').add({Users: [userUID, this.user.uid]})
+      .then((docRef) => {
+        return docRef.id;
+      });
+  }
+
   getUserData(userUID: string): Observable<any> {
     return this.db.collection('User').doc(userUID).valueChanges();
+  }
+
+  openChat(chatID: string, friendID: string) {
+    console.log('want to open chat', chatID)
+    if (this.router.url != '/messages') {
+      console.log('navigating you to messages')
+      this.router.navigate(['messages'])
+    }
+    this.messagesService.setChatId(chatID, friendID);
   }
 }
