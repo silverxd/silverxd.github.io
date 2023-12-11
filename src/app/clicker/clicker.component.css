@@ -123,13 +123,13 @@
 .clicker-content {
   display: flex;
   justify-content: start;
-  width: 100%
+  width: 100%;
 }
 .clicker-content code {
   white-space: pre;
   font-size: 0.9vw;
   color: #2f9e44;
-  margin: 10px;
+  margin-left: 10px;
 }
 .clicker-content:hover {
   cursor: pointer;
@@ -139,9 +139,11 @@
 }
 /*------------------------------------ */
 .clicker-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   border-top: thick solid #6A5988;
-  text-align: center;
 }
 .clicker-bottom a {
   color: #6A5988;
@@ -157,7 +159,6 @@
 }
 .clicker-bottom p {
   margin: 0px;
-  margin-top: 3%;
   font-size: 100%;
 }
 /*------------------------------------ */
