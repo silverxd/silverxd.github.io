@@ -59,7 +59,5 @@ export class MessagesService {
 
   getFriend(friendID: string): Observable<any> {
     return this.db.collection('User').doc(friendID).valueChanges();
-
   }
-
 }

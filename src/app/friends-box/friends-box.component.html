@@ -3,18 +3,20 @@
     <h2>Friends</h2>
   </div>
   <div class="field">
-    <div class="bubble" *ngFor="let friend of friends" (click)="openChat(friend.chatID, friend.userUID)">
+    <div class="bubble" *ngFor="let friend of friends" (click)="openChat(friend.chatID, friend.userUID)" [ngClass]="{'selected': friend.chatID == chatID}">
       <div class="user">
-        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+        <img class='round' src="{{friend.profilepic}}" alt="Profile picture"
              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
         <h3>{{friend.displayName}}</h3>
       </div>
       <span class="dot" *ngIf="friend.status"></span>
     </div>
-    <h3>Requests</h3>
-    <div class="bubble" *ngFor="let request of requestNames" (click)="acceptFriendRequest(request.userUID, request.displayName)">
+    <div class="divider" *ngIf="requestNames.length !== 0">
+      <h3 style="text-align: center">Requests</h3>
+    </div>
+    <div class="bubble" *ngFor="let request of requestNames" (click)="acceptFriendRequest(request.userUID, request.displayName, request.profilepic)">
       <div class="user">
-        <img src="path/to/profile-pic.jpg" alt="Profile picture"
+        <img class='round' src="{{request.profilepic}}" alt="Profile picture"
              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
         <h3>{{request.displayName}}</h3>
       </div>
