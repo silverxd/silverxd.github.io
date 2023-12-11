@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ClickerService } from './clicker/clicker.service';
+import { ScrollService } from './scroll-service.service';
 
 @Directive({
   selector: '[appParticle]',
@@ -10,11 +11,22 @@ export class ParticleDirective {
     private el: ElementRef,
     private renderer: Renderer2,
     private http: HttpClient,
-    private clickerService: ClickerService
+    private clickerService: ClickerService,
+    private scrollService: ScrollService
   ) {}
+
+  private scrollValue: number = 0;
+
+  ngOnInit() {
+    this.scrollService.scroll$.subscribe((scroll) => {
+      console.log(this.scrollValue)
+      this.scrollValue = scroll
+    });
+  }
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
+    console.log(this.scrollValue)
     // Create a particle for the debuxPerClick value
     this.createDebuxPerClickParticle(event.clientX, event.clientY, this.clickerService.calculateTotalDebuxPerClick() * this.clickerService.perClickMultiplier);
 
@@ -32,7 +44,7 @@ export class ParticleDirective {
         particle.innerHTML = svgContent;
 
         const offsetX = event.clientX - 20;
-        const offsetY = event.clientY - 130;
+        const offsetY = event.clientY - 130 + this.scrollValue;
 
         // Set initial velocity and rotation
         const initialVelocityX = (Math.random() - 0.5) * 5; // Random horizontal velocity (slower)
@@ -101,7 +113,7 @@ export class ParticleDirective {
     let animationFrameId: number;
     const animateDebuxPerClickParticle = (timestamp: number) => {
       const timeDelta = timestamp - debuxStartTime;
-      const positionY = cursorY - 110 - timeDelta * 0.1;
+      const positionY = cursorY - 110 - timeDelta * 0.1  + this.scrollValue;
 
       this.renderer.setStyle(debuxPerClickParticle, 'top', `${positionY}px`);
 
