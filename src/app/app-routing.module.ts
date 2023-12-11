@@ -7,6 +7,7 @@ import { ClickerComponent } from './clicker/clicker.component';
 import {ProfileComponent} from "./profile/profile.component";
 import { AuthGuard } from "./auth.guard";
 import {MessagesComponent} from "./messages/messages.component";
+import { BuyDebuxComponent } from './buy-debux/buy-debux.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,12 @@ const routes: Routes = [
     path: 'messages',
     component: MessagesComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'buy-debux',
+    component: BuyDebuxComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
