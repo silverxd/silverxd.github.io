@@ -30,6 +30,9 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "./friends-box/friends-box.component";
 import { ParticleDirective } from './particle.directive';
 import { ShortNumberPipe } from './short-number.pipe';
+import { NgChartsModule } from 'ng2-charts';
+import {BugsComponent} from "./admin/bugs/bugs.component";
+import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -46,33 +49,36 @@ import { ShortNumberPipe } from './short-number.pipe';
     ParticleDirective,
     ShortNumberPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
-      authDomain: "earn2post.firebaseapp.com",
-      projectId: "earn2post",
-      storageBucket: "earn2post.appspot.com",
-      messagingSenderId: "627810397108",
-      appId: "1:627810397108:web:9c06f50115255b39cf20e1"
-    }),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    OverlayModule,
-    EmojiModule,
-    PickerComponent,
-    FriendsBoxComponent,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp({
+            apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
+            authDomain: "earn2post.firebaseapp.com",
+            projectId: "earn2post",
+            storageBucket: "earn2post.appspot.com",
+            messagingSenderId: "627810397108",
+            appId: "1:627810397108:web:9c06f50115255b39cf20e1"
+        }),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        OverlayModule,
+        EmojiModule,
+        PickerComponent,
+        FriendsBoxComponent,
+        NgChartsModule,
+        BugsComponent,
+        PostsAdminComponent,
 
-  ],
+    ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
