@@ -1,19 +1,40 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import {AuthService} from "../auth.service";
 import { OverlayService } from '../overlay.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { BugReportComponent } from '../bug-report/bug-report.component';
+import { ScrollService } from '../scroll-service.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   @Input() opened= false;
   @Input() visible = true;
+  @ViewChild('matSidenavContent', { read: ElementRef }) matSidenavContent: ElementRef | undefined;
 
-  constructor(private authService: AuthService, private overlayService: OverlayService) {}
+  constructor(private authService: AuthService, private overlayService: OverlayService, private scrollService: ScrollService) {}
+
+  ngAfterViewInit() {
+    // Ensure matSidenavContent is defined before subscribing to the scroll events
+    if (this.matSidenavContent) {
+      this.matSidenavContent.nativeElement.addEventListener('scroll', this.handleScroll.bind(this));
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    // Handle window resize events if needed
+  }
+
+  handleScroll(event: Event) {
+    // Handle scroll events here
+    const scrollValue = (event.target as HTMLElement).scrollTop;
+    console.log('Scroll value:', scrollValue);
+    this.scrollService.updateScroll(scrollValue);
+  }
 
   toggleSearch(): void {
     const searchBox = document.getElementById("search-bar");

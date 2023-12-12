@@ -51,6 +51,10 @@ export class ClickerService implements OnInit {
     autosaveDate: Date;
     timeDifferenceInSeconds: number
 
+    getDebuxSubscription: Subscription | undefined;
+    getUpgradesSubscription: Subscription | undefined;
+    getPrestigeSubscription: Subscription | undefined;
+
     clickCount: number;
     maxClicks: number;
 
@@ -137,14 +141,14 @@ export class ClickerService implements OnInit {
                 this.startSaveInterval();
                 this.startDebuxInterval();
                 if (!this.firstCalcHasPerformed) {
-                    this.getDebuxFromDatabase().pipe(take(1)).subscribe(value => {
+                    this.getDebuxSubscription = this.getDebuxFromDatabase().pipe(take(1)).subscribe(value => {
                         this.debux = value | 0
                     });
-                    this.getUpgradesFromDatabase().pipe(take(1)).subscribe(value => {
+                    this.getUpgradesSubscription = this.getUpgradesFromDatabase().pipe(take(1)).subscribe(value => {
                         this.upgrades = value || upgradesDefault
                         this.firstCalc(this.upgrades);
                     });
-                    this.getPrestigeFromDatabase().pipe(take(1)).subscribe(value => {
+                    this.getPrestigeSubscription = this.getPrestigeFromDatabase().pipe(take(1)).subscribe(value => {
                         this.prestige = value | 0
                     });
                 }
@@ -322,7 +326,8 @@ export class ClickerService implements OnInit {
             } else if (upgrade === this.upgrades[16] && this.upgrades[16].purchased != 0) {
                 this.sidePannelOpen = true;
                 this.prestigeOpen = true;
-            } else if (upgrade.onetime) {
+            } 
+            if (upgrade.onetime) {
                 upgrade.affordable = true
             }
         } else {
@@ -407,7 +412,7 @@ export class ClickerService implements OnInit {
             this.ninthLine  + "\n" +
             this.tenthLine
     }
-    
+
     changeOneLine() {
         this.linesList = [
             this.firstLine,
@@ -465,6 +470,9 @@ export class ClickerService implements OnInit {
     }
 
     clickPrestige() {
+        this.getDebuxSubscription?.unsubscribe()
+        this.getUpgradesSubscription?.unsubscribe()
+        this.getPrestigeSubscription?.unsubscribe()
         this.prestige += 1;
         this.purchasedUpgradesPerSec = [];
         this.purchasedUpgradesPerClick = [];
@@ -474,7 +482,6 @@ export class ClickerService implements OnInit {
         this.upgrades = upgradesDefault;
         this.debux = 0;
         this.autosave();
-        this.ngOnInit;
     }
 
 }
