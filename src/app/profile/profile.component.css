@@ -68,7 +68,7 @@ p {
   border-radius: 8px;
 }
 
-.picture, .add-friend {
+.picture, .user-settings {
   width: 40%;
 }
 
@@ -80,7 +80,12 @@ p {
   width: 100%;
   padding-bottom: 10px;
 }
-
+.user-settings:hover {
+  cursor: pointer;
+}
+.user-settings:active {
+  transform: scale(0.9);
+}
 
 
 
@@ -239,5 +244,58 @@ p {
   color: #92EE61;
 }
 #cancel {
+  color: #C64A49;
+}
+#password {
+  color: #C64A49;
+}
+
+.overlay2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  border-radius: 30px;
+}
+.overlay2-title {
+  width: 100%;
+  text-align: center;
+  border-bottom: thin solid #E37A70;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.overlay2-title h1 {
+  font-size: 2vw;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #212121;
+}
+.overlay2-container {
+  width: 100%;
+  text-align: center;
+  background-color: #313131;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+}
+.overlay2-container p {
+  padding: 0px;
+  margin: 0px;
+  font-size: 1.2vw;
+  color: #92EE61;
+}
+#saved-title {
+  background-color: #92EE61;
+}
+#saved-p {
+  color: #92EE61;
+}
+#wrong-title {
+  background-color: #C64A49;
+}
+#wrong-p {
   color: #C64A49;
 }
