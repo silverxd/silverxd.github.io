@@ -6,8 +6,8 @@
 </head>
 <body>
 <div class="static-sidebar">
-    <a (click)="showComponent('bugs')">Bugs</a>
-    <a (click)="showComponent('posts')">Posts</a>
+    <a (click)="showComponent('bugs')" [ngClass]="{'bold-text': currentComponent === 'bugs'}">Bugs</a>
+    <a (click)="showComponent('posts')" [ngClass]="{'bold-text': currentComponent === 'posts'}">Posts</a>
     <a>Sales</a>
 </div>
 <app-bugs *ngIf="currentComponent =='bugs'" style="width: 90%"></app-bugs>

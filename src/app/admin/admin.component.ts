@@ -7,10 +7,8 @@ import {Component} from '@angular/core';
     styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-    currentComponent: string = 'posts';
-    constructor() {
-    }
-
+    currentComponent: string = 'bugs';
+    constructor() {}
     showComponent(component: string): void {
         this.currentComponent = component;
     }

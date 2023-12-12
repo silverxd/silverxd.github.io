@@ -1,18 +1,47 @@
 <div class="content" *ngIf="posts$ | async as posts">
     <div class="post-box" *ngFor="let post of posts">
-        <div class="post">
+        <div class="postshort">
             <div class="tip">
                 <div class="priority">
-                    <p>Name</p>
-                    <p>{{post.timestamp.toDate() | date: 'short'}}</p>
+                    <p style="font-weight: bold">Silver</p>
+                    <p style="font-size: 0.8vw">{{post.timestamp.toDate() | date: 'short'}}</p>
                 </div>
             </div>
             <div class="meta">
                 <p>{{post.text}}</p>
                 <img src="{{post.image_url}}">
-                <a>Open</a>
+                <a (click)="toggleDelete(post)">Open</a>
             </div>
         </div>
     </div>
 </div>
 
+
+<ng-template #deleteTemplate>
+    <div class="post-box-opened">
+        <div class="header">
+            <button (click)="toggleDelete('')">X</button>
+        </div>
+        <div class="post">
+            <img src="{{ openedpost.profile_pic }}" alt="Avatar" class="avatar">
+            <p class="mainText">{{ openedpost.display_name }}</p>
+            <p class="subText">{{ openedpost.timestamp.toDate() | date: 'short' }}</p>
+            <hr/>
+            <p class="mainText">{{ openedpost.text }}</p>
+            <img src="{{ openedpost.image_url }}" alt="{{ openedpost.image_url }}" style="max-height: 420px;" class="center">
+            <p class="subText"
+               style="float:left;">{{ openedpost.likes.length }} {{ openedpost.likes.length === 1 ? 'like' : 'likes' }}</p>
+            <p class="subText"
+               style="float:right;">{{ openedpost.comments.length }} {{ openedpost.comments.length === 1 ? 'comment' : 'comments' }}</p>
+            <br><br>
+            <hr/>
+            <img src="assets/img/like_active.svg" class="icons" style="float:left;">
+            <img src="assets/img/share.svg" class="icons" style="float:left;">
+            <textarea #commentText class="commentText" type="text"></textarea>
+            <img src="assets/img/send.svg" class="icons" style="float:right;">
+        </div>
+        <div class="delete-button">
+            <img src="assets/img/delete.svg" (click)="delete()">
+        </div>
+    </div>
+</ng-template>

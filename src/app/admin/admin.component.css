@@ -18,9 +18,18 @@ body, html {
 
 .static-sidebar a {
     font-size: 1vw;
-    font-weight: 400;
     margin-top: 15px;
 }
+
 .static-sidebar a {
     cursor: pointer;
+}
+
+.bold-text {
+    font-weight: 550;
+    color: #313131;
+}
+
+.static-sidebar a:active{
+    font-size: 0.9vw;
 }

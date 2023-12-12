@@ -12,11 +12,13 @@ p, a {
     padding: 0;
     margin-left: 10%;
 }
+
 .post-box {
     margin-top: 2vw;
     width: 70%;
 }
-.post {
+
+.postshort {
     display: flex;
     gap: 5%;
     border-radius: 20px;
@@ -42,10 +44,9 @@ p, a {
 
 .meta img {
     height: 5vw;
-    border: 2px solid #6A5988;
 }
 
-.description, .open{
+.description, .open {
     display: flex;
     align-items: center;
 }
@@ -53,4 +54,104 @@ p, a {
 a {
     color: #6A5988;
     cursor: pointer;
+}
+
+a:active{
+    font-size: 0.7vw;
+}
+
+.post {
+    color: white;
+    width: 880px;
+    background: #313131;
+    border-radius: 40px 40px 0 0;
+    padding: 40px;
+    margin-top: 10px;
+}
+
+.post-box-opened {
+    border-radius: 20px 20px;
+    background-color: #6A5988;
+}
+
+.header {
+    display: flex;
+    justify-content: right;
+}
+
+.header button {
+    top: 0;
+    right: 0;
+    color: #E0E1E1;
+    font-weight: bolder;
+    background: transparent;
+    font-size: 30px;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.mainText {
+    color: white;
+    font-size: 40px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: auto;
+}
+
+.subText {
+    color: white;
+    font-size: 25px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: auto;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icons {
+    max-height: 65px;
+    padding: 5px;
+}
+
+.commentText {
+    width: 73%;
+    height: 75px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    border: 2px solid #878787;
+    border-radius: 37.5px;
+    background-color: #212121;
+    resize: none;
+    color: white;
+    font-size: 25px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: 0px 0px 0px 10px;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+    height: 2vw;
+    background-color: #c64a49;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+    gap: 5vw;
 }
