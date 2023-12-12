@@ -21,3 +21,35 @@ body,html{
 p {
   color:white;
 }
+
+
+
+.make-post-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+  padding: 20px;
+  border: thin solid #6A5988;
+  border-radius: 20px;
+  background-color: #313131;
+}
+
+.make-post-box p {
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+}
+
+.make-post-box textarea {
+  background-color: #212121;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+}
+
+.medium-pic {
+  width: 20vw;
+}

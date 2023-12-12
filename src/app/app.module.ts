@@ -33,6 +33,7 @@ import { ShortNumberPipe } from './short-number.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import {BugsComponent} from "./admin/bugs/bugs.component";
 import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
+import {TextFieldModule} from "@angular/cdk/text-field";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -77,6 +78,7 @@ import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
         NgChartsModule,
         BugsComponent,
         PostsAdminComponent,
+        TextFieldModule,
 
     ],
   providers: [AuthService, ClickerService],
