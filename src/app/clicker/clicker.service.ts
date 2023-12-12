@@ -326,7 +326,7 @@ export class ClickerService implements OnInit {
             } else if (upgrade === this.upgrades[16] && this.upgrades[16].purchased != 0) {
                 this.sidePannelOpen = true;
                 this.prestigeOpen = true;
-            } 
+            }
             if (upgrade.onetime) {
                 upgrade.affordable = true
             }
@@ -392,7 +392,7 @@ export class ClickerService implements OnInit {
     priceDefault() {
         for (const dict in this.upgrades) {
             this.upgrades[dict].cost = this.upgrades[dict].cost * 2
-        } 
+        }
     }
 
     randomChoice(arr: any[]){
@@ -400,7 +400,7 @@ export class ClickerService implements OnInit {
     }
 
     generateSnippet() {
-        this.snippet = 
+        this.snippet =
             this.firstLine + "\n" +
             this.secondLine + "\n" +
             this.thirdLine + "\n" +

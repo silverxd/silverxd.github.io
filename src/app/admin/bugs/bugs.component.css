@@ -1,0 +1,131 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 70vw;
+    padding: 0;
+    margin-left: 10%;
+}
+
+
+.graph-box {
+    width: 70%;
+}
+
+.report:hover, .graph:hover {
+    box-shadow: 0 0 20px 0px #6A5988;
+    transition: box-shadow 1s ease-in-out;
+}
+
+.graph {
+    background-color: #313131;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.bugs-section {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 3vw;
+
+}
+
+.bugs-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reports-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.report {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 20px;
+    margin: 20px;
+    gap: 5%;
+    background-color: #313131;
+}
+
+.report a {
+    color: #6A5988;
+    font-size: 1vw;
+    margin-right: 2%;
+}
+
+.report p {
+    font-size: 1vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+.report .info {
+    width: 60%;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    background-color: #6A5988;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.open {
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+}
+
+.open a {
+    cursor: pointer;
+}
+
+:root {
+    --arrow-bg: rgba(255, 255, 255, 0.3);
+    --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+    --select-bg: rgba(143, 9, 9, 0.2);
+}
+
+select {
+    /* Reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    width: 20rem;
+    padding: 1rem 4rem 1rem 1rem;
+    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    color: white;
+    border-radius: 0.25em;
+    box-shadow: 0 0 5px 2px #6A5988;
+    cursor: pointer;
+    /* Remove IE arrow */
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    /* Remove focus outline */
+
+    &:focus {
+        outline: none;
+    }
+}
+
+option {
+    color: inherit;
+    background-color: #313131;
+}

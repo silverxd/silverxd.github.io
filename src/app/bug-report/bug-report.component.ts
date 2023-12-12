@@ -1,13 +1,22 @@
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+
+export interface Bug {
+  topic: string;
+  customText: string;
+  timestamp: Date;
+}
+
 import { Component, ElementRef, ViewChild, TemplateRef, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayService } from '../overlay.service';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-bug-report',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './bug-report.component.html',
   styleUrl: './bug-report.component.css'
 })
@@ -25,11 +34,14 @@ export class BugReportComponent implements AfterViewInit {
 
   public sendIsYes: boolean = false;
 
+  userInput: string = '';
+
   constructor(
     private overlay: Overlay,
     private overlayService: OverlayService,
     private viewContainerRef: ViewContainerRef,
     private elementRef: ElementRef,
+    private db: AngularFirestore,
   ) {}
 
   ngAfterViewInit() {
@@ -40,7 +52,7 @@ export class BugReportComponent implements AfterViewInit {
 
   private initializeDropdown() {
     const dropdownElement = this.elementRef.nativeElement.querySelector('.dropdown');
-    
+
     if (dropdownElement) {
       const positionStrategy = this.overlay.position()
         .flexibleConnectedTo(dropdownElement)
@@ -63,7 +75,7 @@ export class BugReportComponent implements AfterViewInit {
           .global()
           .centerHorizontally()
           .centerVertically();
-  
+
         this.cancelOverlayRef = this.overlay.create({
           positionStrategy,
           hasBackdrop: true,
@@ -76,7 +88,7 @@ export class BugReportComponent implements AfterViewInit {
           .global()
           .centerHorizontally()
           .centerVertically();
-  
+
         this.sendOverlayRef = this.overlay.create({
           positionStrategy,
           hasBackdrop: true,
@@ -132,9 +144,25 @@ export class BugReportComponent implements AfterViewInit {
 
   sendYes() {
     this.sendIsYes = !this.sendIsYes
+    this.sendReportToDatabase(this.userInput, this.problem_with)
   }
 
   closeOverlay() {
     this.overlayService.closeOverlay();
+  }
+
+  sendReportToDatabase(userInput: string, problem: string) {
+    const bug: Bug = {
+      topic: problem,
+      customText: userInput,
+      timestamp: new Date(),
+    }
+    this.db.collection('Bugs').add(bug)
+      .then(() => {
+      console.log('Bug report has been successfully sent to admins.')
+    })
+      .catch((error) => {
+        console.log('Error on sending report', error)
+      })
   }
 }
