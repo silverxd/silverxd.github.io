@@ -123,13 +123,13 @@
 .clicker-content {
   display: flex;
   justify-content: start;
-  width: 100%
+  width: 100%;
 }
 .clicker-content code {
   white-space: pre;
   font-size: 0.9vw;
   color: #2f9e44;
-  margin: 10px;
+  margin-left: 10px;
 }
 .clicker-content:hover {
   cursor: pointer;
@@ -139,9 +139,11 @@
 }
 /*------------------------------------ */
 .clicker-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   border-top: thick solid #6A5988;
-  text-align: center;
 }
 .clicker-bottom a {
   color: #6A5988;
@@ -157,7 +159,6 @@
 }
 .clicker-bottom p {
   margin: 0px;
-  margin-top: 3%;
   font-size: 100%;
 }
 /*------------------------------------ */
@@ -218,7 +219,7 @@
 }
 
 .sideName p, .middleName p {
-  font-size: 40px;
+  font-size: 2vw;
   margin: 0;
   margin-top: 15px;
 }
@@ -240,17 +241,18 @@
 
 /*------------------------------------ */
 .box {
-    display: flex;
-    justify-content: center;
-    border-radius: 20px;
-    margin-top: 30px;
-    cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  width: 29vw;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  margin-top: 30px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .box:hover {
@@ -290,6 +292,7 @@
 .box-text p {
   margin-bottom: 0px;
   margin-top: 5px;
+  font-size: 1.4vw;
 }
 
 h4 {
@@ -297,6 +300,7 @@ h4 {
   margin: 0px;
   font-family: 'IBM Plex Mono ExtraLight', monospace;
   margin-bottom: 10px;
+  font-size: 0.9vw;
 }
 
 /*------------------------------------ */
@@ -309,6 +313,7 @@ h4 {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 18px;
   font-weight: lighter;
+  font-size: 1vw;
 }
 
 /*------------------------------------ */
@@ -327,4 +332,5 @@ h4 {
   color: #E0E1E1;
   margin: 0px;
   font-size: 25px;
+  font-size: 1.5vw;
 }

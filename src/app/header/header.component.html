@@ -31,7 +31,7 @@
                     <img src="assets\img\menu_clicker.svg" alt="">
                     <h4>Clicker</h4>
                 </div>
-                <div class="box">
+                <div class="box" routerLink="/buy-debux">
                     <img src="assets\img\menu_debux.svg" alt="">
                     <h4> Buy DeBux</h4>
                 </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </mat-sidenav>
-    <mat-sidenav-content (click)="sidenav.close()">
+    <mat-sidenav-content #matSidenavContent (click)="sidenav.close()">
         <ng-content></ng-content>
     </mat-sidenav-content>
 </mat-sidenav-container>

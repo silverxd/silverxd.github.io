@@ -7,13 +7,13 @@
     <p>Current</p>
     <div class="debux">
       <h3 *ngIf="loading"><<span style="color: rgba(172,39,39,0.34);">Loading</span>>  DBs</h3>
-      <h3 *ngIf="!loading"><<span style="color: #7D93DF;">{{debux}}</span>>  DBs</h3>
+      <h3 *ngIf="!loading"><<span style="color: #7D93DF;">{{ debux | shortNumber }}</span>>  DBs</h3>
     </div>
   </div>
   <div class="field">
     <p>Per second:</p>
     <div class="per-second">
-      <h3>+{{perSecond}} DB/s</h3>
+      <h3>+{{ perSecond | shortNumber }} DB/s</h3>
     </div>
   </div>
   <div class="transaction">

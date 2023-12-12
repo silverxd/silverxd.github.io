@@ -28,6 +28,8 @@ import {AuthService} from "./auth.service";
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "./friends-box/friends-box.component";
+import { ParticleDirective } from './particle.directive';
+import { ShortNumberPipe } from './short-number.pipe';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -41,6 +43,8 @@ import {FriendsBoxComponent} from "./friends-box/friends-box.component";
     ClickerComponent,
     ProfileComponent,
     CreditBoxComponent,
+    ParticleDirective,
+    ShortNumberPipe,
   ],
   imports: [
     BrowserModule,
