@@ -26,11 +26,11 @@
           <p>13 Friends</p>
         </div>
       </div>
-      <div class="add-friend">
+      <div class="add-friend" (click)="toggleSettings()">
         <img src="assets/img/user_settings.svg" alt="Change settings">
       </div>
     </div>
-    <div class="images">
+    <div class="images" *ngIf="!settingsOpen">
       <img src="path/to/image1.jpg" alt="Image 1"
            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
       <img src="path/to/image2.jpg" alt="Image 2"
@@ -48,6 +48,25 @@
       <img src="path/to/image3.jpg" alt="Image 8"
            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
     </div>
+    <div class="settings" *ngIf="settingsOpen">
+      <div class="line">
+        <div class="setting">
+          <h3>Username:</h3>
+          <p id="value">{{this.user?.displayName}}</p>
+        </div>
+        <p id="change" (click)="toggleChange('username')">Change</p>
+      </div>
+      <div class="line">
+        <h3>Email:</h3>
+        <p id="value"></p>
+        <p id="change" (click)="toggleChange('email')">Change</p>
+      </div>
+      <div class="line">
+        <h3>Password:</h3>
+        <p id="value"></p>
+        <p id="change" (click)="toggleConfirm()">Change</p>
+      </div>
+    </div>
   </div>
   <div class="right-side">
     <app-friends-box></app-friends-box>
@@ -59,4 +78,32 @@
 </div>
 </body>
 
+<ng-template #changeTemplate>
+  <div class="overlay">
+      <div class="overlay-title">
+          <h1>Write your new {{type}}</h1>
+      </div>
+      <div class="overlay-container">
+          <input type="text">
+          <div class="overlay-buttons">
+              <p class="overlay-button" id="cancel" (click)="toggleChange('')">Cancel</p>
+              <p class="overlay-button" id="save" (click)="toggleChange('')">Save</p>
+          </div>
+      </div>
+  </div>
+</ng-template>
 
+<ng-template #confirmTemplate>
+  <div class="overlay">
+      <div class="overlay-title">
+          <h1>Enter your old password</h1>
+      </div>
+      <div class="overlay-container">
+          <input type="text">
+          <div class="overlay-buttons">
+              <p class="overlay-button" id="cancel" (click)="toggleConfirm()">Cancel</p>
+              <p class="overlay-button" id="continue" (click)="toggleChange('password')">Continue</p>
+          </div>
+      </div>
+  </div>
+</ng-template>
