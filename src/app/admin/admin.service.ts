@@ -13,4 +13,8 @@ export class AdminService {
   getBugReports() {
     return this.db.collection<Bug>('Bugs').valueChanges();
   }
+
+  getPosts(){
+    return this.db.collection('posts').valueChanges();
+  }
 }

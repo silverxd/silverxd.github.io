@@ -1,1 +1,18 @@
-<p>posts-admin works!</p>
+<div class="content" *ngIf="posts$ | async as posts">
+    <div class="post-box" *ngFor="let post of posts">
+        <div class="post">
+            <div class="tip">
+                <div class="priority">
+                    <p>Name</p>
+                    <p>{{post.timestamp.toDate() | date: 'short'}}</p>
+                </div>
+            </div>
+            <div class="meta">
+                <p>{{post.text}}</p>
+                <img src="{{post.image_url}}">
+                <a>Open</a>
+            </div>
+        </div>
+    </div>
+</div>
+

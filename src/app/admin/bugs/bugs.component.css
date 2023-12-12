@@ -9,22 +9,6 @@
 }
 
 
-.static-sidebar {
-    display: flex;
-    position: fixed;
-    flex-direction: column;
-    width: 10%;
-    height: 100%;
-    background-color: #6A5988;
-    text-align: center;
-}
-
-.static-sidebar a {
-    font-size: 1vw;
-    font-weight: 400;
-    padding-top: 15px;
-}
-
 .graph-box {
     width: 70%;
 }
