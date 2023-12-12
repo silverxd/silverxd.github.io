@@ -1,0 +1,35 @@
+<div class="content">
+    <div class="graph-box">
+        <h1>Bug reports</h1>
+        <canvas baseChart class="graph"
+                [datasets]="lineChartData"
+                [labels]="sortedLineChartLabels"
+                [options]="lineChartOptions"
+                [legend]="true"
+                [type]="'line'">
+        </canvas>
+    </div>
+    <div class="bugs-section">
+        <div class="bugs-title">
+            <h2>Reported bugs</h2>
+            <select [(ngModel)]="selectedTopic">
+                <option value="All">All</option>
+                <option *ngFor="let bug of bugs" [value]="bug.topic">{{bug.topic}}</option>
+            </select>
+        </div>
+        <div class="reports-box" *ngFor="let bug of filteredBugs()">
+            <div class="report">
+                <div class="meta">
+                    <p>{{bug.topic}}</p>
+                    <p>{{ formatDateInMeta(bug.timestamp) | date: 'short'}}</p>
+                </div>
+                <div class="info">
+                    <p>{{bug.customText}}</p>
+                </div>
+                <div class="open">
+                    <a>Open</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

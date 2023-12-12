@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    display: flex;
+}
+
+
+.static-sidebar {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    width: 10%;
+    height: 100%;
+    background-color: #6A5988;
+    text-align: center;
+}
+
+.static-sidebar a {
+    font-size: 1vw;
+    margin-top: 15px;
+}
+
+.static-sidebar a {
+    cursor: pointer;
+}
+
+.bold-text {
+    font-weight: 550;
+    color: #313131;
+}
+
+.static-sidebar a:active{
+    font-size: 0.9vw;
+}
