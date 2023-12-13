@@ -33,6 +33,7 @@ import { ShortNumberPipe } from './short-number.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import {BugsComponent} from "./admin/bugs/bugs.component";
 import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
+import { ProfileBoxComponent } from './profile-box/profile-box.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -77,7 +78,7 @@ import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
         NgChartsModule,
         BugsComponent,
         PostsAdminComponent,
-
+        ProfileBoxComponent,
     ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
