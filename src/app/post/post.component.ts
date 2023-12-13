@@ -25,7 +25,7 @@ export class PostComponent implements OnInit{
         this.loading = true;
         // Fetch posts from the database
         this.service.getPosts().subscribe((value) => {
-          this.posts = value || 0;
+          this.posts = value.sort((a, b) => a.timestamp - b.timestamp) || 0;
           this.loading = false;
           this.cd.detectChanges()
         });
