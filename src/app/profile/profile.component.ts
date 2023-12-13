@@ -50,6 +50,7 @@ export class ProfileComponent {
       this.authState$ = this.afAuth.authState;
       this.authState$.subscribe((user) => {
         this.user = user;
+        this.cdr.detectChanges();
       })
       this.currentPassword = "";
       this.newDisplayName = "";
@@ -64,7 +65,7 @@ export class ProfileComponent {
       };
     }
     const textLength = text.length;
-    if (textLength > 15) {
+    if (textLength > 14) {
       const fontSize = 1.6 - (textLength / 40);
   
       return {

@@ -1,14 +1,25 @@
  <div class="box">
     <div class="top">
-        <img src="assets\img\profile_white.svg" alt="">
+        <img src="assets\img\profile_white.svg" alt="" (click)="makeActive()">
         <h1>Your Profile</h1>
     </div>
     <div class="content">
-        <div class="user">
-
+        <div class="user" routerLink="/profile">
+            <img src="path/to/profile-pic.jpg" alt="Profile picture"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Pan_Blue_Circle.png/480px-Pan_Blue_Circle.png'">
+             <div class="info">
+                <p id="name" [ngStyle]="dynamicStyles(this.user?.displayName)">{{user?.displayName}}</p>
+                <p id="email" [ngStyle]="dynamicStyles(user?.email)">{{user?.email}}</p>
+             </div>
         </div>
         <div class="buttons">
-            
+            <img src="assets\img\profile_notification_inactive.svg" alt="" id="notification" *ngIf="!notificationOpen && !notification" (click)="toggleNotification('o')">
+            <img src="assets\img\profile notification_active.svg" alt="" id="notification" *ngIf="!notificationOpen && notification" (click)="toggleNotification('o')">
+            <img src="assets\img\profile_notification_clicked.svg" alt="" id="notification" *ngIf="notificationOpen" (click)="toggleNotification('c')">
+
+            <img src="assets\img\profile_message_inactive.svg" alt="" id="message" *ngIf="!messageOpen && !message" (click)="toggleMessage('o')">
+            <img src="assets\img\profile_message_active.svg" alt="" id="message" *ngIf="!messageOpen && message" (click)="toggleMessage('o')">
+            <img src="assets\img\profile_message_clicked.svg" alt="" id="message" *ngIf="messageOpen" (click)="toggleMessage('c')">
         </div>
     </div>
  </div>
