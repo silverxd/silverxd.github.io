@@ -34,6 +34,11 @@ import { NgChartsModule } from 'ng2-charts';
 import {BugsComponent} from "./admin/bugs/bugs.component";
 import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
 import {TextFieldModule} from "@angular/cdk/text-field";
+import { ProfileBoxComponent } from './profile-box/profile-box.component';
+import { MessagesComponent } from './messages/messages.component';
+import { BuyDebuxComponent } from './buy-debux/buy-debux.component';
+import { BugReportComponent } from './bug-report/bug-report.component';
+import { AddFriendsComponent } from './add-friends/add-friends.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -49,37 +54,41 @@ import {TextFieldModule} from "@angular/cdk/text-field";
     CreditBoxComponent,
     ParticleDirective,
     ShortNumberPipe,
+    ProfileBoxComponent,
+    FriendsBoxComponent,
+    MessagesComponent,
+    BuyDebuxComponent,
+    BugReportComponent,
+    AddFriendsComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatIconModule,
-        MatToolbarModule,
-        HttpClientModule,
-        AngularFireModule.initializeApp({
-            apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
-            authDomain: "earn2post.firebaseapp.com",
-            projectId: "earn2post",
-            storageBucket: "earn2post.appspot.com",
-            messagingSenderId: "627810397108",
-            appId: "1:627810397108:web:9c06f50115255b39cf20e1"
-        }),
-        AngularFireAuthModule,
-        AngularFirestoreModule,
-        OverlayModule,
-        EmojiModule,
-        PickerComponent,
-        FriendsBoxComponent,
-        NgChartsModule,
-        BugsComponent,
-        PostsAdminComponent,
-        TextFieldModule,
-
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+        apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
+        authDomain: "earn2post.firebaseapp.com",
+        projectId: "earn2post",
+        storageBucket: "earn2post.appspot.com",
+        messagingSenderId: "627810397108",
+        appId: "1:627810397108:web:9c06f50115255b39cf20e1"
+    }),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    OverlayModule,
+    EmojiModule,
+    PickerComponent,
+    NgChartsModule,
+    BugsComponent,
+    PostsAdminComponent,
+    TextFieldModule,
     ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

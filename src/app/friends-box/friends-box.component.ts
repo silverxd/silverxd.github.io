@@ -11,8 +11,6 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-friends-box',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './friends-box.component.html',
   styleUrl: './friends-box.component.css'
 })

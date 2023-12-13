@@ -12,6 +12,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "../friends-box/friends-box.component";
+import { ProfileBoxComponent } from '../profile-box/profile-box.component';
 import {Message, MessagesService} from "./messages.service";
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "../auth.service";
@@ -19,8 +20,6 @@ import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-messages',
-  standalone: true,
-  imports: [CommonModule, RouterLink, MatFormFieldModule, MatInputModule, PickerComponent, FriendsBoxComponent, FormsModule],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css',
 })
