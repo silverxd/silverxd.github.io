@@ -20,8 +20,6 @@ import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-messages',
-  standalone: true,
-  imports: [CommonModule, RouterLink, MatFormFieldModule, MatInputModule, PickerComponent, FriendsBoxComponent, FormsModule, ProfileBoxComponent],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css',
 })
