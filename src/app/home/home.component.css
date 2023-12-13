@@ -1,23 +1,98 @@
 body,html{
   background-color: #6A5988;
 }
-.center-container{
+.site{
   display:flex;
   justify-content: space-around;
   margin-top: 30px;
 }
-.left-container, .right-container{
+.left-column, .right-column{
   margin-top: 30px;
   width: 20%;
   text-align: center;
 }
-.right-container {
+.right-column {
   justify-content: center;
   height: 100px;
   color: white;
 }
 
 
+h1, h2, h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
 p {
   color:white;
 }
+
+.input-section {
+}
+
+.center-element{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.make-post-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 40vw;
+  border-radius: 20px;
+  background-color: #313131;
+}
+
+.make-post-box p {
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+}
+
+.make-post-box textarea {
+  background-color: #212121;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+}
+.custom-file {
+  color: white;
+}
+
+.custom-file::-webkit-file-upload-button {
+  background-color: #6A5988;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  padding: 10px;
+}
+
+
+.medium-pic {
+  width: 20vw;
+}
+
+
+.input-field {
+  display: flex;
+  width: 70%;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.input-field img {
+  width: 5%;
+}
+
+.input-field label img {
+  height: 80%;
+}
+

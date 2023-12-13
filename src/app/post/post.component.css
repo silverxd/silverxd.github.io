@@ -1,6 +1,6 @@
 .post {
     color: white;
-    width: 880px;
+    width: 50vw;
     background: #313131;
     border-radius: 40px;
     padding: 40px;
@@ -8,6 +8,11 @@
     margin-bottom: 40px;
 }
 
+.post-box-opened {
+    display: flex;
+    background-color: #6A5988;
+
+}
 .mainText {
     color: white;
     font-size: 40px;
