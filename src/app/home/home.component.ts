@@ -7,12 +7,13 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TemplatePortal} from "@angular/cdk/portal";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import { ProfileBoxComponent } from '../profile-box/profile-box.component';
 import {take} from "rxjs";
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
 
@@ -28,7 +29,7 @@ export class HomeComponent {
         private fb: FormBuilder,
         private storage: AngularFireStorage,
         private auth: AuthService,
-        private cd: ChangeDetectorRef
+        private cd: ChangeDetectorRef,
     ) {
         this.imageForm = this.fb.group({
             image: ['']

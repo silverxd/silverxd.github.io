@@ -15,8 +15,6 @@ import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-bug-report',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './bug-report.component.html',
   styleUrl: './bug-report.component.css'
 })
