@@ -33,6 +33,7 @@ import { ShortNumberPipe } from './short-number.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import {BugsComponent} from "./admin/bugs/bugs.component";
 import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
+import {TextFieldModule} from "@angular/cdk/text-field";
 import { ProfileBoxComponent } from './profile-box/profile-box.component';
 
 @NgModule({
@@ -78,7 +79,7 @@ import { ProfileBoxComponent } from './profile-box/profile-box.component';
         NgChartsModule,
         BugsComponent,
         PostsAdminComponent,
-        ProfileBoxComponent,
+
     ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
