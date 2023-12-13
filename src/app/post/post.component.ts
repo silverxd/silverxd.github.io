@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import { PostService } from "./post.service";
@@ -13,11 +13,11 @@ import { PostService } from "./post.service";
 export class PostComponent implements OnInit{
   loading: boolean;
   posts: any;
-  
-  constructor(public service: PostService, private store: AngularFirestore){
+
+  constructor(public service: PostService, private store: AngularFirestore, private cd: ChangeDetectorRef){
     this.loading = false;
   }
-  
+
   ngOnInit(){
     // Subscribe to authentication state changes
     this.service.authState$.subscribe((user) => {
@@ -27,6 +27,7 @@ export class PostComponent implements OnInit{
         this.service.getPosts().subscribe((value) => {
           this.posts = value || 0;
           this.loading = false;
+          this.cd.detectChanges()
         });
       }
     });

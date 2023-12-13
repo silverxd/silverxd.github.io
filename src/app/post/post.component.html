@@ -1,7 +1,6 @@
-<img src="">
 <!-- <h1 class="mainText" *ngIf="service.user">Currently logged in as: {{ service.user.displayName }}</h1> -->
 <!-- <h3 class="subText">Total posts on the backend: {{ posts?.length }}</h3> -->
-<ul>
+
 <div *ngFor="let post of posts; let i = index;" class="post">
     <img src="{{ post.profile_pic }}" alt="Avatar" class="avatar">
     <p class="mainText">{{ post.display_name }}</p>
@@ -45,4 +44,4 @@
 
 
 </div> -->
-</ul>
+

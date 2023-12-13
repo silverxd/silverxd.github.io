@@ -14,9 +14,7 @@ import {take} from "rxjs";
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
-    @ViewChild('addTemplate', {static: true}) addTemplate!: TemplateRef<any>;
-    private addOverlayRef!: OverlayRef;
+export class HomeComponent {
 
     pictureToSend: string | null = null;
     imageForm: FormGroup;
@@ -24,15 +22,14 @@ export class HomeComponent implements AfterViewInit {
     textToSend: string = ''
     user: any;
     constructor(
-        private overlay: Overlay,
-        private viewContainerRef: ViewContainerRef,
         private db: AngularFirestore,
-        private cd: ChangeDetectorRef,
         private headerComponent: HeaderComponent,
         private authService: AuthService,
         private fb: FormBuilder,
         private storage: AngularFireStorage,
-        private auth: AuthService) {
+        private auth: AuthService,
+        private cd: ChangeDetectorRef
+    ) {
         this.imageForm = this.fb.group({
             image: ['']
         });
@@ -46,33 +43,6 @@ export class HomeComponent implements AfterViewInit {
     logout() {
         this.authService.logout()
     }
-
-    ngAfterViewInit() {
-        this.initializeAdd();
-    }
-
-    toggleAdd() {
-        if (this.addOverlayRef.hasAttached()) {
-            this.addOverlayRef.detach();
-        } else {
-            const portal = new TemplatePortal(this.addTemplate, this.viewContainerRef);
-            this.addOverlayRef.attach(portal);
-        }
-    }
-
-    private initializeAdd() {
-        const positionStrategy = this.overlay.position()
-            .global()
-            .centerHorizontally()
-            .centerVertically();
-
-        this.addOverlayRef = this.overlay.create({
-            positionStrategy,
-            hasBackdrop: true,
-            backdropClass: 'overlay-backdrop'
-        });
-    }
-
 
     onFileSelected(event: any): void {
         const file = event.target.files[0];
@@ -97,7 +67,6 @@ export class HomeComponent implements AfterViewInit {
                 // You may display an error message to the user
             }
         }
-        console.log(this.textToSend)
     }
 
     async sendPost(): Promise<void> {
@@ -123,7 +92,9 @@ export class HomeComponent implements AfterViewInit {
                     }
                     this.db.collection('posts').add(data)
                     console.log('Image URL:', url);
-                    this.toggleAdd()
+                    this.textToSend = ''
+                    this.pictureToSend = ''
+                    this.cd.detectChanges()
                 });
             });
         }
