@@ -26,11 +26,11 @@
           <p>13 Friends</p>
         </div>
       </div>
-      <div class="add-friend">
+      <div class="user-settings"  (click)="toggleSettings()">
         <img src="assets/img/user_settings.svg" alt="Change settings">
       </div>
     </div>
-    <div class="images">
+    <div class="images" *ngIf="!settingsOpen">
       <img src="path/to/image1.jpg" alt="Image 1"
            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
       <img src="path/to/image2.jpg" alt="Image 2"
@@ -48,6 +48,30 @@
       <img src="path/to/image3.jpg" alt="Image 8"
            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
     </div>
+    <div class="settings" *ngIf="settingsOpen">
+      <div class="line">
+        <div class="setting">
+          <h3>Username:</h3>
+          <p id="value" [ngStyle]="dynamicStyles(this.user?.displayName)">{{this.user?.displayName}}</p>
+        </div>
+        <p id="change" (click)="toggleChange('username')">Change</p>
+      </div>
+      <div class="line">
+        <div class="setting">
+          <h3>Email:</h3>
+          <p id="value" [ngStyle]="dynamicStyles(this.user?.email)">{{this.user?.email}}</p>
+        </div>
+        <!-- <p id="change" (click)="toggleConfirm('email')">Change</p> -->
+        <p id="change">Change</p>
+      </div>
+      <div class="line">
+        <div class="setting">
+          <h3>Password:</h3>
+          <p id="password">****</p>
+        </div>
+        <p id="change" (click)="toggleConfirm('password')">Change</p>
+      </div>
+    </div>
   </div>
   <div class="right-side">
     <app-friends-box></app-friends-box>
@@ -59,4 +83,70 @@
 </div>
 </body>
 
+<ng-template #changeTemplate>
+  <div class="overlay">
+      <div class="overlay-title">
+          <h1>Write your new {{type}}</h1>
+      </div>
+      <div class="overlay-container">
+          <input type="text" *ngIf="type === 'username'" [(ngModel)]="newDisplayName">
+          <input type="text" *ngIf="type === 'email'" [(ngModel)]="newEmail">
+          <input type="text" *ngIf="type === 'password'" type="password" [(ngModel)]="newPassword" autocomplete="new-password">
+          <div class="overlay-buttons">
+              <p class="overlay-button" id="cancel" (click)="toggleChange('')">Cancel</p>
+              <p class="overlay-button" id="save" *ngIf="type === 'username'" (click)="updateDisplayName()">Save</p>
+              <p class="overlay-button" id="save" *ngIf="type === 'email'" (click)="updateEmail()">Save</p>
+              <p class="overlay-button" id="save" *ngIf="type === 'password'" (click)="updatePassword()">Save</p>
+          </div>
+      </div>
+  </div>
+</ng-template>
 
+<ng-template #confirmTemplate>
+  <div class="overlay">
+      <div class="overlay-title">
+          <h1>Enter your current password</h1>
+      </div>
+      <div class="overlay-container">
+          <input type="text" type="password" [(ngModel)]="currentPassword" autocomplete="new-password">
+          <div class="overlay-buttons">
+              <p class="overlay-button" id="cancel" (click)="toggleConfirm('c')">Cancel</p>
+              <p class="overlay-button" id="continue" *ngIf="type === 'email'" (click)="toggleChange('email')">Continue</p>
+              <p class="overlay-button" id="continue" *ngIf="type === 'password'" (click)="toggleChange('password')">Continue</p>
+          </div>
+      </div>
+  </div>
+</ng-template>
+
+<ng-template #savedTemplate>
+  <div class="overlay2">
+    <div class="overlay2-title" id="saved-title">
+        <h1>Saved!</h1>
+    </div>
+    <div class="overlay2-container">
+      <p id="saved-p">Your Changes have been saved!</p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #wrongTemplate>
+  <div class="overlay2">
+    <div class="overlay2-title" id="wrong-title">
+        <h1>Wrong Password!</h1>
+    </div>
+    <div class="overlay2-container">
+      <p id="wrong-p">Try again to enter your current password!</p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #weakTemplate>
+  <div class="overlay2">
+    <div class="overlay2-title" id="wrong-title">
+        <h1>Password Is Weak!</h1>
+    </div>
+    <div class="overlay2-container">
+      <p id="wrong-p">Try to put more complex password!</p>
+    </div>
+  </div>
+</ng-template>

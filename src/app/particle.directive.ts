@@ -19,14 +19,12 @@ export class ParticleDirective {
 
   ngOnInit() {
     this.scrollService.scroll$.subscribe((scroll) => {
-      console.log(this.scrollValue)
       this.scrollValue = scroll
     });
   }
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
-    console.log(this.scrollValue)
     // Create a particle for the debuxPerClick value
     this.createDebuxPerClickParticle(event.clientX, event.clientY, this.clickerService.calculateTotalDebuxPerClick() * this.clickerService.perClickMultiplier);
 
