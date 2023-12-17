@@ -18,10 +18,10 @@
         <p class="subText" style="float:left;">0 likes</p>
     </ng-template>
     <div *ngIf="post.comments; else noComments">
-        <p class="subText" style="float:right;">{{ post.comments?.length }} {{ post.comments?.length === 1 ? 'comment' : 'comments' }}</p>
+        <p class="hoverableSubText" style="float:right;" (click)="openCommentOverlay()">{{ post.comments.length }} {{ post.comments.length === 1 ? 'comment' : 'comments' }}</p>
     </div>
     <ng-template #noComments>
-        <p class="subText" style="float:right;">0 comments</p>
+        <p class="hoverableSubText" style="float:right;" (click)="openCommentOverlay()">0 comments</p>
     </ng-template>
     <br><br>
     <hr/>
@@ -29,7 +29,7 @@
     <!-- <img src="{{ 1 === 2 ? 'assets/img/like_active.svg' : 'assets/img/like_inactive.svg' }}" class="icons" style="float:left;" (click)="toggleLike(i)"> -->
     <img src="assets/img/like_active.svg" class="icons" style="float:left;">
     <img src="assets/img/share.svg" class="icons" style="float:left;">
-    <textarea #commentText class="commentText" type="text"></textarea>
+    <textarea #commentText class="commentText" type="text" placeholder="Comment..."></textarea>
     <img src="assets/img/send.svg" class="icons" style="float:right;" (click)="postComment(i);commentText.value=' '">
 
 

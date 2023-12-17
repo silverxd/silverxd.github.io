@@ -1,1 +1,22 @@
 <p>comment-overlay works!</p>
+<div class="comment-overlay">
+    <div class="top-bar">
+        <div class="title" id="center">
+            <h1>Comments</h1>
+        </div>
+        <div class="close" id="end">
+            <button (click)="closeOverlay()">X</button>
+        </div>
+    </div>
+    <div class="container">
+    <div *ngFor="let comment of comments;" class="container">
+        <div class="section">
+            <img src="{{ comment.profile_pic }}" alt="Avatar" class="avatar">
+            <p class="mainText">{{ comment.display_name }}</p>
+            <!-- <p class="subText">{{ comment.timestamp.toDate().toLocaleDateString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}</p> -->
+            <p class="subText">{{ comment.timestamp }}</p>
+        <br>
+            <p class="mainText">{{ comment.comment }}</p>
+        </div>
+    </div>
+</div>

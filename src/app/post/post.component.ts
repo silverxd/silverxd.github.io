@@ -2,6 +2,8 @@ import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import { PostService } from "./post.service";
+import { OverlayService } from '../overlay.service';
+import { CommentOverlayComponent } from '../comment-overlay/comment-overlay.component';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class PostComponent implements OnInit{
   loading: boolean;
   posts: any;
 
-  constructor(public service: PostService, private store: AngularFirestore, private cd: ChangeDetectorRef){
+  constructor(public service: PostService, private store: AngularFirestore, private cd: ChangeDetectorRef, private overlayService: OverlayService){
     this.loading = false;
   }
 
@@ -44,5 +46,9 @@ export class PostComponent implements OnInit{
   };
   postComment(i: number) {
     // this.allPosts[i][3] += 1;
+  };
+
+  openCommentOverlay() {
+    this.overlayService.openOverlay(CommentOverlayComponent);
   };
 };
