@@ -1,11 +1,23 @@
-<div class="center-container">
-  <div class="left-container">
-    <app-credit-box></app-credit-box>
-  </div>
-  <div class="center-element">
-    <app-post></app-post>
-  </div>
-  <div class="right-container">
-    <p>Here is notification box</p>
-  </div>
+<div class="site">
+    <div class="left-column">
+        <app-credit-box></app-credit-box>
+    </div>
+    <div class="center-element">
+        <div class="make-post-box">
+            <h2>Share with the world</h2>
+            <div class="input-field">
+                <textarea cdkTextareaAutosize [(ngModel)]="textToSend"></textarea>
+                <img src="assets/img/send.svg" (click)="sendPost()">
+            </div>
+            <input class="custom-file" type="file" (change)="onFileSelected($event)" accept="image/*">
+            <img class="medium-pic" [src]="pictureToSend">
+            <p *ngIf="fileSizeExceedsLimit">Too large file</p>
+        </div>
+        <app-post></app-post>
+    </div>
+    <div class="right-column">
+        <app-profile-box></app-profile-box>
+    </div>
 </div>
+
+

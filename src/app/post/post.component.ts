@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { AngularFirestore } from  '@angular/fire/compat/firestore';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { PostService } from "./post.service";
@@ -14,12 +14,11 @@ import { CommentOverlayComponent } from '../comment-overlay/comment-overlay.comp
 export class PostComponent implements OnInit{
   loading: boolean;
   posts: any;
-  comments: any;
   
-  constructor(public service: PostService, private CommentOverlay: CommentOverlayComponent, private overlayService: OverlayService){
+  constructor(public service: PostService, private store: AngularFirestore, private cd: ChangeDetectorRef, private CommentOverlay: CommentOverlayComponent, private overlayService: OverlayService){
     this.loading = false;
   }
-  
+
   ngOnInit(){
     // Subscribe to authentication state changes
     this.service.authState$.subscribe((user) => {
@@ -27,8 +26,9 @@ export class PostComponent implements OnInit{
         this.loading = true;
         // Fetch posts from the database
         this.service.getPosts().subscribe((value) => {
-          this.posts = value || 0;
+          this.posts = value.sort((a, b) => a.timestamp - b.timestamp) || 0;
           this.loading = false;
+          this.cd.detectChanges()
         });
       }
     });

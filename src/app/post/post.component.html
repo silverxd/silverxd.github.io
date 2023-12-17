@@ -1,11 +1,10 @@
-<img src="">
-<h1 class="mainText" *ngIf="service.user">Currently logged in as: {{ service.user.displayName }}</h1>
-<h3 class="subText">Total posts on the backend: {{ posts.length }}</h3>
-<ul> 
+<!-- <h1 class="mainText" *ngIf="service.user">Currently logged in as: {{ service.user.displayName }}</h1> -->
+<!-- <h3 class="subText">Total posts on the backend: {{ posts?.length }}</h3> -->
+
 <div *ngFor="let post of posts; let i = index;" class="post">
-    <img src="{{ post.profile_pic }}" alt="Avatar" class="avatar"> 
+    <img src="{{ post.profile_pic }}" alt="Avatar" class="avatar">
     <p class="mainText">{{ post.display_name }}</p>
-    <p class="subText">{{ post.timestamp.toDate().toLocaleDateString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }) }}</p>
+    <p class="subText">{{ post.timestamp.toDate() | date: 'short' }}</p>
     <hr/>
     <p class="mainText">{{ post.text }}</p>
     <img src="{{ post.image_url }}" alt="{{ post.image_url }}" style="max-height: 420px;" class="center">
@@ -23,11 +22,11 @@
     <img src="assets/img/share.svg" class="icons" style="float:left;">
     <textarea #commentText class="commentText" type="text"></textarea>
     <img src="assets/img/send.svg" class="icons" style="float:right;" (click)="postComment(i);commentText.value=' '">
-    
+
 
 </div>
 <!-- <div *ngFor="let post of allPosts; let i=index" class="post">
-    <img src="{{ post[6] }}" alt="Avatar" class="avatar"> 
+    <img src="{{ post[6] }}" alt="Avatar" class="avatar">
     <p class="mainText">{{ post[0] }}</p>
     <p class="subText">{{ post[1] }}</p>
     <hr/>
@@ -42,7 +41,7 @@
     <img src="assets/img/share.svg" class="icons" style="float:left;">
     <textarea #commentText class="commentText" type="text"></textarea>
     <img src="assets/img/send.svg" class="icons" style="float:right;" (click)="postComment(i);commentText.value=' '">
-    
+
 
 </div> -->
-</ul>
+
