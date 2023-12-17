@@ -39,6 +39,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { BuyDebuxComponent } from './buy-debux/buy-debux.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { AddFriendsComponent } from './add-friends/add-friends.component';
+import {LazyLoadImageModule} from "ng-lazyload-image";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -89,6 +90,7 @@ import { AddFriendsComponent } from './add-friends/add-friends.component';
     BugsComponent,
     PostsAdminComponent,
     TextFieldModule,
+    LazyLoadImageModule,
     ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

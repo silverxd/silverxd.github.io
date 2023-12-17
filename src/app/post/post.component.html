@@ -7,7 +7,7 @@
     <p class="subText">{{ post.timestamp.toDate() | date: 'short' }}</p>
     <hr/>
     <p class="mainText">{{ post.text }}</p>
-    <img src="{{ post.image_url }}" alt="{{ post.image_url }}" style="max-height: 420px;" class="center">
+    <img [lazyLoad]="'{{ post.image_url }}'" alt="{{ post.image_url }}" style="max-height: 420px;" class="center" placeholder="https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg">
 
     <!-- <p class="subText" style="float:left;">{{ item.likes }} {{ 2 === 1 ? 'like' : 'likes' }}</p>
     <p class="subText" style="float:right;">{{ item.comments }} {{ 2 === 1 ? 'comment' : 'comments' }}</p> -->
