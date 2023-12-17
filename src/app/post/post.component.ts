@@ -35,17 +35,28 @@ export class PostComponent implements OnInit{
     });
   }
 
-  toggleLike(post_id: string) {
-    // if (this.allPosts[i][7] === true) {
-    //   this.allPosts[i][7] = false;
-    //   this.allPosts[i][2] -= 1;
-    // } else {
-    //   this.allPosts[i][7] = true
-    //   this.allPosts[i][2] += 1;
-    // };
-    console.warn('Toggled like')
-    console.log(post_id)
-    this.service.toggleLike(post_id);
+  toggleLike(post_id: number) {
+    let amount_of_likes = parseInt(document.getElementById('n' + post_id.toString())?.textContent?.replace(/[^0-9]/g, '')!);
+    if (document.getElementById(post_id.toString())?.getAttribute("src") == "assets/img/like_active.svg") {
+      document.getElementById(post_id.toString())?.setAttribute("src", "assets/img/like_inactive.svg");
+      if (amount_of_likes == 1) {
+        document.getElementById('n' + post_id.toString())!.textContent = "0 likes";
+      }
+      if (amount_of_likes == 2) {
+        document.getElementById('n' + post_id.toString())!.textContent = "1 like";
+      } else {
+        amount_of_likes -= 1;
+        document.getElementById('n' + post_id.toString())!.textContent = amount_of_likes + " likes";
+      }
+    } else {
+      document.getElementById(post_id.toString())?.setAttribute("src", "assets/img/like_active.svg");
+      if (amount_of_likes == 0) {
+        document.getElementById('n' + post_id.toString())!.textContent = "1 like";
+      } else {
+        amount_of_likes += 1;
+        document.getElementById('n' + post_id.toString())!.textContent = amount_of_likes + " likes";
+      }
+    }
   };
   postComment(i: number) {
     // this.allPosts[i][3] += 1;
