@@ -9,8 +9,6 @@ import {FriendRequestService} from "./friend-request.service";
 
 @Component({
     selector: 'app-add-friends',
-    standalone: true,
-    imports: [CommonModule],
     templateUrl: './add-friends.component.html',
     styleUrl: './add-friends.component.css'
 })

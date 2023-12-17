@@ -30,6 +30,16 @@ import {PickerComponent} from "@ctrl/ngx-emoji-mart";
 import {FriendsBoxComponent} from "./friends-box/friends-box.component";
 import { ParticleDirective } from './particle.directive';
 import { ShortNumberPipe } from './short-number.pipe';
+import { NgChartsModule } from 'ng2-charts';
+import {BugsComponent} from "./admin/bugs/bugs.component";
+import {PostsAdminComponent} from "./admin/posts-admin/posts-admin.component";
+import {TextFieldModule} from "@angular/cdk/text-field";
+import { ProfileBoxComponent } from './profile-box/profile-box.component';
+import { MessagesComponent } from './messages/messages.component';
+import { BuyDebuxComponent } from './buy-debux/buy-debux.component';
+import { BugReportComponent } from './bug-report/bug-report.component';
+import { AddFriendsComponent } from './add-friends/add-friends.component';
+import { CommentOverlayComponent } from './comment-overlay/comment-overlay.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -45,6 +55,12 @@ import { ShortNumberPipe } from './short-number.pipe';
     CreditBoxComponent,
     ParticleDirective,
     ShortNumberPipe,
+    ProfileBoxComponent,
+    FriendsBoxComponent,
+    MessagesComponent,
+    BuyDebuxComponent,
+    BugReportComponent,
+    AddFriendsComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,21 +74,24 @@ import { ShortNumberPipe } from './short-number.pipe';
     MatToolbarModule,
     HttpClientModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
-      authDomain: "earn2post.firebaseapp.com",
-      projectId: "earn2post",
-      storageBucket: "earn2post.appspot.com",
-      messagingSenderId: "627810397108",
-      appId: "1:627810397108:web:9c06f50115255b39cf20e1"
+        apiKey: "AIzaSyDdqKeVXZLeAeRIzFuvh1-4snVV-G9LK34",
+        authDomain: "earn2post.firebaseapp.com",
+        projectId: "earn2post",
+        storageBucket: "earn2post.appspot.com",
+        messagingSenderId: "627810397108",
+        appId: "1:627810397108:web:9c06f50115255b39cf20e1"
     }),
     AngularFireAuthModule,
     AngularFirestoreModule,
     OverlayModule,
     EmojiModule,
     PickerComponent,
-    FriendsBoxComponent,
-
-  ],
+    NgChartsModule,
+    BugsComponent,
+    PostsAdminComponent,
+    TextFieldModule,
+    CommentOverlayComponent,
+    ],
   providers: [AuthService, ClickerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,17 +1,23 @@
 .post {
-    color: white; 
-    width: 880px; 
-    background: #313131; 
+    color: white;
+    width: 50vw;
+    background: #313131;
     border-radius: 40px;
     padding: 40px;
     margin-top: 10px;
     margin-bottom: 40px;
 }
+
+.post-box-opened {
+    display: flex;
+    background-color: #6A5988;
+
+}
 .mainText {
-    color: white; 
-    font-size: 40px; 
-    font-family: IBM Plex Mono; 
-    font-weight: 400; 
+    color: white;
+    font-size: 40px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
     word-wrap: break-word;
     margin: auto;
 }
@@ -22,6 +28,17 @@
     font-weight: 400;
     word-wrap: break-word;
     margin: auto;
+}
+.hoverableSubText {
+    color: white;
+    font-size: 25px;
+    font-family: IBM Plex Mono;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin: auto;
+}
+.hoverableSubText:hover {
+    cursor: pointer;
 }
 .avatar {
     vertical-align: middle;

@@ -1,2 +1,15 @@
-<h1>You're logged in as an admin</h1>
-<button [routerLink]="''"> Sign out</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add other head elements like title, stylesheets, and scripts here -->
+</head>
+<body>
+<div class="static-sidebar">
+    <a (click)="showComponent('bugs')" [ngClass]="{'bold-text': currentComponent === 'bugs'}">Bugs</a>
+    <a (click)="showComponent('posts')" [ngClass]="{'bold-text': currentComponent === 'posts'}">Posts</a>
+    <a>Sales</a>
+</div>
+<app-bugs *ngIf="currentComponent =='bugs'" style="width: 90%"></app-bugs>
+<app-posts-admin *ngIf="currentComponent =='posts'" style="width: 90%"></app-posts-admin>
+</body>
