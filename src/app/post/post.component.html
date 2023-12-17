@@ -7,13 +7,22 @@
     <p class="subText">{{ post.timestamp.toDate() | date: 'short' }}</p>
     <hr/>
     <p class="mainText">{{ post.text }}</p>
-    <img src="{{ post.image_url }}" alt="{{ post.image_url }}" style="max-height: 420px;" class="center">
+    <img src="{{ post.image_url }}" alt="{{ post.image_url }}" style="max-height: 30em; max-width: 42em;" class="center">
 
     <!-- <p class="subText" style="float:left;">{{ item.likes }} {{ 2 === 1 ? 'like' : 'likes' }}</p>
     <p class="subText" style="float:right;">{{ item.comments }} {{ 2 === 1 ? 'comment' : 'comments' }}</p> -->
-    <p class="subText" style="float:left;">{{ post.likes?.length }} {{ post.likes?.length === 1 ? 'like' : 'likes' }}</p>
-    <p class="subText" style="float:right;">{{ post.comments?.length }} {{ post.comments?.length === 1 ? 'comment' : 'comments' }}</p>
-
+    <div *ngIf="post.likes; else noLikes">
+        <p class="subText" style="float:left;">{{ post.likes.length }} {{ post.likes?.length === 1 ? 'like' : 'likes' }}</p>
+    </div>
+    <ng-template #noLikes>
+        <p class="subText" style="float:left;">0 likes</p>
+    </ng-template>
+    <div *ngIf="post.comments; else noComments">
+        <p class="subText" style="float:right;">{{ post.comments?.length }} {{ post.comments?.length === 1 ? 'comment' : 'comments' }}</p>
+    </div>
+    <ng-template #noComments>
+        <p class="subText" style="float:right;">0 comments</p>
+    </ng-template>
     <br><br>
     <hr/>
     <!-- TODO: get current user UID for proper like / comment checking -->

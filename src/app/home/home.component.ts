@@ -89,7 +89,9 @@ export class HomeComponent {
                         author_uid: this.user,
                         image_url: url,
                         text: this.textToSend,
-                        timestamp: new Date()
+                        timestamp: new Date(),
+                        comments: new Array(),
+                        likes: new Array()
                     }
                     this.db.collection('posts').add(data)
                     console.log('Image URL:', url);
