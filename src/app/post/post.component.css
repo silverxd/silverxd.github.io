@@ -57,6 +57,9 @@
     max-height: 65px;
     padding: 5px;
 }
+.icons:hover {
+    cursor: pointer;
+}
 .commentText {
     width: 73%;
     height: 75px;

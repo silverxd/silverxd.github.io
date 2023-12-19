@@ -9,6 +9,7 @@ interface Post {
   author_uid: string;
   comments: Array<any>;
   display_name: string;
+  document_id: string;
   image_url: string;
   likes: Array<string>;
   profile_pic: string;
@@ -24,6 +25,7 @@ export class PostService {
   authState$: Observable<User | null>;
   posts$: Observable<Post[]> = of([]);
 
+
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.user = null;
     this.authState$ = this.afAuth.authState;
@@ -31,6 +33,18 @@ export class PostService {
     this.user = user;
     });
   }
+  toggleLike(post_id: string) {
+    if (this.user) {
+    console.log(this.db.collection('posts').doc(post_id).get())
+    //   this.db.collection('posts').doc(post_id).update({
+    //     likes: firebase.firestore.FieldValue.arrayUnion(this.user.uid)
+    //   });
+    // } else {
+    //   console.warn('User not authenticated.');
+    }
+    return;
+  
+  };
   getPosts(): Observable<Post[]> {
     if (this.user) {
       this.posts$ = this.db
