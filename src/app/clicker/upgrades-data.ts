@@ -79,7 +79,7 @@ export const upgradesDefault: {
     description: 'Upgrade ChatGPT to a more advanced version, increasing its problem-solving capabilities and assistance in debugging.'
   },
   {
-    name: 'Progarm that solves every bug', cost: 31, canPrestige: false, affordable: false, onetime: true, purchased: 0,
+    name: 'Program that solves every bug', cost: 3141592653589, canPrestige: false, affordable: false, onetime: true, purchased: 0,
     description: 'You have found the key to bugless universe.'
   },
 ];

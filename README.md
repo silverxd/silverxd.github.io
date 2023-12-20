@@ -8,7 +8,7 @@ Earn2Post is a socialmedia platform where users posting and commenting is limite
 
 ## Project Status
 
-Right now project is in development. We have done prototype of the website. You can see visuals of it below. Our next big step is to make this to a real thing.
+After 11 sprints we have somewhat completed our socialmedia project and it is now available for everyone. We did not manage to finish the whole thing with given time, but the end product is still pretty nice.
 
 ## Visuals
 
@@ -30,29 +30,32 @@ Right now project is in development. We have done prototype of the website. You 
 ## Features
 
 ### For User
-- [ ] Sign up/Sign in
-- [ ] Forgot password possibility
-- [ ] Ongoing feed
-- [ ] Profile customization
+- [x] Sign up/Sign in
+- [x] Forgot password possibility
+- [x] Ongoing feed
+- [x] Profile customization
 - [ ] Following/Unfollowing
-- [ ] Adding friends
-- [ ] Messaging with firends
-- [ ] DeBug clicker for credit earning 
+- [x] Adding friends
+- [x] Messaging with firends
+- [x] DeBug clicker for credit earning 
 - [ ] Possibility to buy DeBux with money
 - [ ] Settings
-- [ ] Bug Report
+- [x] USer settings
+- [x] Bug Report
 - [ ] Switching account
-- [ ] Log out
+- [x] Log out
 
 ### For Admin
 - [ ] Sales graph and Transactions tabel
-- [ ] Bug reports graph and ability to see bug reports
-- [ ] Post overview and ability to delete them
+- [x] Bug reports graph and ability to see bug reports
+- [x] Post overview and ability to delete them
 
 ## Tools
 
 - [x] [GitLab](https://gitlab.cs.taltech.ee/rraasu/iti0105-2023)
 - [x] [Figma](https://www.figma.com/file/ADRzR9f2rCRiKne5f5kdr5/Untitled?type=design&mode=design&t=4gYQuHtCNYEVnsjo-1)
+- [x] Angular framework
+- [x] FireBase database
 
 ## Authors
 
